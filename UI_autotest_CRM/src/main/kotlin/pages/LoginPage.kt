@@ -13,7 +13,7 @@ class LoginPage {
         loginEditBox.value = newValue
     }
 
-    fun setValueToPasswordEditBox(newValue: String) {
+    fun setValueToPasswordEditBox(newValue: String?) {
         passwordEditBox.value = newValue
     }
 

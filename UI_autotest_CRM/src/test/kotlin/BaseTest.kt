@@ -6,28 +6,34 @@ import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
 import org.junit.jupiter.api.*
 import org.openqa.selenium.WebDriver
+import pages.CommonUtils
 import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
 
     open class BaseTest {
     companion object {
         lateinit var driver: WebDriver
     }
+
+    val utils = CommonUtils()
+
     val login = "pizzalino"
     val loginBonaCapona = "bona-capona20"
     val loginPhaliHinkali = "Phali"
     val loginJoliWooFinegans = "administrator"
     val loginFiesta = "admin"
 
-    val password = "" //пароль пиццалино
-    val passwordBonaCapona = "" //пароль бона капона
-    val passwordPhaliHinkali = "" //пароль пхали хинкали
-    val passwordJoliWooFinegans = "" //пароль джоливу финеганс
-    val passwordFiesta = "" //пароль фиесты
+    val password = utils.encryptionPasswords(System.getenv("PIZZALINO_PASSWORD")) //пароль пиццалино
+    val passwordBonaCapona = utils.encryptionPasswords(System.getenv("BONACAPONA_PASSWORD")) //пароль бона капона
+    val passwordPhaliHinkali = utils.encryptionPasswords(System.getenv("PHALIHINKALI_PASSWORD")) //пароль пхали хинкали
+    val passwordJoliWooFinegans = utils.encryptionPasswords(System.getenv("JOLIWOOFINEGANS_PASSWORD")) //пароль джоливу финеганс
+    val passwordFiesta = utils.encryptionPasswords(System.getenv("FIESTA_PASSWORD")) //пароль фиесты
 
     val point = "600400"
     val pointBonaCapona = "600320"

@@ -17,7 +17,7 @@ class FeedbackReportTest3 : BaseTest() {
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
         loginPage.setValueToPointEditBox(pointBonaCapona)
         loginPage.loginButtonClick()
-        Selenide.sleep(15000)
+        sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }

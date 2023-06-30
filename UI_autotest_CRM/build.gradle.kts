@@ -19,6 +19,11 @@ dependencies {
     implementation ("commons-io:commons-io:2.11.0")
     implementation ("mysql:mysql-connector-java:8.0.19")
     implementation ("com.opencsv:opencsv:5.3")
+    testImplementation("org.testng:testng:7.1.0")
+    testImplementation("org.testng:testng:7.1.0")
+    testImplementation ("org.junit.platform:junit-platform-suite-api:1.7.0")
+    testImplementation ("org.junit.platform:junit-platform-runner:1.2.0")
+    implementation ("org.junit.platform:junit-platform-suite-engine:1.10.0-M1")
 
 }
 
@@ -32,4 +37,7 @@ kotlin {
 
 application {
     mainClass.set("MainKt")
+}
+tasks.test {
+    useJUnitPlatform()
 }

@@ -1,12 +1,8 @@
-import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.*
-import com.codeborne.selenide.junit5.ScreenShooterExtension
 import org.junit.jupiter.api.*
-import org.openqa.selenium.WebElement
+import org.junit.platform.suite.api.Suite
 import pages.*
-import java.awt.Image
-import java.io.File
 import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
