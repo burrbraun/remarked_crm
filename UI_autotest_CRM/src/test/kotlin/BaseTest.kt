@@ -53,10 +53,12 @@ import kotlin.test.assertEquals
 
     @BeforeAll
     open fun setUp() {
+
         browser = CHROME
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
-        driverManagerEnabled = true
+        driverManagerEnabled = false
+
 
         fileDownload = FOLDER
         downloadsFolder = "/Users/Shared/test"
@@ -110,6 +112,10 @@ import kotlin.test.assertEquals
         assertEquals(expectedUrl,actualUrl)
 
     }
+        fun encryptPassword() {
+            val commonUtils  = CommonUtils()
+            commonUtils.encryptionPasswords("dsv43fg")
+        }
 
 }
 
