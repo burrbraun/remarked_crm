@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.*
 import org.junit.jupiter.api.*
-import org.junit.platform.suite.api.Suite
 import pages.*
 import java.lang.Thread.sleep
 import kotlin.test.assertEquals

@@ -1,10 +1,15 @@
 package suite
 
 import SQLDataBaseTests
-import org.junit.platform.suite.api.SelectClasses
-import org.junit.platform.suite.api.Suite
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestMethodOrder
 
-@Suite
-@SelectClasses(SQLDataBaseTests::class)
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
+//@RunWith(Suite::class)
+//@Suite.SuiteClasses(SQLDataBaseTests::class)
 class DataBaseTestsSuite {
 }
