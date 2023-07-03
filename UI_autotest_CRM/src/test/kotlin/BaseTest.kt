@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 
 
     open class BaseTest {
