@@ -8,7 +8,8 @@ import org.junit.runner.RunWith
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 
+
 @Suite
-@SelectClasses(CRMCallsTest::class, CRMSmokeTest::class, CRMWifiAccessTest::class)
+@SelectClasses(BaseTest::class, CRMCallsTest::class, CRMSmokeTest::class, CRMWifiAccessTest::class)
 class CrmTestsSuite {
 }
