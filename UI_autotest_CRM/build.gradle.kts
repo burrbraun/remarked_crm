@@ -21,10 +21,15 @@ dependencies {
 
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
 
 kotlin {
     jvmToolchain(11)
+}
+
+tasks.test {
+    useTestNG() {
+
+        suites("src/test/resources/suiteReportsTest.xml")
+
+    }
 }
