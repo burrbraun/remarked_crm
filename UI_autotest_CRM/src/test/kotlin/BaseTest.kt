@@ -1,18 +1,20 @@
+// import org.junit.jupiter.api.*
 import com.codeborne.selenide.Browsers.CHROME
 import com.codeborne.selenide.Configuration.*
 import com.codeborne.selenide.FileDownloadMode.FOLDER
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
-import org.junit.jupiter.api.*
 import org.openqa.selenium.WebDriver
+import org.testng.annotations.BeforeSuite
+import org.testng.annotations.Test
 import pages.CommonUtils
 import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 //@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 
 
@@ -51,13 +53,17 @@ import kotlin.test.assertEquals
     val profilePage = ProfilePage()
 
 
-    @BeforeAll
+    @BeforeSuite
     open fun setUp() {
+
+        /*val dimension = Dimension(2560, 1600)
+        open("https://cabinet.clientomer.ru")
+        WebDriverRunner.getWebDriver().manage().window().size = dimension*/
 
         browser = CHROME
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
-        driverManagerEnabled = false
+        driverManagerEnabled = true
 
 
         fileDownload = FOLDER
@@ -67,11 +73,13 @@ import kotlin.test.assertEquals
     }
 
 
+
+
 }
 
     class Auth : BaseTest() {
     @Test
-    @Order(1)
+    ////// @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -83,7 +91,7 @@ import kotlin.test.assertEquals
     }
 
     @Test
-    @Order(2)
+   // //// @Order(2)
     fun checkAuthByUrl() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -98,7 +106,7 @@ import kotlin.test.assertEquals
     }
 
     @Test
-    @Order(3)
+   // @Order(3)
     fun checkMainSiteLink() {
 /*        loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)

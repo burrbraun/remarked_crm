@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
  @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
     class CRMWifiAccessTest : BaseTest() {
         @Test
-        @Order(1)
+        // @Order(1)
         fun checkAuthByUserName() {
             loginPage.setValueToLoginEditBox(login)
             loginPage.setValueToPasswordEditBox(password)
@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
         }
 
         @Test
-        @Order(2)
+        // @Order(2)
         fun leftMenuNavigation(){
             val profilePage = ProfilePage()
             val result = profilePage.leftMenuItemsSelector("Источники","Посещения WiFi")
@@ -31,7 +31,7 @@ import kotlin.test.assertEquals
         }
 
         @Test
-        @Order(3)
+        // @Order(3)
         fun checkPhoneNumInTheWifiAccessGrid() {
             val wifiAccessTable = WifiAccessTable()
 
@@ -46,7 +46,7 @@ import kotlin.test.assertEquals
         }
 
         @Test
-        @Order(4)
+        // @Order(4)
         fun downloadXlsFileCheck() {
             val wifiAccessTable = WifiAccessTable()
             wifiAccessTable.buttonDropdownMenuClick()
@@ -56,7 +56,7 @@ import kotlin.test.assertEquals
         }
 
         @Test
-        @Order(5)
+        // @Order(5)
         fun downloadedFileSizeCheck() {
             val wifiAccessTable = WifiAccessTable()
             //val filePath = Paths.get("/Users/Shared/test/wifi_visits_2021-07-08_2021-07-09.xlsx")

@@ -1,13 +1,16 @@
-import org.junit.jupiter.api.*
+// import org.junit.jupiter.api.*
+import org.asynchttpclient.util.Assertions
+import org.testng.Assert
+import org.testng.annotations.Test
 import pages.*
 import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class ReportsTest2 : BaseTest(){
     @Test
-    @Order(1) // Тест авторизации
+    // @Order(1) // Тест авторизации
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginFiesta)
         loginPage.setValueToPasswordEditBox(passwordFiesta)
@@ -18,7 +21,7 @@ class ReportsTest2 : BaseTest(){
         assertEquals(customerNameFiesta.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
     @Test
-    @Order(2)
+    // @Order(2)
     fun checkLeftMenuNavigationOpenClose() {
         val profilePage = ProfilePage()
         profilePage.leftMenuSingleSelector("Отчеты")
@@ -27,7 +30,7 @@ class ReportsTest2 : BaseTest(){
         profilePage.leftSubMenuInvisibleCheck()
     }
     @Test //тест кейс №2 “Звонки” и смена дат
-    @Order(3)
+    // @Order(3)
     fun checkCallsReport() {
         val profilePage = ProfilePage()
         val reportsCallsPage = ReportsCallsPage()
@@ -53,7 +56,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test //тест кейс №3 "Отзывы" и смена дат
-    @Order(4)
+    // @Order(4)
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()
@@ -74,7 +77,7 @@ class ReportsTest2 : BaseTest(){
         assertEquals("Отчет по отзывам ФИЕСТА ПИЦЦА ОБЩИЙ с 2023-04-01 по 2023-04-30.pdf",resultName)
     }
     @Test
-    @Order(5) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
+    // @Order(5) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
         val reportsGuestWifiPage = ReportsGuestWifiPage()
@@ -97,7 +100,7 @@ class ReportsTest2 : BaseTest(){
         )
     }
     @Test
-    @Order(6) //Тест-кейс №6:  “Сводка” и смена дат
+    // @Order(6) //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
         val reportsSummaryPage=ReportsSummaryPage()
@@ -113,12 +116,12 @@ class ReportsTest2 : BaseTest(){
         sleep(15000)
 
         val result = reportsSummaryPage.recountButtonVisible()
-        Assertions.assertEquals(true, result) //Здесь происходит проверка по наличию кнопки "Пересчитать" внизу страницы
+        Assert.assertEquals(true, result) //Здесь происходит проверка по наличию кнопки "Пересчитать" внизу страницы
 
     }
 
    /* @Test //закоменчен, т.к. сам отчет рандомно 500-тит и не грузится, что ломает прогон
-    @Order(7) //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
+    // @Order(7) //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
     fun checkDeliveryReport() {
         val profilePage = ProfilePage()
         val reportsDeliveryPage = ReportsDeliveryPage()
@@ -134,7 +137,7 @@ class ReportsTest2 : BaseTest(){
     }*/
 
     @Test
-    @Order(8) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
+    // @Order(8) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
         val abcDishPage = ABCDishPage()
@@ -159,7 +162,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test
-    @Order(9) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
+    // @Order(9) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
     fun checkReportABCGuest() {
         val profilePage = ProfilePage()
         val abcGuestsPage = ABCGuestsPage()
@@ -183,7 +186,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test
-    @Order(10) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
+    // @Order(10) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
     fun checkBirthdays() {
         val profilePage = ProfilePage()
         val commonUtils = CommonUtils()
@@ -212,7 +215,7 @@ class ReportsTest2 : BaseTest(){
 
     }
     @Test
-    @Order(11) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
+    // @Order(11) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
     fun newRfmReportCheck() {
         val profilePage = ProfilePage()
         val commonUtils = CommonUtils()
@@ -233,7 +236,7 @@ class ReportsTest2 : BaseTest(){
 
     }
     @Test
-    @Order(12)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
+    // @Order(12)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
         val loginPage = LoginPage()
@@ -261,7 +264,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test
-    @Order(13) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
+    // @Order(13) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
 
 

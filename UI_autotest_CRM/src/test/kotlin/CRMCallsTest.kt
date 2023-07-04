@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class CRMCallsTest : BaseTest (){
     @Test
-    @Order(1)
+    // @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginBonaCapona)
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
@@ -22,14 +22,14 @@ class CRMCallsTest : BaseTest (){
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
     @Test
-    @Order(2)
+    // @Order(2)
     fun leftMenuNavigation(){
         val profilePage = ProfilePage()
         val result = profilePage.leftMenuItemsSelector("Источники","Звонки")
         assertEquals("Звонки",result)
     }
     @Test
-    @Order(3)
+    // @Order(3)
     fun checkPhoneNumInThePhoneCallsGrid() {
         val sourcesCallsTablePage = SourcesCallsTablePage()
 
@@ -43,7 +43,7 @@ class CRMCallsTest : BaseTest (){
         Thread.sleep(5000)
     }
     @Test
-    @Order(4)
+    // @Order(4)
     fun downloadXlsFileCheck() {
         val sourcesCallsTablePage = SourcesCallsTablePage()
         sourcesCallsTablePage.buttonDropdownMenuClick()

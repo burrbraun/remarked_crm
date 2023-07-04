@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class FeedbackReportTest3 : BaseTest() {
     @Test
-    @Order(1)
+    // @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginBonaCapona)
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
@@ -22,7 +22,7 @@ class FeedbackReportTest3 : BaseTest() {
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
     @Test
-    @Order(2)
+    // @Order(2)
     fun leftMenuNavigation(){
         val profilePage = ProfilePage()
         val result = profilePage.leftMenuItemsSelector("Отчеты","Отзывы")
@@ -30,7 +30,7 @@ class FeedbackReportTest3 : BaseTest() {
         assertEquals("Отзывы",result)
     }
     @Test
-    @Order(3)
+    // @Order(3)
     fun setNewDates() {
         val reviewReportPage = ReviewsReportPage()
 
@@ -41,7 +41,7 @@ class FeedbackReportTest3 : BaseTest() {
         sleep(10000)
     }
     @Test
-    @Order(4)
+    // @Order(4)
     fun downloadPdfFile() {
         val reviewReportPage = ReviewsReportPage()
         val result = reviewReportPage.downloadTableDateInPdfFile()
@@ -49,7 +49,7 @@ class FeedbackReportTest3 : BaseTest() {
         assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",result)
     }
     @Test
-    @Order(5)
+    // @Order(5)
     fun downloadedFileSizeCheck() {
         val reviewReportPage = ReviewsReportPage()
       //  val fileSize = reviewReportPage.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()

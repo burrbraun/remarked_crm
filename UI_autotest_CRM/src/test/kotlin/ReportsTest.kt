@@ -1,15 +1,18 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.*
-import org.junit.jupiter.api.*
+import org.asynchttpclient.util.Assertions
+import org.testng.annotations.Test
+// import org.junit.jupiter.api.*
 import pages.*
 import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import org.testng.Assert
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class ReportsTest : BaseTest() {
     @Test
-    @Order(1) // Тест авторизации
+    // @Order(1) // Тест авторизации
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginBonaCapona)
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
@@ -21,7 +24,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test //Тест-кейс №1: открытие и закрытие списка отчетов
-    @Order(2)
+    // @Order(2)
     fun checkLeftMenuNavigationOpenClose(){
         val profilePage = ProfilePage()
         profilePage.leftMenuSingleSelector("Отчеты")
@@ -31,7 +34,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test //тест кейс №2 “Звонки” и смена дат
-    @Order(3)
+    // @Order(3)
     fun checkCallsReport(){
         val profilePage = ProfilePage()
         val reportsCallsPage = ReportsCallsPage()
@@ -59,7 +62,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test //тест кейс №3 "Отзывы" и смена дат
-    @Order(4)
+    // @Order(4)
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()
@@ -81,7 +84,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(5) //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
+    // @Order(5) //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
     fun checkOrdersInCafeReport () {
         val profilePage = ProfilePage()
         val reportsOrdersInCafePage = ReportsOrdersInCafePage()
@@ -104,7 +107,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(6) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
+    // @Order(6) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
         val reportsGuestWifiPage = ReportsGuestWifiPage()
@@ -128,7 +131,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(7) //Тест-кейс №6:  “Сводка” и смена дат
+    // @Order(7) //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
         val reportsSummaryPage=ReportsSummaryPage()
@@ -144,12 +147,12 @@ class ReportsTest : BaseTest() {
         sleep(15000)
 
         val result = reportsSummaryPage.recountButtonVisible()
-        Assertions.assertEquals(true, result) //Здесь происходит проверка по наличию кнопки "Пересчитать" внизу страницы
+        Assert.assertEquals(true, result) //Здесь происходит проверка по наличию кнопки "Пересчитать" внизу страницы
 
     }
 
     @Test
-    @Order(8) //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
+    // @Order(8) //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
     fun checkDeliveryReport() {
         val profilePage = ProfilePage()
         val reportsDeliveryPage = ReportsDeliveryPage()
@@ -168,7 +171,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(9) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
+    // @Order(9) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
         val abcDishPage = ABCDishPage()
@@ -192,7 +195,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(10) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
+    // @Order(10) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
     fun checkReportABCGuest() {
         val profilePage = ProfilePage()
         val abcGuestsPage = ABCGuestsPage()
@@ -217,7 +220,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(11) //Тест-кейс №12:  ”Поведение гостей”, смена дат и скачивание отчета
+    // @Order(11) //Тест-кейс №12:  ”Поведение гостей”, смена дат и скачивание отчета
     fun checkReportBehavior() {
         val profilePage = ProfilePage()
         val behaviorReportPage = BehaviorReportPage()
@@ -242,7 +245,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(12) //Тест-кейс №14:  ”Отзывы после визита”, смена дат и скачивание отчета
+    // @Order(12) //Тест-кейс №14:  ”Отзывы после визита”, смена дат и скачивание отчета
     fun checkReviewAfterVisit() {
         val profilePage = ProfilePage()
         val reportsReviewAfterVisitPage = ReportsReviewAfterVisitPage()
@@ -269,7 +272,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(13) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
+    // @Order(13) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
     fun checkBirthdays() {
         val loginPage = LoginPage()
         val profilePage = ProfilePage()
@@ -304,7 +307,7 @@ class ReportsTest : BaseTest() {
         //assertEquals(14896, fileSize)
     }
     @Test
-    @Order(14) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
+    // @Order(14) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
     fun newRfmReportCheck() {
         val loginPage = LoginPage()
         val profilePage = ProfilePage()
@@ -327,7 +330,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test
-    @Order(15)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
+    // @Order(15)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
         val loginPage = LoginPage()
@@ -354,7 +357,7 @@ class ReportsTest : BaseTest() {
 
     }
     @Test
-    @Order(16) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
+    // @Order(16) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
 
         val loginPage = LoginPage()

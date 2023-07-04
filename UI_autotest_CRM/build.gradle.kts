@@ -12,12 +12,10 @@ repositories {
 
 dependencies {
     implementation ("com.codeborne:selenide:6.13.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
     testImplementation(kotlin("test"))
     implementation ("commons-io:commons-io:2.11.0")
     implementation ("mysql:mysql-connector-java:8.0.19")
     implementation ("com.opencsv:opencsv:5.3")
-    testImplementation("org.testng:testng:7.1.0")
     testImplementation("org.testng:testng:7.1.0")
 
 

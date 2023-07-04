@@ -1,5 +1,3 @@
-package suite
-
 import SQLDataBaseTests
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.TestInstance

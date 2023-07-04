@@ -1,4 +1,5 @@
-import org.junit.jupiter.api.Test
+
+import org.testng.annotations.Test
 import pages.DataBase.SqlBaseUtils
 import kotlin.test.assertEquals
 

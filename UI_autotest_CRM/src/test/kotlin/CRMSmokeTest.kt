@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class CRMSmokeTest : BaseTest() {
     @Test
-    @Order(1)
+    // @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -23,7 +23,7 @@ class CRMSmokeTest : BaseTest() {
     }
 
     @Test
-    @Order(2)
+    // @Order(2)
     fun leftMenuNavigation(){
         val profilePage = ProfilePage()
         val result = profilePage.leftMenuItemsSelector("Источники","WiFi-авторизации")
@@ -31,7 +31,7 @@ class CRMSmokeTest : BaseTest() {
     }
 
     @Test
-    @Order(3)
+    // @Order(3)
     fun checkPhoneNumInTheWifiAuthGrid() {
         val wifiAuthPage = WifiAuthPage()
 
@@ -45,7 +45,7 @@ class CRMSmokeTest : BaseTest() {
         sleep(5000)
     }
 @Test
-@Order(4)
+// @Order(4)
 fun downloadXlsFileCheck() {
     val wifiAuthPage = WifiAuthPage()
     wifiAuthPage.buttonDropdownMenuClick()
