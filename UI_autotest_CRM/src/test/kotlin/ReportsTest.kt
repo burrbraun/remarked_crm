@@ -11,7 +11,7 @@ import org.testng.Assert
 
 //@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class ReportsTest : BaseTest() {
-    @Test(priority=1)
+    @Test
     // @Order(1) // Тест авторизации
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginBonaCapona)
@@ -23,7 +23,7 @@ class ReportsTest : BaseTest() {
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test(priority=2) //Тест-кейс №1: открытие и закрытие списка отчетов
+    @Test(dependsOnMethods = ["checkAuthByUserName"]) //Тест-кейс №1: открытие и закрытие списка отчетов
     // @Order(2)
     fun checkLeftMenuNavigationOpenClose(){
         val profilePage = ProfilePage()
@@ -33,7 +33,7 @@ class ReportsTest : BaseTest() {
         profilePage.leftSubMenuInvisibleCheck()
     }
 
-    @Test(priority=3) //тест кейс №2 “Звонки” и смена дат
+    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат
     // @Order(3)
     fun checkCallsReport(){
         val profilePage = ProfilePage()
@@ -61,7 +61,7 @@ class ReportsTest : BaseTest() {
         assertEquals(true, result)
     }
 
-    @Test(priority=4) //тест кейс №3 "Отзывы" и смена дат
+    @Test(dependsOnMethods = ["checkCallsReport"]) //тест кейс №3 "Отзывы" и смена дат
     // @Order(4)
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
