@@ -64,7 +64,7 @@ import kotlin.test.assertEquals
         browserSize = "2560×1600"
         driverManagerEnabled = true
         headless = true
-        System.out.println("Start WebDriver Initialization")
+        System.err.println("Start WebDriver Initialization")
         WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
@@ -75,7 +75,7 @@ import kotlin.test.assertEquals
         //Navigate to a URL
 
         //Navigate to a URL
-        System.out.println("trying to up the browser")
+        System.err.println("trying to up the browser")
         driver[baseUrl]
 
 
