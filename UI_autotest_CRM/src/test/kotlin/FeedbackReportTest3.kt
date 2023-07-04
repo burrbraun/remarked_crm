@@ -1,14 +1,12 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.sleep
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.testng.annotations.Test
+
 import pages.ProfilePage
 import pages.ReviewsReportPage
 import kotlin.test.assertEquals
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
 class FeedbackReportTest3 : BaseTest() {
     @Test
     // @Order(1)

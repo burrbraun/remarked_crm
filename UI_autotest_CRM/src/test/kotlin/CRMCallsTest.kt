@@ -1,14 +1,11 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.screenshot
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.testng.annotations.Test
 import pages.SourcesCallsTablePage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
 class CRMCallsTest : BaseTest (){
     @Test
     // @Order(1)
