@@ -1,11 +1,14 @@
 // import org.junit.jupiter.api.*
+
 import com.codeborne.selenide.Browsers.CHROME
 import com.codeborne.selenide.Configuration.*
 import com.codeborne.selenide.FileDownloadMode.FOLDER
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
+import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
 import org.testng.annotations.BeforeSuite
 import org.testng.annotations.Test
 import pages.CommonUtils
@@ -56,20 +59,27 @@ import kotlin.test.assertEquals
     @BeforeSuite
     open fun setUp() {
 
-        /*val dimension = Dimension(2560, 1600)
-        open("https://cabinet.clientomer.ru")
-        WebDriverRunner.getWebDriver().manage().window().size = dimension*/
-
         browser = CHROME
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
         driverManagerEnabled = true
         headless = true
+        WebDriverManager.chromedriver().setup()
+
+        //Create driver object for Chrome
+
+        //Create driver object for Chrome
+        driver = ChromeDriver()
+
+        //Navigate to a URL
+
+        //Navigate to a URL
+        driver[baseUrl]
 
 
         fileDownload = FOLDER
         downloadsFolder = "src/test/resources/"
-        open(baseUrl)
+       // open(baseUrl)
         timeout = 120000
     }
 }
