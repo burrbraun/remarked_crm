@@ -68,14 +68,10 @@ import kotlin.test.assertEquals
 
 
         fileDownload = FOLDER
-        downloadsFolder = "/Users/Shared/test"
+        downloadsFolder = "src/test/resources/"
         open(baseUrl)
         timeout = 120000
     }
-
-
-
-
 }
 
     class Auth : BaseTest() {
