@@ -9,7 +9,7 @@ import kotlin.test.assertTrue
 
 //@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class ReportsTest2 : BaseTest(){
-    @Test
+    @Test(priority=1)
     // @Order(1) // Тест авторизации
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginFiesta)
@@ -20,7 +20,7 @@ class ReportsTest2 : BaseTest(){
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameFiesta.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
-    @Test
+    @Test(priority=2)
     // @Order(2)
     fun checkLeftMenuNavigationOpenClose() {
         val profilePage = ProfilePage()
@@ -29,7 +29,7 @@ class ReportsTest2 : BaseTest(){
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuInvisibleCheck()
     }
-    @Test //тест кейс №2 “Звонки” и смена дат
+    @Test(priority=3) //тест кейс №2 “Звонки” и смена дат
     // @Order(3)
     fun checkCallsReport() {
         val profilePage = ProfilePage()
@@ -55,7 +55,7 @@ class ReportsTest2 : BaseTest(){
         assertEquals(true, result)
     }
 
-    @Test //тест кейс №3 "Отзывы" и смена дат
+    @Test(priority=4) //тест кейс №3 "Отзывы" и смена дат
     // @Order(4)
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
@@ -76,7 +76,7 @@ class ReportsTest2 : BaseTest(){
         assertEquals(true, result)
         assertEquals("Отчет по отзывам ФИЕСТА ПИЦЦА ОБЩИЙ с 2023-04-01 по 2023-04-30.pdf",resultName)
     }
-    @Test
+    @Test(priority=5)
     // @Order(5) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
@@ -99,7 +99,7 @@ class ReportsTest2 : BaseTest(){
             resultName
         )
     }
-    @Test
+    @Test(priority=6)
     // @Order(6) //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
@@ -136,7 +136,7 @@ class ReportsTest2 : BaseTest(){
         reportsDeliveryPage.clickApplyDateChangeButton()
     }*/
 
-    @Test
+    @Test(priority=7)
     // @Order(8) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
@@ -161,7 +161,7 @@ class ReportsTest2 : BaseTest(){
         assertTrue { fileSize in 38317..38320  }
     }
 
-    @Test
+    @Test(priority=8)
     // @Order(9) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
     fun checkReportABCGuest() {
         val profilePage = ProfilePage()
@@ -185,7 +185,7 @@ class ReportsTest2 : BaseTest(){
         assertTrue { fileSize in 190780..190800 }*/
     }
 
-    @Test
+    @Test(priority=9)
     // @Order(10) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
     fun checkBirthdays() {
         val profilePage = ProfilePage()
@@ -214,7 +214,7 @@ class ReportsTest2 : BaseTest(){
         assertTrue{ fileSize in 26936..26939}*/ //проверка размера заваливает тест
 
     }
-    @Test
+    @Test(priority=10)
     // @Order(11) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
     fun newRfmReportCheck() {
         val profilePage = ProfilePage()
@@ -235,7 +235,7 @@ class ReportsTest2 : BaseTest(){
         assertEquals(true, resultHeader)
 
     }
-    @Test
+    @Test(priority=11)
     // @Order(12)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
@@ -263,7 +263,7 @@ class ReportsTest2 : BaseTest(){
 
     }
 
-    @Test
+    @Test(priority=12)
     // @Order(13) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
 

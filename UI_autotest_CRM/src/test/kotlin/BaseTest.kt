@@ -64,6 +64,7 @@ import kotlin.test.assertEquals
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
         driverManagerEnabled = true
+        headless = true
 
 
         fileDownload = FOLDER
@@ -78,7 +79,7 @@ import kotlin.test.assertEquals
 }
 
     class Auth : BaseTest() {
-    @Test
+    @Test(priority=1)
     ////// @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(login)
@@ -90,7 +91,7 @@ import kotlin.test.assertEquals
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test
+    @Test(priority=2)
    // //// @Order(2)
     fun checkAuthByUrl() {
         loginPage.setValueToLoginEditBox(login)
@@ -105,7 +106,7 @@ import kotlin.test.assertEquals
         assertEquals(expectedUrl,actualUrl)
     }
 
-    @Test
+    @Test(priority=3)
    // @Order(3)
     fun checkMainSiteLink() {
 /*        loginPage.setValueToLoginEditBox(login)
