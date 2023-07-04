@@ -7,7 +7,7 @@ import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-//@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
 class ReportsTest2 : BaseTest(){
     @Test(priority=1)
     // @Order(1) // Тест авторизации

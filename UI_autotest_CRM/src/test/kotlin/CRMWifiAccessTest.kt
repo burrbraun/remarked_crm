@@ -1,14 +1,11 @@
 import com.codeborne.selenide.Selenide
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.testng.annotations.Test
 import pages.ProfilePage
 import pages.WifiAccessTable
 import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 
- @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+
     class CRMWifiAccessTest : BaseTest() {
         @Test
         // @Order(1)
