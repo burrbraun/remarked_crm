@@ -5,7 +5,26 @@
 
     <test name = "checkAuthByUserName">
         <classes>
-            <class name = "ReportsTest" />
+            <class name = "ReportsTest">
+                <methods>
+                    <include name="checkAuthByUserName"></include>
+                    <include name="checkLeftMenuNavigationOpenClose"></include>
+                    <include name="checkCallsReport"></include>
+                    <include name="checkFeedbackReport"></include>
+                    <include name="checkOrdersInCafeReport"></include>
+                    <include name="checkReportWifiGuest"></include>
+                    <include name="checkSummaryReport"></include>
+                    <include name="checkDeliveryReport"></include>
+                    <include name="checkReportsABCDish"></include>
+                    <include name="checkReportABCGuest"></include>
+                    <include name="checkReportBehavior"></include>
+                    <include name="checkReviewAfterVisit"></include>
+                    <include name="checkBirthdays"></include>
+                    <include name="newRfmReportCheck"></include>
+                    <include name="oldRFMReportCheck"></include>
+                    <include name="complementsReportCheck"></include>
+                </methods>
+            </class>
         </classes>
     </test>
 
