@@ -3,9 +3,6 @@ package pages
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
-import org.apache.commons.io.comparator.LastModifiedFileComparator
-import java.io.File
-import java.util.*
 
 class BehaviorReportPage {
     private val dateRange = `$`("[id='reportrange']")

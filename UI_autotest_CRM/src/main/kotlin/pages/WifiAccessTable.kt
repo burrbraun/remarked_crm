@@ -1,15 +1,10 @@
 package pages
 
-import com.codeborne.selenide.Selectors.byText
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
-import com.codeborne.selenide.WebDriverRunner
 import com.codeborne.selenide.files.FileFilters.withExtension
-import org.apache.commons.io.comparator.LastModifiedFileComparator
-import org.apache.commons.io.comparator.LastModifiedFileComparator.*
-import java.awt.image.ByteLookupTable
+import org.apache.commons.io.comparator.LastModifiedFileComparator.LASTMODIFIED_REVERSE
 import java.io.File
-import java.nio.file.Path
 import java.util.*
 
 class WifiAccessTable {

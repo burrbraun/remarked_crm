@@ -1,6 +1,5 @@
 import com.codeborne.selenide.Selenide
 import org.testng.annotations.Test
-
 import pages.ProfilePage
 import pages.WifiAuthPage
 import java.lang.Thread.sleep
@@ -8,8 +7,8 @@ import kotlin.test.assertEquals
 
 
 class CRMSmokeTest : BaseTest() {
-    @Test
-    // @Order(1)
+
+    @Test(priority=1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -20,16 +19,14 @@ class CRMSmokeTest : BaseTest() {
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test
-    // @Order(2)
+    @Test(priority=2)
     fun leftMenuNavigation(){
         val profilePage = ProfilePage()
         val result = profilePage.leftMenuItemsSelector("Источники","WiFi-авторизации")
         assertEquals("WiFi-авторизации",result)
     }
 
-    @Test
-    // @Order(3)
+    @Test(priority=3)
     fun checkPhoneNumInTheWifiAuthGrid() {
         val wifiAuthPage = WifiAuthPage()
 
@@ -42,12 +39,12 @@ class CRMSmokeTest : BaseTest() {
         assertEquals(true,result)
         sleep(5000)
     }
-@Test
-// @Order(4)
-fun downloadXlsFileCheck() {
-    val wifiAuthPage = WifiAuthPage()
-    wifiAuthPage.buttonDropdownMenuClick()
-    val result = wifiAuthPage.downloadTableDateInXlsFile()
-    assertEquals("wifi_auth_2021-05-17_2021-05-18.xlsx",result)
-}
+
+    @Test(priority=4)
+    fun downloadXlsFileCheck() {
+        val wifiAuthPage = WifiAuthPage()
+        wifiAuthPage.buttonDropdownMenuClick()
+        val result = wifiAuthPage.downloadTableDateInXlsFile()
+        assertEquals("wifi_auth_2021-05-17_2021-05-18.xlsx",result)
+    }
 }

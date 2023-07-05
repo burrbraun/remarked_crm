@@ -1,11 +1,8 @@
 package pages
 
-import com.codeborne.selenide.Selectors.byText
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
-import com.codeborne.selenide.WebDriverRunner
 import com.codeborne.selenide.files.FileFilters.withExtension
-import java.awt.image.ByteLookupTable
 
 class WifiAuthPage {
         private val dateRange = `$`("[id='reportrange']")
@@ -16,8 +13,6 @@ class WifiAuthPage {
         private val tableRows = wifiAuthTable.`$$`("tr")
         private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
         private val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li" )
-
-
 
         fun clickToOpenDateRange() {
                 dateRange.click()
@@ -55,6 +50,4 @@ class WifiAuthPage {
                 val reportFile = downloadFilesTypeCollection.last().download(withExtension("xlsx"))
                 return reportFile.name
         }
-
-
 }

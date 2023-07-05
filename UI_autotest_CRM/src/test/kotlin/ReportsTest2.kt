@@ -1,5 +1,4 @@
-// import org.junit.jupiter.api.*
-import org.asynchttpclient.util.Assertions
+
 import org.testng.Assert
 import org.testng.annotations.Test
 import pages.*
@@ -7,10 +6,10 @@ import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+class ReportsTest2 : BaseTest() {
 
-class ReportsTest2 : BaseTest(){
     @Test(priority=1)
-    // @Order(1) // Тест авторизации
+    // Тест авторизации
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginFiesta)
         loginPage.setValueToPasswordEditBox(passwordFiesta)
@@ -20,8 +19,8 @@ class ReportsTest2 : BaseTest(){
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameFiesta.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
+
     @Test(priority=2)
-    // @Order(2)
     fun checkLeftMenuNavigationOpenClose() {
         val profilePage = ProfilePage()
         profilePage.leftMenuSingleSelector("Отчеты")
@@ -29,8 +28,8 @@ class ReportsTest2 : BaseTest(){
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuInvisibleCheck()
     }
+
     @Test(priority=3) //тест кейс №2 “Звонки” и смена дат
-    // @Order(3)
     fun checkCallsReport() {
         val profilePage = ProfilePage()
         val reportsCallsPage = ReportsCallsPage()
@@ -56,7 +55,6 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test(priority=4) //тест кейс №3 "Отзывы" и смена дат
-    // @Order(4)
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()
@@ -76,8 +74,9 @@ class ReportsTest2 : BaseTest(){
         assertEquals(true, result)
         assertEquals("Отчет по отзывам ФИЕСТА ПИЦЦА ОБЩИЙ с 2023-04-01 по 2023-04-30.pdf",resultName)
     }
+
     @Test(priority=5)
-    // @Order(5) //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
+    //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
         val reportsGuestWifiPage = ReportsGuestWifiPage()
@@ -99,8 +98,9 @@ class ReportsTest2 : BaseTest(){
             resultName
         )
     }
+
     @Test(priority=6)
-    // @Order(6) //Тест-кейс №6:  “Сводка” и смена дат
+    //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
         val reportsSummaryPage=ReportsSummaryPage()
@@ -137,7 +137,7 @@ class ReportsTest2 : BaseTest(){
     }*/
 
     @Test(priority=7)
-    // @Order(8) //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
+    //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
         val abcDishPage = ABCDishPage()
@@ -145,16 +145,16 @@ class ReportsTest2 : BaseTest(){
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         profilePage.leftMenuItemsSelector("Отчеты", "ABC анализ по блюдам")
-        Thread.sleep(10000)
+        sleep(10000)
 
         abcDishPage.clickToOpenDateRange()
         abcDishPage.changeStartDate("04/01/2023")
         abcDishPage.changeEndDate("04/07/2023")
         abcDishPage.clickApplyDateChangeButton()
-        Thread.sleep(10000)
+        sleep(10000)
         abcDishPage.buttonDropdownMenuClick()
         abcDishPage.downloadTableDateInXlsFile()
-        Thread.sleep(10000)
+        sleep(10000)
         val result = commonUtils.smartDownload("/Users/Shared/test/")
         assertEquals(true, result)
         val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
@@ -162,7 +162,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test(priority=8)
-    // @Order(9) //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
+    //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
     fun checkReportABCGuest() {
         val profilePage = ProfilePage()
         val abcGuestsPage = ABCGuestsPage()
@@ -186,7 +186,7 @@ class ReportsTest2 : BaseTest(){
     }
 
     @Test(priority=9)
-    // @Order(10) // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
+    // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
     fun checkBirthdays() {
         val profilePage = ProfilePage()
         val commonUtils = CommonUtils()
@@ -214,8 +214,9 @@ class ReportsTest2 : BaseTest(){
         assertTrue{ fileSize in 26936..26939}*/ //проверка размера заваливает тест
 
     }
+
     @Test(priority=10)
-    // @Order(11) //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
+    //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
     fun newRfmReportCheck() {
         val profilePage = ProfilePage()
         val commonUtils = CommonUtils()
@@ -235,8 +236,9 @@ class ReportsTest2 : BaseTest(){
         assertEquals(true, resultHeader)
 
     }
+
     @Test(priority=11)
-    // @Order(12)//Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
+    //Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
         val loginPage = LoginPage()
@@ -252,7 +254,6 @@ class ReportsTest2 : BaseTest(){
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 */
-
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         sleep(10000)
         profilePage.leftMenuItemsSelector("Отчеты", "RFM-отчет")
@@ -260,18 +261,14 @@ class ReportsTest2 : BaseTest(){
 
         val resultHeader = reportsRFMPage.reportNameVisible()
         assertEquals(true, resultHeader)
-
     }
 
     @Test(priority=12)
-    // @Order(13) //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
+    //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
-
-
         val profilePage = ProfilePage()
         val commonUtils = CommonUtils()
         val complementPage = ComplementPage()
-
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         sleep(10000)
@@ -293,6 +290,5 @@ class ReportsTest2 : BaseTest(){
 
         /*val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
         assertTrue{fileSize in 49003 .. 49008}*/
-
     }
 }

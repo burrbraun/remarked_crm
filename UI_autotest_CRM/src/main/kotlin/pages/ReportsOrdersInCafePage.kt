@@ -10,7 +10,6 @@ class ReportsOrdersInCafePage {
     private val applyButtonDateChange = Selenide.`$`("[class='applyBtn btn btn-small btn-info btn-block']")
     private val downloadPdfFile = Selenide.`$$`("[id='save_pdf'] ")
 
-
     fun clickToOpenDateRange() {
         dateRange.click()
     }

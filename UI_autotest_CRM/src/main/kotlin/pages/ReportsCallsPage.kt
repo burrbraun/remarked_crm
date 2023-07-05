@@ -1,8 +1,6 @@
 package pages
 
-import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
-import com.codeborne.selenide.Selenide.`$$`
 import java.awt.image.BufferedImage
 
 class ReportsCallsPage {
@@ -11,7 +9,6 @@ class ReportsCallsPage {
     private val dateRangeStart = `$`("[name='daterangepicker_start']")
     private val dateRangeEnd = `$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
-
 
     fun clickToOpenDateRange() {
         dateRange.click()

@@ -9,7 +9,6 @@ import java.io.File
 import java.util.*
 import javax.imageio.ImageIO
 
-
 class CommonUtils {
     fun matchTwoPictures(pathToEtalonPic: String, actualPic: BufferedImage): Boolean {
         val etalonPic = ImageIO.read(File(pathToEtalonPic))

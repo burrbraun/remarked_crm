@@ -1,10 +1,7 @@
 package pages
 
 import com.codeborne.selenide.Condition.exist
-import com.codeborne.selenide.Condition.visible
-import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
-import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
 
 class ReportsNewRFMPage {
@@ -23,5 +20,4 @@ class ReportsNewRFMPage {
         headerText.should(exist)
         return true
     }
-
 }

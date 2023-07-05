@@ -1,9 +1,6 @@
-// import org.junit.jupiter.api.*
-
 import com.codeborne.selenide.Browsers.CHROME
 import com.codeborne.selenide.Configuration.*
 import com.codeborne.selenide.FileDownloadMode.FOLDER
-import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
 import io.github.bonigarcia.wdm.WebDriverManager
@@ -16,12 +13,7 @@ import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 
-
-//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-//@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-
-
-    open class BaseTest {
+open class BaseTest {
     companion object {
         lateinit var driver: WebDriver
     }
@@ -55,7 +47,6 @@ import kotlin.test.assertEquals
     val loginPage = LoginPage()
     val profilePage = ProfilePage()
 
-
     @BeforeSuite
     open fun setUp() {
 
@@ -68,16 +59,11 @@ import kotlin.test.assertEquals
         WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
-
-        //Create driver object for Chrome
         driver = ChromeDriver()
-
-        //Navigate to a URL
 
         //Navigate to a URL
         System.err.println("trying to up the browser")
         driver[baseUrl]
-
 
         fileDownload = FOLDER
         downloadsFolder = "src/test/resources/"
@@ -88,7 +74,6 @@ import kotlin.test.assertEquals
 
     class Auth : BaseTest() {
     @Test(priority=1)
-    ////// @Order(1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -100,7 +85,6 @@ import kotlin.test.assertEquals
     }
 
     @Test(priority=2)
-   // //// @Order(2)
     fun checkAuthByUrl() {
         loginPage.setValueToLoginEditBox(login)
         loginPage.setValueToPasswordEditBox(password)
@@ -115,20 +99,14 @@ import kotlin.test.assertEquals
     }
 
     @Test(priority=3)
-   // @Order(3)
     fun checkMainSiteLink() {
-/*        loginPage.setValueToLoginEditBox(login)
-        loginPage.setValueToPasswordEditBox(password)
-        loginPage.setValueToPointEditBox(point)
-        loginPage.loginButtonClick()
-        sleep(5000)*/
         profilePage.clickMainSiteLink()
         val actualUrl = WebDriverRunner.getWebDriver().currentUrl
         val expectedUrl = "https://remarked.ru/"
 
         assertEquals(expectedUrl,actualUrl)
-
     }
+
         fun encryptPassword() {
             val commonUtils  = CommonUtils()
             commonUtils.encryptionPasswords("dsv43fg")

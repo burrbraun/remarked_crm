@@ -5,10 +5,9 @@ import pages.SourcesCallsTablePage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 
+class CRMCallsTest : BaseTest () {
 
-class CRMCallsTest : BaseTest (){
-    @Test
-    // @Order(1)
+    @Test(priority=1)
     fun checkAuthByUserName() {
         loginPage.setValueToLoginEditBox(loginBonaCapona)
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
@@ -18,15 +17,15 @@ class CRMCallsTest : BaseTest (){
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
-    @Test
-    // @Order(2)
+
+    @Test(priority=2)
     fun leftMenuNavigation(){
         val profilePage = ProfilePage()
         val result = profilePage.leftMenuItemsSelector("Источники","Звонки")
         assertEquals("Звонки",result)
     }
-    @Test
-    // @Order(3)
+
+    @Test(priority=3)
     fun checkPhoneNumInThePhoneCallsGrid() {
         val sourcesCallsTablePage = SourcesCallsTablePage()
 
@@ -39,14 +38,13 @@ class CRMCallsTest : BaseTest (){
         assertEquals(true,result)
         Thread.sleep(5000)
     }
-    @Test
-    // @Order(4)
+
+    @Test(priority=4)
     fun downloadXlsFileCheck() {
         val sourcesCallsTablePage = SourcesCallsTablePage()
         sourcesCallsTablePage.buttonDropdownMenuClick()
         val result = sourcesCallsTablePage.downloadTableDateInXlsFile()
         assertEquals("telephony_calls_2023-04-12_2023-04-13.xlsx",result)
         val pngFileName: String? = screenshot("my_file_name")
-
     }
 }

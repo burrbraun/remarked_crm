@@ -11,6 +11,6 @@ class ReportsRFMPage {
         headerText.should(Condition.exist)
         return true
     }
-    }
+}
 
 

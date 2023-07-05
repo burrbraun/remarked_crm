@@ -49,5 +49,4 @@ class SourcesCallsTablePage {
         val reportFile = downloadFilesTypeCollection.last().download(FileFilters.withExtension("xlsx"))
         return reportFile.name
     }
-
 }

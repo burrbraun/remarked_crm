@@ -1,12 +1,8 @@
 package pages
 
-import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
-import org.apache.commons.io.comparator.LastModifiedFileComparator
-import java.io.File
-import java.util.*
 
 class ABCGuestsPage {
     private val dateRange = `$`("[id='reportrange']")
@@ -35,5 +31,4 @@ class ABCGuestsPage {
         val reportFile = downloadFilesTypeCollection.last().download(FileFilters.withExtension("xlsx"))
         return reportFile.name
     }
-
 }

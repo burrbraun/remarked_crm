@@ -1,6 +1,5 @@
 package pages
 
-import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
@@ -25,7 +24,6 @@ class ReportsDeliveryPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
-
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
