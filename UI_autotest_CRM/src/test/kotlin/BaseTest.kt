@@ -12,6 +12,7 @@ import pages.CommonUtils
 import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
+import com.codeborne.selenide.Selenide.open
 
 open class BaseTest {
     companion object {
@@ -54,21 +55,23 @@ open class BaseTest {
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
         driverManagerEnabled = true
-        headless = true
+        headless = true // закомментировать чтобы прогнать локально
+        remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
-        WebDriverManager.chromedriver().setup()
+       // WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
-        driver = ChromeDriver()
+       // driver = ChromeDriver()
 
         //Navigate to a URL
         System.err.println("trying to up the browser")
-        driver[baseUrl]
+        //driver[baseUrl]
 
         fileDownload = FOLDER
         downloadsFolder = "src/test/resources/"
        // open(baseUrl)
         timeout = 120000
+        open(baseUrl)
     }
 }
 
@@ -105,12 +108,8 @@ open class BaseTest {
         val expectedUrl = "https://remarked.ru/"
 
         assertEquals(expectedUrl,actualUrl)
-    }
 
-        fun encryptPassword() {
-            val commonUtils  = CommonUtils()
-            commonUtils.encryptionPasswords("dsv43fg")
-        }
+    }
 
 }
 

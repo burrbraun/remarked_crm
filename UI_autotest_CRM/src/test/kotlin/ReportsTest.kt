@@ -21,7 +21,6 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkAuthByUserName"]) //Тест-кейс №1: открытие и закрытие списка отчетов
-
     fun checkLeftMenuNavigationOpenClose(){
         val profilePage = ProfilePage()
         profilePage.leftMenuSingleSelector("Отчеты")
@@ -31,7 +30,6 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат
-
     fun checkCallsReport(){
         val profilePage = ProfilePage()
         val reportsCallsPage = ReportsCallsPage()
@@ -59,7 +57,6 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkCallsReport"]) //тест кейс №3 "Отзывы" и смена дат
-
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()

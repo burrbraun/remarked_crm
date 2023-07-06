@@ -61,13 +61,12 @@ class CommonUtils {
         return arrayOfFiles[0]
     }
 
-    fun encryptionPasswords(encryptedString: String): String? {
+   fun encryptionPasswords(encryptedString: String): String? {
 
-        val secretKey = "CNl2OJ"
-
-        val aesEncryptionDecryption = Crypt()
-  //    val encryptedString: String? = aesEncryptionDecryption.encrypt(originalString, secretKey)
-        val decryptedString: String? = aesEncryptionDecryption.decrypt(encryptedString, secretKey)
-        return decryptedString
-    }
+       val secretKey = "CNl2OJ"
+       val aesEncryptionDecryption = Crypt()
+       val encryptedString: String? = aesEncryptionDecryption.encrypt(encryptedString, secretKey)
+     // val decryptedString: String? = aesEncryptionDecryption.decrypt(encryptedString, secretKey)
+        return encryptedString
+   }
 }

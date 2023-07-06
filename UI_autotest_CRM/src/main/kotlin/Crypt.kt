@@ -7,21 +7,22 @@ import javax.crypto.spec.SecretKeySpec
 
 
 class Crypt {
+
     companion object {
         private var secretKey: SecretKeySpec? = null
         private lateinit var key: ByteArray
         private const val ALGORITHM = "AES"
-    }
         fun prepareSecreteKey(myKey: String) {
-        var sha: MessageDigest? = null
-        try {
-            key = myKey.toByteArray(StandardCharsets.UTF_8)
-            sha = MessageDigest.getInstance("SHA-1")
-            key = sha.digest(key)
-            key = Arrays.copyOf(key, 16)
-            secretKey = SecretKeySpec(key, ALGORITHM)
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
+            var sha: MessageDigest? = null
+            try {
+                key = myKey.toByteArray(StandardCharsets.UTF_8)
+                sha = MessageDigest.getInstance("SHA-1")
+                key = sha.digest(key)
+                key = Arrays.copyOf(key, 16)
+                secretKey = SecretKeySpec(key, ALGORITHM)
+            } catch (e: NoSuchAlgorithmException) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -37,7 +38,7 @@ class Crypt {
         return null
     }
 
-    fun decrypt(strToDecrypt: String?, secret: String): String? {
+    fun decrypt(strToDecrypt: String, secret: String): String? {
         try {
             prepareSecreteKey(secret)
             val cipher = Cipher.getInstance(ALGORITHM)
@@ -51,5 +52,3 @@ class Crypt {
 
 
 }
-
-
