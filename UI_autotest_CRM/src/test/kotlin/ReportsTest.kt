@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
+import com.codeborne.selenide.Selenide.screenshot
 import org.testng.Assert
 import org.testng.annotations.Test
 import pages.*
@@ -84,6 +85,7 @@ class ReportsTest : BaseTest() {
         val reportsOrdersInCafePage = ReportsOrdersInCafePage()
         val commonUtils = CommonUtils()
 
+        sleep(10000)
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         sleep(10000)
         profilePage.leftMenuItemsSelector("Отчеты", "Заказы в заведении")
@@ -98,6 +100,7 @@ class ReportsTest : BaseTest() {
         val result = commonUtils.smartDownload("/Users/Shared/test/")
         assertEquals(true, result)
         assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
+        val pngFileName: String? = screenshot("my_file_name")
     }
 
     @Test(priority=6)
