@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
@@ -101,6 +102,7 @@ class ReportsTest : BaseTest() {
         assertEquals(true, result)
         assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
         val pngFileName: String? = screenshot("my_file_name")
+        Configuration.reportsFolder = "reports"
     }
 
     @Test(priority=6)
