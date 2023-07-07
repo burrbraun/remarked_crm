@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "SQLSuite">
+
+    <test name = "checkSales">
+        <classes>
+            <class name = "SQLDataBaseTests">
+                <methods>
+                    <include name="checkSales"></include>
+                    <include name="checkActiveCustomersSales"></include>
+                    <include name="checkActiveCustomersSalesForPrevTwoDays"></include>
+                    <include name="checkActiveCustomersCallsForPrevTime"></include>
+                    <include name="checkActivePhoneCalls"></include>
+                    <include name="checkGetActualReview"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

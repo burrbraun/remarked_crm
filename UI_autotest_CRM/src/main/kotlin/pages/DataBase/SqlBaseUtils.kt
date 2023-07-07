@@ -1,6 +1,7 @@
 package pages.DataBase
 
 import com.opencsv.CSVWriter
+import pages.CommonUtils
 import java.io.FileWriter
 import java.sql.Connection
 import java.sql.DriverManager
@@ -10,6 +11,9 @@ import java.time.format.DateTimeFormatter
 
 
 class SqlBaseUtils {
+    val utils = CommonUtils()
+    val login = "jrsl_sales"
+    val password = utils.encryptionPasswords(System.getenv("DATABASE_PASSWORD"))
     fun checkPreviousDaySalesNotEmpty(): Boolean {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val now = LocalDateTime.now().minusHours(24)
@@ -18,8 +22,7 @@ class SqlBaseUtils {
         try {
             // create our mysql database connection
             val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-            val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-            )
+            val conn = DriverManager.getConnection(myUrl, login, password )
             val query = "SELECT id FROM cl_purchases WHERE date < '$now' LIMIT 5"
             val st = conn.createStatement()
             val rs = st.executeQuery(query)
@@ -50,8 +53,7 @@ class SqlBaseUtils {
         val time = dtf.format(now)
         // try {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-        )
+        val conn = DriverManager.getConnection(myUrl,  login, password )
         val query = "SELECT point_id FROM clients_cabinet WHERE active = 1"
         val st = conn.createStatement()
         val rs = st.executeQuery(query)
@@ -93,8 +95,7 @@ class SqlBaseUtils {
         val time = dtf.format(now)
         // try {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-        )
+        val conn = DriverManager.getConnection(myUrl,  login, password )
             val query =
             "SELECT DISTINCT clients_sources.point FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active=1 AND clients_cabinet.active=1"
         val st = conn.createStatement()
@@ -139,8 +140,7 @@ class SqlBaseUtils {
         val time = dtf.format(now)
         // try {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-        )
+        val conn = DriverManager.getConnection(myUrl,  login, password )
         val query =
             "SELECT DISTINCT clients_sources.point FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active=1 AND clients_cabinet.active=1"
         val st = conn.createStatement()
@@ -185,8 +185,7 @@ class SqlBaseUtils {
         val now = LocalDateTime.now().minusHours(24)
         val time = dtf.format(now)
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-        )
+        val conn = DriverManager.getConnection(myUrl,  login, password )
         val query = "SELECT DISTINCT source_providers  FROM clients_sources WHERE source_type  = 'telephony' AND source_active = 1"
         val st = conn.createStatement()
         val rs = st.executeQuery(query)
@@ -211,7 +210,7 @@ class SqlBaseUtils {
 //        val now = LocalDateTime.now().minusHours(24)
 //        val time = dtf.format(now)
 //        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-//        val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
+//        val conn = DriverManager.getConnection(myUrl,  login, password )
 //        )
 //        val pointsAndOperatorsWithActiveCalls = "SELECT clients_sources.point, clients_sources.source_providers FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id WHERE clients_sources.source_type LIKE 'telephony' AND clients_sources.source_active=1 AND clients_cabinet.active=1"
 //        val st = conn.createStatement()
@@ -268,8 +267,7 @@ fun fromAllCallBasesUpdates() {
 
 private fun getConnection(): Connection {
     val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-    val conn = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-    )
+    val conn = DriverManager.getConnection(myUrl,  login, password )
     return conn
 }
 
@@ -299,8 +297,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
 
     fun getActualReviews() {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val connection = DriverManager.getConnection(myUrl, // здесь были логин и пароль )
-        )
+        val connection = DriverManager.getConnection(myUrl,  login, password )
         val statement = connection.createStatement()
         val sources = mutableListOf<String>()
         val sourceQuery =  "SELECT DISTINCT source FROM feedback WHERE source NOT LIKE ''"
