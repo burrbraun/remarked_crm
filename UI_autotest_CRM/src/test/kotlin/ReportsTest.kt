@@ -85,7 +85,7 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        sleep(10000)
+        sleep(60000)
         profilePage.leftMenuItemsSelector("Отчеты", "Заказы в заведении")
         sleep(10000)
 

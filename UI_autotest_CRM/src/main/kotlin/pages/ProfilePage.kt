@@ -67,4 +67,5 @@ class ProfilePage {
     fun logOutButtonClick() {
         logOutButton.click()
     }
+
 }
