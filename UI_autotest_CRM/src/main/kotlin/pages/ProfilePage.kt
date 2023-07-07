@@ -1,9 +1,10 @@
 package pages
 
-import com.codeborne.selenide.Condition.not
-import com.codeborne.selenide.Condition.visible
+import com.codeborne.selenide.Condition.*
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
+import org.openqa.selenium.support.ui.ExpectedCondition
+import java.time.Duration
 
 
 class ProfilePage {

@@ -55,7 +55,7 @@ open class BaseTest {
         baseUrl = "https://cabinet.clientomer.ru"
         browserSize = "2560×1600"
         driverManagerEnabled = true
-        headless = true // закомментировать чтобы прогнать локально
+        headless = true
         remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
         webdriverLogsEnabled= true
