@@ -65,8 +65,8 @@ class CommonUtils {
 
        val secretKey = "CNl2OJ"
        val aesEncryptionDecryption = Crypt()
-       val encryptedString: String? = aesEncryptionDecryption.encrypt(encryptedString, secretKey)
-     // val decryptedString: String? = aesEncryptionDecryption.decrypt(encryptedString, secretKey)
-        return encryptedString
+       //val encryptedString: String? = aesEncryptionDecryption.encrypt(encryptedString, secretKey)
+       val decryptedString: String? = aesEncryptionDecryption.decrypt(encryptedString, secretKey)
+        return decryptedString
    }
 }
