@@ -58,6 +58,7 @@ open class BaseTest {
         headless = false // закомментировать чтобы прогнать локально
         remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
+        webdriverLogsEnabled= true
        // WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
