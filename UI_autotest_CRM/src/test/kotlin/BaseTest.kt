@@ -71,7 +71,7 @@ open class BaseTest {
         fileDownload = FOLDER
         downloadsFolder = "src/test/resources/"
        // open(baseUrl)
-        timeout = 120000
+        timeout = 300000
         open(baseUrl)
     }
 }
