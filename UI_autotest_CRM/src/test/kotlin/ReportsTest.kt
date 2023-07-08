@@ -98,7 +98,7 @@ class ReportsTest : BaseTest() {
         reportsOrdersInCafePage.clickApplyDateChangeButton()
         sleep(10000)
         val resultName = reportsOrdersInCafePage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("/Users/Shared/test/")
+        val result = commonUtils.smartDownload("/")
         assertEquals(true, result)
         assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
         val pngFileName: String? = screenshot("my_file_name")
