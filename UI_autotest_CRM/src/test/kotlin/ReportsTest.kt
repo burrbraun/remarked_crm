@@ -20,6 +20,7 @@ class ReportsTest : BaseTest() {
         Selenide.sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
+        System.err.println("auth passed")
     }
 
     @Test(dependsOnMethods = ["checkAuthByUserName"]) //Тест-кейс №1: открытие и закрытие списка отчетов
@@ -29,6 +30,7 @@ class ReportsTest : BaseTest() {
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuInvisibleCheck()
+        System.err.println("left menu passed")
     }
 
     @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат

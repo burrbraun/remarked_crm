@@ -3,7 +3,7 @@
 
 <suite name = "Suite">
 
-    <test name = "checkAuthByUserName">
+    <test name = "reportsTests">
         <classes>
             <class name = "ReportsTest">
                 <methods>
