@@ -11,6 +11,7 @@ class ReportsSummaryPage {
     private val recountButton = `$`("[id = 'recount_cache_button']")
 
     fun clickToOpenDateRange() {
+        Thread.sleep(10000)
         dateRange.click()
     }
     fun changeStartDate(newValue: String) {

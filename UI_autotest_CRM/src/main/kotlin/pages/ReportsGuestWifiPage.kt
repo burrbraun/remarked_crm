@@ -24,6 +24,7 @@ class ReportsGuestWifiPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
+        Thread.sleep(10000)
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
