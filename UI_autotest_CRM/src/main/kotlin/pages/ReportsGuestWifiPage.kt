@@ -1,30 +1,35 @@
 package pages
 
-import com.codeborne.selenide.Selenide.`$`
-import com.codeborne.selenide.Selenide.`$$`
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide.*
 import com.codeborne.selenide.files.FileFilters
+import kotlin.time.Duration.Companion.seconds
 
 class ReportsGuestWifiPage {
-    private val dateRange = `$`("[id='reportrange']")
-    private val dateRangeStart = `$`("[name='daterangepicker_start']")
-    private val dateRangeEnd = `$`("[name='daterangepicker_end']")
-    private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
-    private val downloadPdfFile = `$$`("[id='save_pdf'] ")
 
     fun clickToOpenDateRange() {
-        dateRange.click()
+        val dateRange = `$`("[id='reportrange']")
+        dateRange.shouldBe(Condition.visible)
+            dateRange.click()
     }
     fun changeStartDate(newValue: String) {
+        val dateRangeStart = `$`("[name='daterangepicker_start']")
+            dateRangeStart.shouldBe(Condition.visible)
         dateRangeStart.value = newValue
     }
     fun changeEndDate(newValue: String) {
+        val dateRangeEnd = `$`("[name='daterangepicker_end']")
+            dateRangeEnd.shouldBe(Condition.visible)
         dateRangeEnd.value = newValue
     }
     fun clickApplyDateChangeButton() {
+        val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
+            applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
-        Thread.sleep(10000)
+        val downloadPdfFile = `$$`("[id='save_pdf'] ")
+        sleep(1000)
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }

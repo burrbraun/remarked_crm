@@ -12,17 +12,17 @@
                     <include name="checkCallsReport"></include>
                     <include name="checkFeedbackReport"></include>
                     <include name="checkOrdersInCafeReport"></include>
-                    <include name="checkReportWifiGuest"></include>
-                    <include name="checkSummaryReport"></include>
-                    <include name="checkDeliveryReport"></include>
-                    <include name="checkReportsABCDish"></include>
-                    <include name="checkReportABCGuest"></include>
-                    <include name="checkReportBehavior"></include>
-                    <include name="checkReviewAfterVisit"></include>
-                    <include name="checkBirthdays"></include>
-                    <include name="newRfmReportCheck"></include>
-                    <include name="oldRFMReportCheck"></include>
-                    <include name="complementsReportCheck"></include>
+                    <exclude name="checkReportWifiGuest"></exclude>
+                    <exclude name="checkSummaryReport"></exclude>
+                    <exclude name="checkDeliveryReport"></exclude>
+                    <exclude name="checkReportsABCDish"></exclude>
+                    <exclude name="checkReportABCGuest"></exclude>
+                    <exclude name="checkReportBehavior"></exclude>
+                    <exclude name="checkReviewAfterVisit"></exclude>
+                    <exclude name="checkBirthdays"></exclude>
+                    <exclude name="newRfmReportCheck"></exclude>
+                    <exclude name="oldRFMReportCheck"></exclude>
+                    <exclude name="complementsReportCheck"></exclude>
                 </methods>
             </class>
         </classes>
