@@ -116,6 +116,7 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+        sleep(10000)
         profilePage.leftMenuItemsSelector("Отчеты", "Гостевой WiFi")
         sleep(10000)
         reportsGuestWifiPage.clickToOpenDateRange()
