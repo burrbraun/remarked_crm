@@ -2,6 +2,7 @@ import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
+import org.openqa.selenium.support.ui.ExpectedConditions
 import org.testng.Assert
 import org.testng.annotations.Test
 import pages.*
@@ -117,11 +118,11 @@ class ReportsTest : BaseTest() {
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         profilePage.leftMenuItemsSelector("Отчеты", "Гостевой WiFi")
         sleep(10000)
-
         reportsGuestWifiPage.clickToOpenDateRange()
         reportsGuestWifiPage.changeStartDate("04/01/2023")
         reportsGuestWifiPage.changeEndDate("04/30/2023")
         reportsGuestWifiPage.clickApplyDateChangeButton()
+        Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
         val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
         val result = commonUtils.smartDownload("/Users/Shared/test/")
         assertEquals(true, result)
