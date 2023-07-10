@@ -12,7 +12,7 @@
                     <include name="checkCallsReport"></include>
                     <include name="checkFeedbackReport"></include>
                     <include name="checkOrdersInCafeReport"></include>
-                    <exclude name="checkReportWifiGuest"></exclude>
+                    <include name="checkReportWifiGuest"></include>
                     <exclude name="checkSummaryReport"></exclude>
                     <exclude name="checkDeliveryReport"></exclude>
                     <exclude name="checkReportsABCDish"></exclude>
