@@ -1,8 +1,7 @@
 package pages
 
 import com.codeborne.selenide.Condition.*
-import com.codeborne.selenide.Selenide.`$`
-import com.codeborne.selenide.Selenide.`$$`
+import com.codeborne.selenide.Selenide.*
 import org.openqa.selenium.support.ui.ExpectedCondition
 import java.time.Duration
 
@@ -31,6 +30,7 @@ class ProfilePage {
            if(leftSideMenuCollection[n].text.equals(leftMenuItem)) {
                leftSideMenuCollection[n].click()
                break
+               sleep(20000)
            }
         }
         val leftSubMenuElementCollection = `$$`("[class='active'] [class='hidden-ul'] li")
@@ -39,6 +39,7 @@ class ProfilePage {
                 result = leftSubMenuElementCollection[n].text
                 leftSubMenuElementCollection[n].click()
                 break
+                sleep(20000)
             }
         }
     return result
