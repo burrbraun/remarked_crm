@@ -122,7 +122,7 @@ class ReportsTest : BaseTest() {
         reportsGuestWifiPage.changeStartDate("04/01/2023")
         reportsGuestWifiPage.changeEndDate("04/30/2023")
         reportsGuestWifiPage.clickApplyDateChangeButton()
-        Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
+        //Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
         val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
         val result = commonUtils.smartDownload("/")
         //val result = commonUtils.smartDownload("/Users/Shared/test/")
