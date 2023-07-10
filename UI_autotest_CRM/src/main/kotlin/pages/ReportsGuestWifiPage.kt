@@ -29,9 +29,12 @@ class ReportsGuestWifiPage {
     }
     fun downloadTableDateInPdfFile(): String {
         val downloadPdfFile = `$$`("[id='save_pdf'] ")
-        sleep(1000)
+        sleep(5000)
+        System.err.println(downloadPdfFile.size)
+        val pngFileName: String? = screenshot("wifirep_test")
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.name
+
     }
 
 }
