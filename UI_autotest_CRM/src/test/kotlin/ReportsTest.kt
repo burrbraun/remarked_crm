@@ -124,7 +124,8 @@ class ReportsTest : BaseTest() {
         reportsGuestWifiPage.clickApplyDateChangeButton()
         Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
         val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("/Users/Shared/test/")
+        val result = commonUtils.smartDownload("/")
+        //val result = commonUtils.smartDownload("/Users/Shared/test/")
         assertEquals(true, result)
         assertEquals(
             "Отчет по гостевому Wi-Fi BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",
