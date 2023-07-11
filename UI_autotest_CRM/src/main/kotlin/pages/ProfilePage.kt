@@ -37,8 +37,8 @@ class ProfilePage {
         for (n in 0 until leftSubMenuElementCollection.size){
             if(leftSubMenuElementCollection[n].text.equals(leftSubMenuItem)) {
                 result = leftSubMenuElementCollection[n].text
-                leftSubMenuElementCollection[n].scrollTo().click()
-                //leftSubMenuElementCollection[n].click()
+                leftSubMenuElementCollection[n].scrollTo()
+                leftSubMenuElementCollection[n].click()
                 break
                 sleep(20000)
             }

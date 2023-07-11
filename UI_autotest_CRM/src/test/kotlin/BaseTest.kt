@@ -53,10 +53,10 @@ open class BaseTest {
 
         browser = CHROME
         baseUrl = "https://cabinet.clientomer.ru"
-        //browserSize = "2560×1600"
+        browserSize = "2560×2560"
         driverManagerEnabled = true
         headless = false //включает или выключает интерфейс браузера
-        remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
+        //remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
         webdriverLogsEnabled= true
        // WebDriverManager.chromedriver().setup()
