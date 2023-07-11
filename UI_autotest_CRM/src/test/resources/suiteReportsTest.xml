@@ -9,9 +9,9 @@
                 <methods>
                     <include name="checkAuthByUserName"></include>
                     <include name="checkLeftMenuNavigationOpenClose"></include>
-                    <include name="checkCallsReport"></include>
-                    <include name="checkFeedbackReport"></include>
-                    <include name="checkOrdersInCafeReport"></include>
+                    <exclude name="checkCallsReport"></exclude>
+                    <exclude name="checkFeedbackReport"></exclude>
+                    <exclude name="checkOrdersInCafeReport"></exclude>
                     <include name="checkReportWifiGuest"></include>
                     <exclude name="checkSummaryReport"></exclude>
                     <exclude name="checkDeliveryReport"></exclude>

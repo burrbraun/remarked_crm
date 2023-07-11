@@ -53,7 +53,7 @@ open class BaseTest {
 
         browser = CHROME
         baseUrl = "https://cabinet.clientomer.ru"
-        browserSize = "2560×2560"
+        browserSize = "2560×5600"
         driverManagerEnabled = true
         headless = false //включает или выключает интерфейс браузера
         remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
