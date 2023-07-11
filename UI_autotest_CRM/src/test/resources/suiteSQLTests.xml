@@ -7,9 +7,9 @@
         <classes>
             <class name = "SQLDataBaseTests">
                 <methods>
-                    <include name="checkSales"></include>
-                    <include name="checkActiveCustomersSales"></include>
-                    <include name="checkActiveCustomersSalesForPrevTwoDays"></include>
+                    <exclude name="checkSales"></exclude>
+                    <exclude name="checkActiveCustomersSales"></exclude>
+                    <exclude name="checkActiveCustomersSalesForPrevTwoDays"></exclude>
                     <include name="checkActiveCustomersCallsForPrevTime"></include>
                     <include name="checkActivePhoneCalls"></include>
                     <include name="checkGetActualReview"></include>

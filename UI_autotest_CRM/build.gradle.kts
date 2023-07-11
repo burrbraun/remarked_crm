@@ -29,7 +29,7 @@ kotlin {
 tasks.test {
     useTestNG() {
 
-        suites("src/test/resources/suiteReportsTest.xml")
+        suites("src/test/resources/suiteReportsTest.xml", "src/test/resources/suiteSQLTests.xml")
 
     }
 }
