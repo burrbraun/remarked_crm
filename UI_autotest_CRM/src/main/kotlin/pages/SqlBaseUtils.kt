@@ -1,7 +1,6 @@
-package pages.DataBase
+package pages
 
 import com.opencsv.CSVWriter
-import pages.CommonUtils
 import java.io.FileWriter
 import java.sql.Connection
 import java.sql.DriverManager

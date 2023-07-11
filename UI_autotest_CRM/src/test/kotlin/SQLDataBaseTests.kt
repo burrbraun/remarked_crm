@@ -1,5 +1,5 @@
 import org.testng.annotations.Test
-import pages.DataBase.SqlBaseUtils
+import pages.SqlBaseUtils
 import kotlin.test.assertEquals
 
 class SQLDataBaseTests  {
