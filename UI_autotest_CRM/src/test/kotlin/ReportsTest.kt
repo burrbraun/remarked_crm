@@ -223,7 +223,7 @@ class ReportsTest : BaseTest() {
         //проблема с разным размером файла, ждём исправления
     }
 
-    @Test(dependsOnMethods = ["checkReportsABCDish"])
+    @Test(dependsOnMethods = ["checkReportABCGuest"])
     //Тест-кейс №12:  ”Поведение гостей”, смена дат и скачивание отчета
     fun checkReportBehavior() {
         val profilePage = ProfilePage()
@@ -362,7 +362,7 @@ class ReportsTest : BaseTest() {
 
     }
 
-    @Test(dependsOnMethods = ["complementsReportCheck"])
+    @Test(dependsOnMethods = ["oldRFMReportCheck"])
     //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
 

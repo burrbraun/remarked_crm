@@ -7,22 +7,6 @@
         <classes>
             <class name = "ReportsTest">
                 <methods>
-                    <include name="checkAuthByUserName"></include>
-                    <include name="checkLeftMenuNavigationOpenClose"></include>
-                    <exclude name="checkCallsReport"></exclude>
-                    <exclude name="checkFeedbackReport"></exclude>
-                    <exclude name="checkOrdersInCafeReport"></exclude>
-                    <include name="checkReportWifiGuest"></include>
-                    <exclude name="checkSummaryReport"></exclude>
-                    <exclude name="checkDeliveryReport"></exclude>
-                    <exclude name="checkReportsABCDish"></exclude>
-                    <exclude name="checkReportABCGuest"></exclude>
-                    <exclude name="checkReportBehavior"></exclude>
-                    <exclude name="checkReviewAfterVisit"></exclude>
-                    <exclude name="checkBirthdays"></exclude>
-                    <exclude name="newRfmReportCheck"></exclude>
-                    <exclude name="oldRFMReportCheck"></exclude>
-                    <exclude name="complementsReportCheck"></exclude>
                 </methods>
             </class>
         </classes>
