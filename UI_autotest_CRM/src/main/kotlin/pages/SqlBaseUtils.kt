@@ -196,7 +196,7 @@ class SqlBaseUtils {
             val result = stCalls.executeQuery(queryCalls)
 
             if (!result.next()) {
-                System.out.format("%s  not active\n", operator)
+                System.out.format("%s  not active;\n", operator)
 
             }
         }
@@ -258,7 +258,7 @@ fun fromAllCallBasesUpdates() {
     }
 
     numbersWithoutUpdates.forEach { point ->
-        println("Поинт без обновлений последние 24 часа: $point")
+        println("Поинт без обновлений последние 24 часа: $point ;")
     }
 
     connection.close() // Закрываем соединение с базой данных
@@ -315,7 +315,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             }
         }
         for ((source, count) in reviewsCounts) {
-            println("Источник: $source, количество отзывов за последние 72 часа: $count")
+            println("Источник: $source, количество отзывов за последние 72 часа: $count ;")
         }
         statement.close()
         connection.close()
