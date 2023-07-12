@@ -26,10 +26,20 @@ kotlin {
     jvmToolchain(11)
 }
 
+val suite1 = project.hasProperty("suiteReportsTest")
+val suite2 = project.hasProperty("suiteSQLTests")
+
 tasks.test {
     useTestNG() {
 
-        suites("src/test/resources/suiteReportsTest.xml", "src/test/resources/suiteSQLTests.xml")
+                useDefaultListeners = true
 
+        if (suite1) {
+            suites ("src/test/resources/suiteReportsTest.xml")
+        }
+        if (suite2) {
+            suites ("src/test/resources/suiteSQLTests.xml")
+        }
     }
 }
+

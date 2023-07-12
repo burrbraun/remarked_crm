@@ -6,16 +6,9 @@
     <test name = "reportsTests">
         <classes>
             <class name = "ReportsTest">
-                <methods>
-                </methods>
             </class>
         </classes>
     </test>
 
-<!--    <test name = "exampletest2">
-        <classes>
-            <class name = "Test2" />
-        </classes>
-    </test>-->
 
 </suite>

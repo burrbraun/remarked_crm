@@ -6,8 +6,6 @@
     <test name = "checkSales">
         <classes>
             <class name = "SQLDataBaseTests">
-                <methods>
-                </methods>
             </class>
         </classes>
     </test>

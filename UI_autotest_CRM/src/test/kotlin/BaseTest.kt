@@ -48,7 +48,7 @@ open class BaseTest {
     val loginPage = LoginPage()
     val profilePage = ProfilePage()
 
-    //@BeforeSuite
+    @BeforeSuite
     open fun setUp() {
 
         browser = CHROME
