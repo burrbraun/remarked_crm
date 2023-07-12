@@ -53,7 +53,7 @@ class ReportsTest : BaseTest() {
 
         val incomeCallsByDay = reportsCallsPage.screenShotMaker()
         val result = incomeCallsByDay?.let {
-            commonUtils.matchTwoPictures("/Users/Shared/test/EtalonPictures/IncomeCallsByDayEtalonPic.png",
+            commonUtils.matchTwoPictures("/UI_autotest_CRM/src/test/resources/IncomeCallsByDayEtalonPic.png",
                 it
             )
         }
