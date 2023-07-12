@@ -82,7 +82,7 @@ class ReportsTest : BaseTest() {
         assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-02.pdf",resultName)
     }
 
-    @Test(priority=5)
+    @Test(dependsOnMethods = ["checkFeedbackReport"])
      //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
     fun checkOrdersInCafeReport () {
         val profilePage = ProfilePage()
@@ -108,7 +108,7 @@ class ReportsTest : BaseTest() {
         Configuration.reportsFolder = "reports"
     }
 
-    @Test(priority=6)
+    @Test(dependsOnMethods = ["checkOrdersInCafeReport"])
      //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
@@ -134,7 +134,7 @@ class ReportsTest : BaseTest() {
         )
     }
 
-    @Test(priority=7)
+    @Test(dependsOnMethods = ["checkReportWifiGuest"])
      //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
@@ -155,7 +155,7 @@ class ReportsTest : BaseTest() {
 
     }
 
-    @Test(priority=8)
+    @Test(dependsOnMethods = ["checkSummaryReport"])
      //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
     fun checkDeliveryReport() {
         val profilePage = ProfilePage()
@@ -174,7 +174,7 @@ class ReportsTest : BaseTest() {
 */
     }
 
-    @Test(priority=9)
+    @Test(dependsOnMethods = ["checkDeliveryReport"])
     //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
@@ -198,7 +198,7 @@ class ReportsTest : BaseTest() {
         assertTrue { fileSize in 70040..70045  }
     }
 
-    @Test(priority=10)
+    @Test(dependsOnMethods = ["checkReportsABCDish"])
     //Тест-кейс №10:  ”ABC анализ по гостям”, смена дат и скачивание отчета
     fun checkReportABCGuest() {
         val profilePage = ProfilePage()
@@ -223,7 +223,7 @@ class ReportsTest : BaseTest() {
         //проблема с разным размером файла, ждём исправления
     }
 
-    @Test(priority=11)
+    @Test(dependsOnMethods = ["checkReportsABCDish"])
     //Тест-кейс №12:  ”Поведение гостей”, смена дат и скачивание отчета
     fun checkReportBehavior() {
         val profilePage = ProfilePage()
@@ -248,7 +248,7 @@ class ReportsTest : BaseTest() {
     // по состоянию на 18 мая файл не скачивался. ждем фикса от разработки и добавим в тест
     }
 
-    @Test(priority=12)
+    @Test(dependsOnMethods = ["checkReportBehavior"])
     //Тест-кейс №14:  ”Отзывы после визита”, смена дат и скачивание отчета
     fun checkReviewAfterVisit() {
         val profilePage = ProfilePage()
@@ -275,7 +275,7 @@ class ReportsTest : BaseTest() {
        assertEquals("messages.report_2023-04-01_2023-04-01.xlsx", resultName)
     }
 
-    @Test(priority=13)
+    @Test(dependsOnMethods = ["checkReviewAfterVisit"])
     // Тест-кейс №15:  ”Дни рождения”, логин под новым пользователем, смена дат и скачивание
     fun checkBirthdays() {
         val loginPage = LoginPage()
@@ -311,7 +311,7 @@ class ReportsTest : BaseTest() {
         //assertEquals(14896, fileSize)
     }
 
-    @Test(priority=14)
+    @Test(dependsOnMethods = ["checkBirthdays"])
     //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
     fun newRfmReportCheck() {
         val loginPage = LoginPage()
@@ -334,7 +334,7 @@ class ReportsTest : BaseTest() {
 
     }
 
-    @Test(priority=15)
+    @Test(dependsOnMethods = ["newRfmReportCheck"])
     //Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
@@ -362,7 +362,7 @@ class ReportsTest : BaseTest() {
 
     }
 
-    @Test(priority=16)
+    @Test(dependsOnMethods = ["complementsReportCheck"])
     //Тест-кейс №17:  ”Комплементы ”, смена дат и скачивание отчета
     fun complementsReportCheck() {
 

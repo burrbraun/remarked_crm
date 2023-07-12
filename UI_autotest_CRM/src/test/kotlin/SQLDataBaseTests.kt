@@ -3,21 +3,21 @@ import pages.SqlBaseUtils
 import kotlin.test.assertEquals
 
 class SQLDataBaseTests  {
-    @Test(priority=1)
+    @Test
     fun checkSales() {
         val sqlBaseUtils = SqlBaseUtils()
         val result = sqlBaseUtils.checkPreviousDaySalesNotEmpty()
         assertEquals(true,result)
     }
 
-    @Test(priority=2)
+    @Test(dependsOnMethods = ["checkSales"])
     fun checkActiveCustomersSales() {
         val sqlBaseUtils = SqlBaseUtils()
         sqlBaseUtils.getActiveUsers()
         //assertEquals(true, result)
     }
 
-    @Test(priority=3)
+    @Test(dependsOnMethods = ["checkActiveCustomersSales"])
     fun checkActiveCustomersSalesForPrevTwoDays(){
         val sqlBaseUtils = SqlBaseUtils()
         sqlBaseUtils.getActiveUsersAgain()
@@ -25,19 +25,19 @@ class SQLDataBaseTests  {
         //assertEquals(true, result)
     }
 
-    @Test(priority=4)
+    @Test(dependsOnMethods = ["checkActiveCustomersSalesForPrevTwoDays"])
     fun checkActiveCustomersCallsForPrevTime() {
         val sqlBaseUtils = SqlBaseUtils()
         sqlBaseUtils.getUsersWithActivePhoneCalls()
     }
 
-    @Test(priority=5)
+    @Test(dependsOnMethods = ["checkActiveCustomersCallsForPrevTime"])
     fun checkActivePhoneCalls() {
         val sqlBaseUtils = SqlBaseUtils()
         sqlBaseUtils.fromAllCallBasesUpdates()
     }
 
-    @Test(priority=6)
+    @Test(dependsOnMethods = ["checkActivePhoneCalls"])
     fun checkGetActualReview () {
         val sqlBaseUtils = SqlBaseUtils()
         sqlBaseUtils.getActualReviews()
