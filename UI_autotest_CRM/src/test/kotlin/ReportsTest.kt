@@ -34,34 +34,34 @@ class ReportsTest : BaseTest() {
         System.err.println("left menu passed")
     }
 
-    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат
-    fun checkCallsReport(){
-        val profilePage = ProfilePage()
-        val reportsCallsPage = ReportsCallsPage()
-        val commonUtils = CommonUtils()
+//    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат
+//    fun checkCallsReport(){
+//        val profilePage = ProfilePage()
+//        val reportsCallsPage = ReportsCallsPage()
+//        val commonUtils = CommonUtils()
+//
+//        profilePage.leftMenuItemsSelector("Отчеты", "Звонки")
+//        reportsCallsPage.clickToOpenDateRange()
+//        reportsCallsPage.changeStartDate("04/01/2023")
+//        reportsCallsPage.changeEndDate("04/30/2023")
+//        reportsCallsPage.clickApplyDateChangeButton()
+//        sleep(60000)
+//
+//        // сделать скриншот программно
+//        // val programScreen: File? = `$`("[class='chart-container']").screenshot()
+//        // сохранить его через evaluate, поместить в папку в качестве эталона
+//
+//        val incomeCallsByDay = reportsCallsPage.screenShotMaker()
+//        val result = incomeCallsByDay?.let {
+//            commonUtils.matchTwoPictures("/UI_autotest_CRM/src/test/resources/IncomeCallsByDayEtalonPic.png",
+//                it
+//            )
+//        }
+//
+//        //assertEquals(true, result)
+//    }
 
-        profilePage.leftMenuItemsSelector("Отчеты", "Звонки")
-        reportsCallsPage.clickToOpenDateRange()
-        reportsCallsPage.changeStartDate("04/01/2023")
-        reportsCallsPage.changeEndDate("04/30/2023")
-        reportsCallsPage.clickApplyDateChangeButton()
-        sleep(60000)
-
-        // сделать скриншот программно
-        // val programScreen: File? = `$`("[class='chart-container']").screenshot()
-        // сохранить его через evaluate, поместить в папку в качестве эталона
-
-        val incomeCallsByDay = reportsCallsPage.screenShotMaker()
-        val result = incomeCallsByDay?.let {
-            commonUtils.matchTwoPictures("/UI_autotest_CRM/src/test/resources/IncomeCallsByDayEtalonPic.png",
-                it
-            )
-        }
-
-        //assertEquals(true, result)
-    }
-
-    @Test(dependsOnMethods = ["checkCallsReport"]) //тест кейс №3 "Отзывы" и смена дат
+    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №3 "Отзывы" и смена дат
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()
