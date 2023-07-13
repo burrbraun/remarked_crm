@@ -9,7 +9,6 @@ class ReportsBirthdayPage {
     private val dateRangeEnd = Selenide.`$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = Selenide.`$`("[class='applyBtn btn btn-small btn-info btn-block']")
     private val buttonDropdownMenu = Selenide.`$`("[class='btn btn-success dropdown-toggle']")
-    private val downloadFilesTypeCollection = Selenide.`$$`("[class='dropdown-menu dropdown-menu-right'] li")
 
     fun clickToOpenDateRange() {
         dateRange.click()
@@ -28,6 +27,7 @@ class ReportsBirthdayPage {
         buttonDropdownMenu.click()
     }
     fun downloadTableDateInXlsFile(): String {
+        val downloadFilesTypeCollection = Selenide.`$$`("[class='dropdown-menu dropdown-menu-right'] li")
         val reportFile = downloadFilesTypeCollection.last().download(FileFilters.withExtension("xlsx"))
         return reportFile.name
     }

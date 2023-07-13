@@ -8,10 +8,7 @@ class SourcesCallsTablePage {
     private val dateRangeStart = Selenide.`$`("[name='daterangepicker_start']")
     private val dateRangeEnd = Selenide.`$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = Selenide.`$`("[class='applyBtn btn btn-small btn-info btn-block']")
-    private val callsTablePage = Selenide.`$`("[class='table customizable_table']")
-    private val tableRows = callsTablePage.`$$`("tr")
     private val buttonDropdownMenu = Selenide.`$`("[class='btn btn-success dropdown-toggle']")
-    private val downloadFilesTypeCollection = Selenide.`$$`("[class='dropdown-menu dropdown-menu-right'] li")
 
     fun clickToOpenDateRange() {
         dateRange.click()
@@ -28,6 +25,8 @@ class SourcesCallsTablePage {
     }
 
     fun callsTablePageCheck(checkingCellValue : String ): Boolean {
+        val callsTablePage = Selenide.`$`("[class='table customizable_table']")
+        val tableRows = callsTablePage.`$$`("tr")
 
         for (n in 0 until tableRows.size) {
             var tableCells=tableRows[n].`$$`("td")
@@ -45,6 +44,7 @@ class SourcesCallsTablePage {
         buttonDropdownMenu.click()
     }
     fun downloadTableDateInXlsFile(): String {
+        val downloadFilesTypeCollection = Selenide.`$$`("[class='dropdown-menu dropdown-menu-right'] li")
         // downloadFilesTypeCollection.last().click()
         val reportFile = downloadFilesTypeCollection.last().download(FileFilters.withExtension("xlsx"))
         return reportFile.name

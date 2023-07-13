@@ -9,7 +9,6 @@ class ReportsDeliveryPage {
     private val dateRangeStart = `$`("[name='daterangepicker_start']")
     private val dateRangeEnd = `$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
-    private val downloadPdfFile = `$$`("[id='save_pdf'] ")
 
     fun clickToOpenDateRange() {
         dateRange.click()
@@ -24,6 +23,7 @@ class ReportsDeliveryPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
+        val downloadPdfFile = `$$`("[id='save_pdf'] ")
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }

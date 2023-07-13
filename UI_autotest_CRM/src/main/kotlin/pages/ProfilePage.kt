@@ -7,14 +7,6 @@ import java.time.Duration
 
 
 class ProfilePage {
-
-    private val leftSideMenuCollection = `$$`("[class='has-ul']")
-
-    private val mainSiteLink = `$`("[class='logo']")
-    private val leftSubMenu = `$`("[class='active'] [class='hidden-ul']")
-    private val profileNameMenu = `$`("[class='dropdown-toggle']")
-    private val logOutButton = `$`("[class='icon-switch2']")
-
     fun checkCustomerName(): String {
         val customerNameCollection = `$$`("[class='media-body'] [class^='cabname-span']")
         val elementValue =  customerNameCollection[0].text()
@@ -22,15 +14,17 @@ class ProfilePage {
     }
 
     fun clickMainSiteLink() {
+        val mainSiteLink = `$`("[class='logo']")
         mainSiteLink.click()
     }
     fun leftMenuItemsSelector(leftMenuItem : String, leftSubMenuItem: String): String {
+        val leftSideMenuCollection = `$$`("[class='has-ul']")
         var result = ""
         for (n in 0 until leftSideMenuCollection.size){
            if(leftSideMenuCollection[n].text.equals(leftMenuItem)) {
                leftSideMenuCollection[n].click()
                break
-               sleep(20000)
+               sleep(20000) // удалить слипы т.к. не нужны
            }
         }
         val leftSubMenuElementCollection = `$$`("[class='active'] [class='hidden-ul'] li")
@@ -46,6 +40,7 @@ class ProfilePage {
     }
 
     fun leftMenuSingleSelector(leftMenuItem : String): String {
+        val leftSideMenuCollection = `$$`("[class='has-ul']")
         var result = ""
         for (n in 0 until leftSideMenuCollection.size){
             if(leftSideMenuCollection[n].text.equals(leftMenuItem)) {
@@ -58,15 +53,19 @@ class ProfilePage {
 
 
     fun leftSubMenuVisibleCheck() {
+        val leftSubMenu = `$`("[class='active'] [class='hidden-ul']")
         leftSubMenu.shouldBe(visible)
     }
     fun leftSubMenuInvisibleCheck() {
+        val leftSubMenu = `$`("[class='active'] [class='hidden-ul']")
         leftSubMenu.shouldBe(not(visible))
     }
     fun profileMenuOpen() {
+        val profileNameMenu = `$`("[class='dropdown-toggle']")
         profileNameMenu.click()
     }
     fun logOutButtonClick() {
+        val logOutButton = `$`("[class='icon-switch2']")
         logOutButton.click()
     }
 

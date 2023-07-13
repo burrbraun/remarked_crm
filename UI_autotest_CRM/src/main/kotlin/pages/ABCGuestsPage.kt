@@ -10,7 +10,6 @@ class ABCGuestsPage {
     private val dateRangeEnd = `$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
     private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
-    private val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li")
 
     fun clickToOpenDateRange() {
         dateRange.click()
@@ -28,6 +27,7 @@ class ABCGuestsPage {
         buttonDropdownMenu.click()
     }
     fun downloadTableDateInXlsFile(): String {
+        val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li")
         val reportFile = downloadFilesTypeCollection.last().download(FileFilters.withExtension("xlsx"))
         return reportFile.name
     }

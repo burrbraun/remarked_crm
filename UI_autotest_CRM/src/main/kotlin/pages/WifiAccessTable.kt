@@ -14,9 +14,8 @@ class WifiAccessTable {
     private val dateRangeEnd = `$`("[name='daterangepicker_end']")
     private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
     private val wifiAccessTable = `$`("[class='table customizable_table']")
-    private val tableRows = wifiAccessTable.`$$`("tr")
     private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
-    private val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li")
+    private
 
     fun clickToOpenDateRange() {
         dateRange.click()
@@ -33,7 +32,7 @@ class WifiAccessTable {
     }
 
     fun wifiAccessCheckTable(checkingCellValue : String ): Boolean {
-
+        val tableRows = wifiAccessTable.`$$`("tr")
         for (n in 0 until tableRows.size) {
             var tableCells=tableRows[n].`$$`("td")
             for (m in 0 until tableCells.size) {
@@ -50,12 +49,14 @@ class WifiAccessTable {
         buttonDropdownMenu.click()
     }
     fun downloadTableDateInXlsFile(): String {
+        val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li")
         // downloadFilesTypeCollection.last().click()
         val reportFile = downloadFilesTypeCollection.last().download(withExtension("xlsx"))
         return reportFile.name
     }
 
     fun getAbsoluteFilePath(): String {
+        val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li")
         val reportFile = downloadFilesTypeCollection.last().download(withExtension("xlsx"))
         return reportFile.absolutePath
     }

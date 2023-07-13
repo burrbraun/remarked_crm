@@ -10,9 +10,8 @@ class WifiAuthPage {
         private val dateRangeEnd = `$`("[name='daterangepicker_end']")
         private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
         private val wifiAuthTable = `$`("[class='table customizable_table']")
-        private val tableRows = wifiAuthTable.`$$`("tr")
         private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
-        private val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li" )
+        private
 
         fun clickToOpenDateRange() {
                 dateRange.click()
@@ -29,7 +28,7 @@ class WifiAuthPage {
         }
 
         fun wifiAuthCheckTable(checkingCellValue : String ): Boolean {
-
+                val tableRows = wifiAuthTable.`$$`("tr")
                 for (n in 0 until tableRows.size) {
                         var tableCells=tableRows[n].`$$`("td")
                         for (m in 0 until tableCells.size) {
@@ -46,6 +45,7 @@ class WifiAuthPage {
                 buttonDropdownMenu.click()
         }
         fun downloadTableDateInXlsFile(): String {
+                val downloadFilesTypeCollection = `$$`("[class='dropdown-menu dropdown-menu-right'] li" )
                 // downloadFilesTypeCollection.last().click()
                 val reportFile = downloadFilesTypeCollection.last().download(withExtension("xlsx"))
                 return reportFile.name
