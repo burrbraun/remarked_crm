@@ -36,6 +36,7 @@ class ReviewsReportPage {
         Selenide.sleep(5000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
+        downloadPdfFile.shouldBe(Condition.visible)
         val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
