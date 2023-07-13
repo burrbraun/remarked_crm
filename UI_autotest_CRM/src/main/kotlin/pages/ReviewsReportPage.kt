@@ -36,7 +36,7 @@ class ReviewsReportPage {
         Selenide.sleep(5000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
-        val reportFile = downloadPdfFile.scrollTo().download(FileFilters.withExtension("pdf"))
+        val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
     fun getAbsoluteFilePath(): String {
