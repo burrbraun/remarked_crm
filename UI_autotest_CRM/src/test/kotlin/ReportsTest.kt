@@ -72,7 +72,6 @@ class ReportsTest : BaseTest() {
         profilePage.leftSubMenuVisibleCheck()
         sleep(10000)
         profilePage.leftMenuItemsSelector( "Сегменты")
-        profilePage.leftSubMenuVisibleCheck()
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuVisibleCheck()
@@ -295,8 +294,8 @@ class ReportsTest : BaseTest() {
         profilePage.leftMenuSingleSelector("Реклама")
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Отзывы после визита")
         sleep(10000)
 
@@ -336,8 +335,8 @@ class ReportsTest : BaseTest() {
         profilePage.leftMenuSingleSelector("Реклама")
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Дни рождения")
         sleep(10000)
 
@@ -367,8 +366,8 @@ class ReportsTest : BaseTest() {
         profilePage.leftMenuSingleSelector("Реклама")
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
         sleep(10000)
 
