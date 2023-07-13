@@ -1,39 +1,46 @@
 package pages
 
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
-import com.codeborne.selenide.files.FileFilters.withExtension
 import org.apache.commons.io.comparator.LastModifiedFileComparator
 import java.io.File
 import java.util.*
 
 class ReviewsReportPage {
 
-    private val dateRange = `$`("[id='reportrange']")
-    private val dateRangeStart = `$`("[name='daterangepicker_start']")
-    private val dateRangeEnd = `$`("[name='daterangepicker_end']")
-    private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
-    private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
-    private val downloadPdfFile = `$$`("[id='save_pdf'] ")
-
     fun clickToOpenDateRange() {
+        val dateRange = `$`("[id='reportrange']")
+        dateRange.shouldBe(Condition.visible)
         dateRange.click()
     }
     fun changeStartDate(newValue: String) {
+        val dateRangeStart = `$`("[name='daterangepicker_start']")
+        dateRangeStart.shouldBe(Condition.visible)
         dateRangeStart.value = newValue
     }
     fun changeEndDate(newValue: String) {
+        val dateRangeEnd = `$`("[name='daterangepicker_end']")
+        dateRangeEnd.shouldBe(Condition.visible)
         dateRangeEnd.value = newValue
     }
     fun clickApplyDateChangeButton() {
+        val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
+        applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
-        val reportFile = downloadPdfFile.last().download(withExtension("pdf"))
+        val downloadPdfFile = `$`("[id='save_pdf'] ")
+        Selenide.sleep(5000)
+        System.err.println(downloadPdfFile.size)
+        val pngFileName: String? = Selenide.screenshot("reviews_report")
+        val reportFile = downloadPdfFile.scrollTo().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
     fun getAbsoluteFilePath(): String {
+        val downloadPdfFile = `$$`("[id='save_pdf'] ")
         val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
         return reportFile.absolutePath
     }
