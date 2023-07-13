@@ -32,11 +32,11 @@ class ReviewsReportPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile(): String {
-        val downloadPdfFile = `$`("[id='save_pdf'] ")
+        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
         Selenide.sleep(5000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
-        val reportFile = downloadPdfFile.scrollIntoView(true).download(FileFilters.withExtension("pdf"))
+        val reportFile = downloadPdfFile.scrollTo().download(FileFilters.withExtension("pdf"))
         return reportFile.name
     }
     fun getAbsoluteFilePath(): String {
