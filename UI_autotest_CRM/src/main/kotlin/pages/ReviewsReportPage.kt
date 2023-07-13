@@ -31,14 +31,13 @@ class ReviewsReportPage {
         applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
-    fun downloadTableDateInPdfFile() {
+    fun downloadTableDateInPdfFile() : String {
         val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
-        downloadPdfFile.click()
-//        Selenide.sleep(5000)
-//        System.err.println(downloadPdfFile.size)
-//        val pngFileName: String? = Selenide.screenshot("reviews_report")
-//        val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
-//        return reportFile.name
+        Selenide.sleep(5000)
+        System.err.println(downloadPdfFile.size)
+        val pngFileName: String? = Selenide.screenshot("reviews_report")
+        val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
+        return reportFile.name
     }
     fun getAbsoluteFilePath(): String {
         val downloadPdfFile = `$$`("[id='save_pdf'] ")
