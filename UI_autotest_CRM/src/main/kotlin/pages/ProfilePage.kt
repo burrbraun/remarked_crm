@@ -17,16 +17,16 @@ class ProfilePage {
         val mainSiteLink = `$`("[class='logo']")
         mainSiteLink.click()
     }
-    fun leftMenuItemsSelector(leftMenuItem : String, leftSubMenuItem: String): String {
-        val leftSideMenuCollection = `$$`("[class='has-ul']")
+    fun leftMenuItemsSelector(leftSubMenuItem: String): String {
+//        val leftSideMenuCollection = `$$`("[class='has-ul']")
         var result = ""
-        for (n in 0 until leftSideMenuCollection.size){
-           if(leftSideMenuCollection[n].text.equals(leftMenuItem)) {
-               leftSideMenuCollection[n].click()
-               break
-               sleep(20000) // удалить слипы т.к. не нужны
-           }
-        }
+//        for (n in 0 until leftSideMenuCollection.size){
+//           if(leftSideMenuCollection[n].text.equals(leftMenuItem)) {
+//               leftSideMenuCollection[n].click()
+//               break
+//               sleep(20000) // удалить слипы т.к. не нужны
+//           }
+//        }
         val leftSubMenuElementCollection = `$$`("[class='active'] [class='hidden-ul'] li")
         for (n in 0 until leftSubMenuElementCollection.size){
             if(leftSubMenuElementCollection[n].text.equals(leftSubMenuItem)) {

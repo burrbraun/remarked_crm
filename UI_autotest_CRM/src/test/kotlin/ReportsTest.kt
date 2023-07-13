@@ -67,9 +67,11 @@ class ReportsTest : BaseTest() {
         val reviewReportPage = ReviewsReportPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector( "Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "Отзывы")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector( "Отзывы")
 
         reviewReportPage.clickToOpenDateRange()
         reviewReportPage.changeStartDate("04/01/2023")
@@ -90,9 +92,11 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "Заказы в заведении")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Заказы в заведении")
         sleep(10000)
 
         reportsOrdersInCafePage.clickToOpenDateRange()
@@ -115,9 +119,12 @@ class ReportsTest : BaseTest() {
         val reportsGuestWifiPage = ReportsGuestWifiPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "Гостевой WiFi")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Гостевой WiFi")
         sleep(10000)
         reportsGuestWifiPage.clickToOpenDateRange()
         reportsGuestWifiPage.changeStartDate("04/01/2023")
@@ -140,8 +147,10 @@ class ReportsTest : BaseTest() {
         val profilePage = ProfilePage()
         val reportsSummaryPage=ReportsSummaryPage()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Сводка")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Сводка")
         sleep(10000)
 
         reportsSummaryPage.clickToOpenDateRange()
@@ -161,8 +170,10 @@ class ReportsTest : BaseTest() {
         val profilePage = ProfilePage()
         val reportsDeliveryPage = ReportsDeliveryPage()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Доставки")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Доставки")
         sleep(10000)
 
         reportsDeliveryPage.clickToOpenDateRange()
@@ -181,8 +192,10 @@ class ReportsTest : BaseTest() {
         val abcDishPage = ABCDishPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "ABC анализ по блюдам")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("ABC анализ по блюдам")
         sleep(10000)
 
         abcDishPage.clickToOpenDateRange()
@@ -205,8 +218,10 @@ class ReportsTest : BaseTest() {
         val abcGuestsPage = ABCGuestsPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "ABC анализ по гостям")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("ABC анализ по гостям")
         sleep(10000)
 
         abcGuestsPage.clickToOpenDateRange()
@@ -230,8 +245,10 @@ class ReportsTest : BaseTest() {
         val behaviorReportPage = BehaviorReportPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Поведение гостей")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Поведение гостей")
         sleep(10000)
 
         behaviorReportPage.clickToOpenDateRange()
@@ -255,8 +272,10 @@ class ReportsTest : BaseTest() {
         val reportsReviewAfterVisitPage = ReportsReviewAfterVisitPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Отзывы после визита")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Отзывы после визита")
         sleep(10000)
 
         reportsReviewAfterVisitPage.clickToOpenDateRange()
@@ -292,8 +311,10 @@ class ReportsTest : BaseTest() {
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNamePhaliHinkali.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Дни рождения")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Дни рождения")
         sleep(10000)
 
         reportsBirthdayPage.clickToOpenDateRange()
@@ -319,8 +340,10 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
         val reportsNewRFMPage = ReportsNewRFMPage()
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
-        profilePage.leftMenuItemsSelector("Отчеты", "Новый RFM-отчёт")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
         sleep(10000)
 
         reportsNewRFMPage.buttonDropdownMenuClick()
@@ -352,9 +375,11 @@ class ReportsTest : BaseTest() {
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "RFM-отчет")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("RFM-отчет")
         sleep(30000)
 
         val resultHeader = reportsRFMPage.reportNameVisible()
@@ -380,9 +405,11 @@ class ReportsTest : BaseTest() {
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNamePhaliHinkali.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
-        profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
+        profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "Комплементы")
+        profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftMenuItemsSelector("Комплементы")
         sleep(30000)
 
         complementPage.clickToOpenDateRange()
