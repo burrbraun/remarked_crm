@@ -11,7 +11,6 @@ class WifiAuthPage {
         private val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
         private val wifiAuthTable = `$`("[class='table customizable_table']")
         private val buttonDropdownMenu = `$`("[class='btn btn-success dropdown-toggle']")
-        private
 
         fun clickToOpenDateRange() {
                 dateRange.click()
