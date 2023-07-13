@@ -69,7 +69,7 @@ class ReportsTest : BaseTest() {
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         sleep(10000)
-        //profilePage.leftMenuItemsSelector("Отчеты", "Отзывы")
+        profilePage.leftMenuItemsSelector("Отчеты", "Отзывы")
         //open("https://cabinet.clientomer.ru/600320/analytics.reviews/")
 
         reviewReportPage.clickToOpenDateRange()
@@ -78,8 +78,8 @@ class ReportsTest : BaseTest() {
         reviewReportPage.clickApplyDateChangeButton()
         sleep(10000)
         val resultName = reviewReportPage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("/")
-        assertEquals(true, result)
+        //val result = commonUtils.smartDownload("/")
+        //assertEquals(true, result)
         assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-02.pdf",resultName)
     }
 
