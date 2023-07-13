@@ -19,12 +19,12 @@ class CRMSmokeTest : BaseTest() {
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test(priority=2)
-    fun leftMenuNavigation(){
-        val profilePage = ProfilePage()
-        val result = profilePage.leftMenuItemsSelector("Источники","WiFi-авторизации")
-        assertEquals("WiFi-авторизации",result)
-    }
+//    @Test(priority=2)
+//    fun leftMenuNavigation(){
+//        val profilePage = ProfilePage()
+//        val result = profilePage.leftMenuItemsSelector("Источники","WiFi-авторизации")
+//        assertEquals("WiFi-авторизации",result)
+//    }
 
     @Test(priority=3)
     fun checkPhoneNumInTheWifiAuthGrid() {

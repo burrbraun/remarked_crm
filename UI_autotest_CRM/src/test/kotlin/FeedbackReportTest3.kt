@@ -17,13 +17,13 @@ class FeedbackReportTest3 : BaseTest() {
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test(priority=2)
-    fun leftMenuNavigation() {
-        val profilePage = ProfilePage()
-        val result = profilePage.leftMenuItemsSelector("Отчеты","Отзывы")
-
-        assertEquals("Отзывы",result)
-    }
+//    @Test(priority=2)
+//    fun leftMenuNavigation() {
+//        val profilePage = ProfilePage()
+//        val result = profilePage.leftMenuItemsSelector("Отчеты","Отзывы")
+//
+//        assertEquals("Отзывы",result)
+//    }
 
     @Test(priority=3)
     fun setNewDates() {

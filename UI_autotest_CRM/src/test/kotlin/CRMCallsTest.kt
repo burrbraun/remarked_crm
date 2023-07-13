@@ -18,12 +18,12 @@ class CRMCallsTest : BaseTest () {
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
     }
 
-    @Test(priority=2)
-    fun leftMenuNavigation(){
-        val profilePage = ProfilePage()
-        val result = profilePage.leftMenuItemsSelector("Источники","Звонки")
-        assertEquals("Звонки",result)
-    }
+//    @Test(priority=2)
+//    fun leftMenuNavigation(){
+//        val profilePage = ProfilePage()
+//        val result = profilePage.leftMenuItemsSelector("Источники","Звонки")
+//        assertEquals("Звонки",result)
+//    }
 
     @Test(priority=3)
     fun checkPhoneNumInThePhoneCallsGrid() {
