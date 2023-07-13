@@ -69,7 +69,7 @@ class ReportsTest : BaseTest() {
 
         profilePage.leftMenuItemsSelector("Реклама", "Сегменты")
         sleep(10000)
-        profilePage.leftMenuItemsSelector("Отчеты", "Отзывы")
+        //profilePage.leftMenuItemsSelector("Отчеты", "Отзывы")
         //open("https://cabinet.clientomer.ru/600320/analytics.reviews/")
 
         reviewReportPage.clickToOpenDateRange()
