@@ -70,10 +70,13 @@ class ReportsTest : BaseTest() {
 
         profilePage.leftMenuSingleSelector("Реклама")
         profilePage.leftSubMenuVisibleCheck()
+        sleep(10000)
         profilePage.leftMenuItemsSelector( "Сегменты")
+        profilePage.leftSubMenuVisibleCheck()
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuVisibleCheck()
+        sleep(10000)
         profilePage.leftMenuItemsSelector( "Отзывы")
 
         reviewReportPage.clickToOpenDateRange()
