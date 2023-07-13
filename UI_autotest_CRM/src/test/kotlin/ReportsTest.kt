@@ -29,6 +29,7 @@ class ReportsTest : BaseTest() {
         val profilePage = ProfilePage()
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuVisibleCheck()
+        val pngFileName: String? = screenshot("checkLeftMenuNavigationOpenClose")
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftSubMenuInvisibleCheck()
         System.err.println("left menu passed")
@@ -68,9 +69,11 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector( "Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector( "Отзывы")
 
         reviewReportPage.clickToOpenDateRange()
@@ -93,9 +96,11 @@ class ReportsTest : BaseTest() {
 
         sleep(10000)
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Заказы в заведении")
         sleep(10000)
 
@@ -121,9 +126,11 @@ class ReportsTest : BaseTest() {
 
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Гостевой WiFi")
         sleep(10000)
         reportsGuestWifiPage.clickToOpenDateRange()
@@ -148,8 +155,10 @@ class ReportsTest : BaseTest() {
         val reportsSummaryPage=ReportsSummaryPage()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сводка")
         sleep(10000)
 
@@ -171,8 +180,10 @@ class ReportsTest : BaseTest() {
         val reportsDeliveryPage = ReportsDeliveryPage()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Доставки")
         sleep(10000)
 
@@ -193,8 +204,10 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("ABC анализ по блюдам")
         sleep(10000)
 
@@ -219,8 +232,10 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("ABC анализ по гостям")
         sleep(10000)
 
@@ -246,8 +261,10 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Поведение гостей")
         sleep(10000)
 
@@ -273,7 +290,9 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftMenuItemsSelector("Отзывы после визита")
         sleep(10000)
@@ -312,7 +331,9 @@ class ReportsTest : BaseTest() {
         assertEquals(customerNamePhaliHinkali.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftMenuItemsSelector("Дни рождения")
         sleep(10000)
@@ -341,7 +362,9 @@ class ReportsTest : BaseTest() {
         val reportsNewRFMPage = ReportsNewRFMPage()
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuSingleSelector("Отчеты")
         profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
         sleep(10000)
@@ -376,9 +399,11 @@ class ReportsTest : BaseTest() {
 
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("RFM-отчет")
         sleep(30000)
 
@@ -406,9 +431,11 @@ class ReportsTest : BaseTest() {
         assertEquals(customerNamePhaliHinkali.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
         profilePage.leftMenuSingleSelector("Реклама")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Комплементы")
         sleep(30000)
 
