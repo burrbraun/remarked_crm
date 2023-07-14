@@ -39,7 +39,7 @@ class CommonUtils {
                 i++
                 file = findFileInDirectory(rootDir)
             } catch (e: Exception) {
-                if (i > 18)
+                if (i > 6)
                     return false
             }
         }
