@@ -8,6 +8,7 @@ import com.codeborne.selenide.files.FileFilters
 import org.apache.commons.io.comparator.LastModifiedFileComparator
 import java.io.File
 import java.lang.Thread.sleep
+import java.time.Duration
 import java.util.*
 
 class ReviewsReportPage {
@@ -33,7 +34,8 @@ class ReviewsReportPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile() : String {
-        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
+        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true).
+        shouldBe(Condition.visible, Duration.ofSeconds(10))
         sleep(20000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
