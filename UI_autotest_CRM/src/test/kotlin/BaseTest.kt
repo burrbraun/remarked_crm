@@ -70,7 +70,7 @@ open class BaseTest {
 
         fileDownload = FOLDER
         //downloadsFolder = "src/test/resources/"
-        System.setProperty("selenide.reportsFolder", "downloads")
+        System.setProperty("selenide.reportsFolder", "resources")
        // open(baseUrl)
         timeout = 300000
         open(baseUrl)
