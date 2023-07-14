@@ -34,7 +34,7 @@ class ReviewsReportPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile() : String {
-        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(false).
+        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true).
         shouldBe(Condition.visible, Duration.ofSeconds(10))
         sleep(20000)
         System.err.println(downloadPdfFile.size)

@@ -69,7 +69,8 @@ open class BaseTest {
         //driver[baseUrl]
 
         fileDownload = FOLDER
-        downloadsFolder = "src/test/resources/"
+        //downloadsFolder = "src/test/resources/"
+        System.setProperty("selenide.reportsFolder", "downloads")
        // open(baseUrl)
         timeout = 300000
         open(baseUrl)
