@@ -46,46 +46,46 @@ class SqlBaseUtils {
         return false
     }
 
-    fun getActiveUsers() {
-        val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        val now = LocalDateTime.now().minusHours(24)
-        val time = dtf.format(now)
-        // try {
-        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-        val conn = DriverManager.getConnection(myUrl,  login, password )
-        val query = "SELECT point_id FROM clients_cabinet WHERE active = 1"
-        val st = conn.createStatement()
-        val rs = st.executeQuery(query)
-
-        while (rs.next()) {
-            var pointId = rs.getInt("point_id")
-            val stPurchases = conn.createStatement()
-            val queryPurchases =
-                "SELECT id FROM cl_purchases WHERE point = '$pointId' AND date < '$time' LIMIT 1"
-            val result = stPurchases.executeQuery(queryPurchases)
-            var sizeOfThePurchaseTable = 0
-            if (result != null) {
-                result.last()
-                sizeOfThePurchaseTable = result.row
-                System.out.format("%s active\n", pointId) //проверяю, какие поинты попадают в цикл
-            }
-
-            if (sizeOfThePurchaseTable == 0) {
-                System.out.format("%s disabled\n", pointId)
-            }
-            stPurchases.close()
-        }
-        st.close()
-
-
-        //} catch (e: Exception)
-        /*{
-        System.err.println("Got an exception! ")
-        System.err.println(e.message)
-    }*/
-
-        // }
-    }
+//    fun getActiveUsers() {
+//        val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+//        val now = LocalDateTime.now().minusHours(24)
+//        val time = dtf.format(now)
+//        // try {
+//        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
+//        val conn = DriverManager.getConnection(myUrl,  login, password )
+//        val query = "SELECT point_id FROM clients_cabinet WHERE active = 1"
+//        val st = conn.createStatement()
+//        val rs = st.executeQuery(query)
+//
+//        while (rs.next()) {
+//            var pointId = rs.getInt("point_id")
+//            val stPurchases = conn.createStatement()
+//            val queryPurchases =
+//                "SELECT id FROM cl_purchases WHERE point = '$pointId' AND date < '$time' LIMIT 1"
+//            val result = stPurchases.executeQuery(queryPurchases)
+//            var sizeOfThePurchaseTable = 0
+//            if (result != null) {
+//                result.last()
+//                sizeOfThePurchaseTable = result.row
+//                System.out.format("%s active\n", pointId) //проверяю, какие поинты попадают в цикл
+//            }
+//
+//            if (sizeOfThePurchaseTable == 0) {
+//                System.out.format("%s disabled\n", pointId)
+//            }
+//            stPurchases.close()
+//        }
+//        st.close()
+//
+//
+//        //} catch (e: Exception)
+//        /*{
+//        System.err.println("Got an exception! ")
+//        System.err.println(e.message)
+//    }*/
+//
+//        // }
+//    }
 
     fun getActiveSalesForAllUsers() {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -133,7 +133,8 @@ class SqlBaseUtils {
         return list
     }
 
-    fun getActiveUsersAgain()  {
+    fun getActiveUsersAgain() //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
+    {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val now = LocalDateTime.now().minusHours(24)
         val time = dtf.format(now)
@@ -153,7 +154,7 @@ class SqlBaseUtils {
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                System.out.format("%s  \n", pointId)
+                System.out.format("Нет продаж за последние 48 часов %s;  \n", pointId)
 
                // return false
             }
@@ -179,7 +180,8 @@ class SqlBaseUtils {
             return list
         }*/
 
-    fun getUsersWithActivePhoneCalls() {
+    fun getUsersWithActivePhoneCalls() //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
+    {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val now = LocalDateTime.now().minusHours(24)
         val time = dtf.format(now)
@@ -196,7 +198,7 @@ class SqlBaseUtils {
             val result = stCalls.executeQuery(queryCalls)
 
             if (!result.next()) {
-                System.out.format("%s  not active;\n", operator)
+                System.out.format("Телефония %s неактивна последние 48 часов;\n", operator)
 
             }
         }
@@ -258,7 +260,7 @@ fun fromAllCallBasesUpdates() {
     }
 
     numbersWithoutUpdates.forEach { point ->
-        println("Поинт без обновлений последние 24 часа: $point ;")
+        println("Поинт без обновлений телефонии последние 24 часа: $point ;")
     }
 
     connection.close() // Закрываем соединение с базой данных
