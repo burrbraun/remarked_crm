@@ -34,7 +34,7 @@ class ReviewsReportPage {
         applyButtonDateChange.click()
     }
     fun downloadTableDateInPdfFile() : String {
-        val downloadPdfFile = `$`("[id='save_pdf'] ")
+        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
         sleep(20000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
