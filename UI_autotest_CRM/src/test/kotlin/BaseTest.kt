@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Browsers.CHROME
 import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Configuration.*
+import com.codeborne.selenide.FileDownloadMode
 import com.codeborne.selenide.FileDownloadMode.FOLDER
 import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
@@ -60,6 +61,7 @@ open class BaseTest {
         remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
         webdriverLogsEnabled= true
+        Configuration.fileDownload = FileDownloadMode.FOLDER
         Configuration.proxyEnabled = false
        // WebDriverManager.chromedriver().setup()
 

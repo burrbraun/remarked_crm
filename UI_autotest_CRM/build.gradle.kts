@@ -17,6 +17,7 @@ dependencies {
     implementation ("mysql:mysql-connector-java:8.0.19")
     implementation ("com.opencsv:opencsv:5.3")
     testImplementation("org.testng:testng:7.1.0")
+    implementation ("org.selenide:selenide-selenoid:1.1.3")
 
 
 }
