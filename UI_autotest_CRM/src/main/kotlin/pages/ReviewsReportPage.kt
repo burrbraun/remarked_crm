@@ -36,7 +36,7 @@ class ReviewsReportPage {
     fun downloadTableDateInPdfFile() : String {
         val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
             downloadPdfFile.click()
-        sleep(20000)
+        sleep(40000)
         System.err.println(downloadPdfFile.size)
         val pngFileName: String? = Selenide.screenshot("reviews_report")
         sleep(10000)
