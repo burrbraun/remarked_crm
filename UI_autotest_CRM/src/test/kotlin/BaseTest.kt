@@ -73,7 +73,7 @@ open class BaseTest {
         //driver[baseUrl]
 
         fileDownload = FOLDER
-        downloadsFolder = "src/test/resources/"
+        downloadsFolder = "/home/selenium/Downloads"
         //System.setProperty("selenide.reportsFolder", "src/test/resources")
        // open(baseUrl)
         timeout = 300000
