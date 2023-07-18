@@ -18,10 +18,7 @@ dependencies {
     implementation ("com.opencsv:opencsv:5.3")
     testImplementation("org.testng:testng:7.1.0")
     implementation ("org.selenide:selenide-selenoid:1.1.3")
-
-
 }
-
 
 kotlin {
     jvmToolchain(11)

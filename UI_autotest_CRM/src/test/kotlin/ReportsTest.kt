@@ -84,7 +84,7 @@ class ReportsTest : BaseTest() {
         reviewReportPage.clickApplyDateChangeButton()
         sleep(10000)
         val resultName = reviewReportPage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("src/test/resources/testResults")
+        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
         assertEquals(true, result)
         assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-02.pdf",resultName)
     }
@@ -112,7 +112,7 @@ class ReportsTest : BaseTest() {
         reportsOrdersInCafePage.clickApplyDateChangeButton()
         sleep(10000)
         val resultName = reportsOrdersInCafePage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("src/test/resources/testResults")
+        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
         assertEquals(true, result)
         assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
         val pngFileName: String? = screenshot("my_file_name")
@@ -141,7 +141,7 @@ class ReportsTest : BaseTest() {
         reportsGuestWifiPage.clickApplyDateChangeButton()
         //Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
         val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("/")
+        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
         //val result = commonUtils.smartDownload("/Users/Shared/test/")
         assertEquals(true, result)
         assertEquals(
@@ -220,9 +220,9 @@ class ReportsTest : BaseTest() {
         sleep(10000)
         abcDishPage.buttonDropdownMenuClick()
         abcDishPage.downloadTableDateInXlsFile()
-        val result = commonUtils.smartDownload("/Users/Shared/test/")
+        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
         assertEquals(true, result)
-        val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles().get(0).length()
+        val fileSize = commonUtils.findFileInDirectory("/src/test/resources/testResults/").listFiles().get(0).length()
         assertTrue { fileSize in 70040..70045  }
     }
 
