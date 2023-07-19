@@ -62,7 +62,7 @@ open class BaseTest {
         System.err.println("Start WebDriver Initialization")
         webdriverLogsEnabled= true
         Configuration.fileDownload = FileDownloadMode.FOLDER
-        Configuration.proxyEnabled = true
+        Configuration.proxyEnabled = false
        // WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
