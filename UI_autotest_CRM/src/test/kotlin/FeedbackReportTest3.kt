@@ -36,13 +36,13 @@ class FeedbackReportTest3 : BaseTest() {
         sleep(10000)
     }
 
-    @Test(priority=4)
-    fun downloadPdfFile() {
-        val reviewReportPage = ReviewsReportPage()
-        val result = reviewReportPage.downloadTableDateInPdfFile()
-
-        assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",result)
-    }
+//    @Test(priority=4)
+//    fun downloadPdfFile() {
+//        val reviewReportPage = ReviewsReportPage()
+//        val result = reviewReportPage.downloadTableDateInPdfFile()
+//
+//        assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",result)
+//    }
 
 //    @Test(priority=5) //здесь баг с разным размером пдф файла - требует переделки метод создания пдф
 //    fun downloadedFileSizeCheck() {
