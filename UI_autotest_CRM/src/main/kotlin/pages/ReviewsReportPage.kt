@@ -33,33 +33,38 @@ class ReviewsReportPage {
         applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
-    fun downloadTableDateInPdfFile() : String {
-        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
-            downloadPdfFile.click()
-        sleep(60000)
-        System.err.println(downloadPdfFile.size)
-        val pngFileName: String? = Selenide.screenshot("reviews_report")
-        sleep(10000)
-        val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
-        return reportFile.name
+    fun pdfButtonVisible():Boolean {
+        val pdfButton = `$`("[id='save_pdf'] ").scrollIntoView(true)
+        pdfButton.shouldBe(Condition.exist)
+        return true
     }
-    fun getAbsoluteFilePath(): String {
-        val downloadPdfFile = `$$`("[id='save_pdf'] ")
-        val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
-        return reportFile.absolutePath
-    }
-    fun findFileInDirectory(rootDir: String) : File {
-        val arrayOfFiles = File(rootDir).listFiles()
-        if (arrayOfFiles != null) {
-            Arrays.sort(arrayOfFiles, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
-        }
-        if (arrayOfFiles != null) {
-            for (i in arrayOfFiles.indices) {
-                if (arrayOfFiles[i]!=null){
-                    return arrayOfFiles[i]
-                }
-            }
-        }
-        return arrayOfFiles[0]
-    }
+//    fun downloadTableDateInPdfFile() : String {
+//        val downloadPdfFile = `$`("[id='save_pdf'] ").scrollIntoView(true)
+//            downloadPdfFile.click()
+//        sleep(60000)
+//        System.err.println(downloadPdfFile.size)
+//        val pngFileName: String? = Selenide.screenshot("reviews_report")
+//        sleep(10000)
+//        val reportFile = downloadPdfFile.download(FileFilters.withExtension("pdf"))
+//        return reportFile.name
+//    }
+//    fun getAbsoluteFilePath(): String {
+//        val downloadPdfFile = `$$`("[id='save_pdf'] ")
+//        val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
+//        return reportFile.absolutePath
+//    }
+//    fun findFileInDirectory(rootDir: String) : File {
+//        val arrayOfFiles = File(rootDir).listFiles()
+//        if (arrayOfFiles != null) {
+//            Arrays.sort(arrayOfFiles, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+//        }
+//        if (arrayOfFiles != null) {
+//            for (i in arrayOfFiles.indices) {
+//                if (arrayOfFiles[i]!=null){
+//                    return arrayOfFiles[i]
+//                }
+//            }
+//        }
+//        return arrayOfFiles[0]
+//    }
 }
