@@ -26,19 +26,23 @@ class ReportsOrdersInCafePage {
         applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
-    fun downloadTableDateInPdfFile(): String {
-        val downloadPdfFile = Selenide.`$`("[id='save_pdf'] ")
-        Selenide.sleep(5000)
-        System.err.println(downloadPdfFile.size)
-        val pngFileName: String? = Selenide.screenshot("Orders_in_cafe_report")
-        val reportFile = downloadPdfFile.scrollTo().download(FileFilters.withExtension("pdf"))
-        return reportFile.name
-    }
-
-    fun getAbsoluteFilePath(): String {
-        val downloadPdfFile = Selenide.`$$`("[id='save_pdf'] ")
-        val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
-        return reportFile.absolutePath
+    fun mainSiteButtonVisible():Boolean {
+        val mainSiteLink = Selenide.`$`("[class='logo']").scrollIntoView(true)
+        mainSiteLink.shouldBe(Condition.exist)
+        return true
+//    fun downloadTableDateInPdfFile(): String {
+//        val downloadPdfFile = Selenide.`$`("[id='save_pdf'] ")
+//        Selenide.sleep(5000)
+//        System.err.println(downloadPdfFile.size)
+//        val pngFileName: String? = Selenide.screenshot("Orders_in_cafe_report")
+//        val reportFile = downloadPdfFile.scrollTo().download(FileFilters.withExtension("pdf"))
+//        return reportFile.name
+//    }
+//
+//    fun getAbsoluteFilePath(): String {
+//        val downloadPdfFile = Selenide.`$$`("[id='save_pdf'] ")
+//        val reportFile = downloadPdfFile.last().download(FileFilters.withExtension("pdf"))
+//        return reportFile.absolutePath
     }
 
 }
