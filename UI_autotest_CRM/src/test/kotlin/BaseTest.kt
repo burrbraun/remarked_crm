@@ -61,8 +61,8 @@ open class BaseTest {
         remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
         webdriverLogsEnabled= true
-        Configuration.fileDownload = FileDownloadMode.FOLDER
-        Configuration.proxyEnabled = false
+//        Configuration.fileDownload = FileDownloadMode.FOLDER
+//        Configuration.proxyEnabled = false
        // WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
