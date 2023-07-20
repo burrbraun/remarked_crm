@@ -83,7 +83,7 @@ class ReportsTest : BaseTest() {
         reviewReportPage.changeEndDate("04/02/2023")
         reviewReportPage.clickApplyDateChangeButton()
         sleep(10000)
-        val result = reviewReportPage.pdfButtonVisible()
+        val result = reviewReportPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
 //        val resultName = reviewReportPage.downloadTableDateInPdfFile()
 //        val result = commonUtils.smartDownload("/src/test/resources/testResults/")

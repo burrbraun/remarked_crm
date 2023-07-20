@@ -33,9 +33,9 @@ class ReviewsReportPage {
         applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
     }
-    fun pdfButtonVisible():Boolean {
-        val pdfButton = `$`("[id='save_pdf'] ").scrollIntoView(true)
-        pdfButton.shouldBe(Condition.exist)
+    fun mainSiteButtonVisible():Boolean {
+        val mainSiteLink = `$`("[class='logo']").scrollIntoView(true)
+        mainSiteLink.shouldBe(Condition.exist)
         return true
     }
 //    fun downloadTableDateInPdfFile() : String {
