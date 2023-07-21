@@ -107,6 +107,7 @@ class ReportsTest : BaseTest() {
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
         profilePage.leftMenuSingleSelector("Отчеты")
+        sleep(10000)
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Заказы в заведении")
         sleep(10000)
