@@ -103,6 +103,7 @@ class ReportsTest : BaseTest() {
 
         sleep(10000)
         profilePage.leftMenuSingleSelector("Реклама")
+        sleep(10000)
         profilePage.leftSubMenuVisibleCheck()
         profilePage.leftMenuItemsSelector("Сегменты")
         sleep(10000)
