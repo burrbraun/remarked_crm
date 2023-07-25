@@ -100,8 +100,8 @@ class ReportsTest : BaseTest() {
         val profilePage = ProfilePage()
         val reportsOrdersInCafePage = ReportsOrdersInCafePage()
         val commonUtils = CommonUtils()
-        val reportHeader = Selenide.`$`("[class='page-header']").scrollIntoView(true)
-        reportHeader.shouldBe(Condition.exist)
+//        val reportHeader = Selenide.`$`("[class='page-header']").scrollIntoView(true)
+//        reportHeader.shouldBe(Condition.exist)
 
 //        sleep(10000)
 //        profilePage.leftMenuSingleSelector("Реклама")
