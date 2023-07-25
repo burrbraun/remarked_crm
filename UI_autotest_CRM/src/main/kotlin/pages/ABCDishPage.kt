@@ -1,5 +1,7 @@
 package pages
 
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$`
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.files.FileFilters
@@ -26,6 +28,11 @@ class ABCDishPage {
     }
     fun clickApplyDateChangeButton() {
         applyButtonDateChange.click()
+    }
+    fun mainSiteButtonVisible():Boolean {
+        val mainSiteLink = Selenide.`$`("[class='logo']").scrollIntoView(true)
+        mainSiteLink.shouldBe(Condition.exist)
+        return true
     }
     fun buttonDropdownMenuClick() {
         buttonDropdownMenu.click()

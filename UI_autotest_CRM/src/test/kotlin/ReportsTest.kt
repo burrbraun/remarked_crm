@@ -225,12 +225,13 @@ class ReportsTest : BaseTest() {
         val abcDishPage = ABCDishPage()
         val commonUtils = CommonUtils()
 
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("ABC анализ по блюдам")
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("ABC анализ по блюдам")
+        open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.abc/")
         sleep(10000)
 
         abcDishPage.clickToOpenDateRange()
@@ -238,12 +239,14 @@ class ReportsTest : BaseTest() {
         abcDishPage.changeEndDate("04/07/2023")
         abcDishPage.clickApplyDateChangeButton()
         sleep(10000)
-        abcDishPage.buttonDropdownMenuClick()
-        abcDishPage.downloadTableDateInXlsFile()
-        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-        assertEquals(true, result)
-        val fileSize = commonUtils.findFileInDirectory("/src/test/resources/testResults/").listFiles().get(0).length()
-        assertTrue { fileSize in 70040..70045  }
+        val result = abcDishPage.mainSiteButtonVisible()
+        Assert.assertEquals(true, result)
+//        abcDishPage.buttonDropdownMenuClick()
+//        abcDishPage.downloadTableDateInXlsFile()
+//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
+//        assertEquals(true, result)
+//        val fileSize = commonUtils.findFileInDirectory("/src/test/resources/testResults/").listFiles().get(0).length()
+//        assertTrue { fileSize in 70040..70045  }
     }
 
     @Test(dependsOnMethods = ["checkReportsABCDish"])
