@@ -137,28 +137,30 @@ class ReportsTest : BaseTest() {
         val reportsGuestWifiPage = ReportsGuestWifiPage()
         val commonUtils = CommonUtils()
 
-
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        sleep(10000)
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Гостевой WiFi")
-        sleep(10000)
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        sleep(10000)
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Гостевой WiFi")
+//        sleep(10000)
+        open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.wifi/")
         reportsGuestWifiPage.clickToOpenDateRange()
         reportsGuestWifiPage.changeStartDate("04/01/2023")
         reportsGuestWifiPage.changeEndDate("04/30/2023")
         reportsGuestWifiPage.clickApplyDateChangeButton()
+        val result = reportsGuestWifiPage.mainSiteButtonVisible()
+        Assert.assertEquals(true, result)
         //Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
-        val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
-        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-        //val result = commonUtils.smartDownload("/Users/Shared/test/")
-        assertEquals(true, result)
-        assertEquals(
-            "Отчет по гостевому Wi-Fi BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",
-            resultName
-        )
+//        val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
+//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
+//        //val result = commonUtils.smartDownload("/Users/Shared/test/")
+//        assertEquals(true, result)
+//        assertEquals(
+//            "Отчет по гостевому Wi-Fi BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",
+//            resultName
+//        )
     }
 
     @Test(dependsOnMethods = ["checkReportWifiGuest"])

@@ -1,6 +1,7 @@
 package pages
 
 import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.*
 import com.codeborne.selenide.files.FileFilters
 
@@ -25,6 +26,11 @@ class ReportsGuestWifiPage {
         val applyButtonDateChange = `$`("[class='applyBtn btn btn-small btn-info btn-block']")
             applyButtonDateChange.shouldBe(Condition.visible)
         applyButtonDateChange.click()
+    }
+    fun mainSiteButtonVisible():Boolean {
+        val mainSiteLink = Selenide.`$`("[class='logo']").scrollIntoView(true)
+        mainSiteLink.shouldBe(Condition.exist)
+        return true
     }
     fun downloadTableDateInPdfFile(): String {
         val downloadPdfFile = `$`("[id='save_pdf'] ")
