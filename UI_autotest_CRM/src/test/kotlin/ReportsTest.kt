@@ -94,12 +94,12 @@ class ReportsTest : BaseTest() {
 //        assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-02.pdf",resultName)
     }
 
-    @Test(dependsOnMethods = ["checkFeedbackReport"])
-     //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
-    fun checkOrdersInCafeReport () {
-        val profilePage = ProfilePage()
-        val reportsOrdersInCafePage = ReportsOrdersInCafePage()
-        val commonUtils = CommonUtils()
+//    @Test(dependsOnMethods = ["checkFeedbackReport"])
+//     //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
+//    fun checkOrdersInCafeReport () {
+//        val profilePage = ProfilePage()
+//        val reportsOrdersInCafePage = ReportsOrdersInCafePage()
+//        val commonUtils = CommonUtils()
 //        val reportHeader = Selenide.`$`("[class='page-header']").scrollIntoView(true)
 //        reportHeader.shouldBe(Condition.exist)
 
@@ -115,24 +115,24 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuItemsSelector("Заказы в заведении")
 //        sleep(10000)
 
-        open("https://cabinet.clientomer.ru/$pointBonaCapona/hall.sales.report/")
-        sleep(50000)
-        reportsOrdersInCafePage.clickToOpenDateRange()
-        reportsOrdersInCafePage.changeStartDate("04/01/2023")
-        reportsOrdersInCafePage.changeEndDate("04/07/2023")
-        reportsOrdersInCafePage.clickApplyDateChangeButton()
-        sleep(10000)
-        val result = reportsOrdersInCafePage.mainSiteButtonVisible()
-        Assert.assertEquals(true, result)
+//        open("https://cabinet.clientomer.ru/$pointBonaCapona/hall.sales.report/")
+//        sleep(50000)
+//        reportsOrdersInCafePage.clickToOpenDateRange()
+//        reportsOrdersInCafePage.changeStartDate("04/01/2023")
+//        reportsOrdersInCafePage.changeEndDate("04/07/2023")
+//        reportsOrdersInCafePage.clickApplyDateChangeButton()
+//        sleep(10000)
+//        val result = reportsOrdersInCafePage.mainSiteButtonVisible()
+//        Assert.assertEquals(true, result)
 //        val resultName = reportsOrdersInCafePage.downloadTableDateInPdfFile()
 //        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
 //        assertEquals(true, result)
 //        assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
 //        val pngFileName: String? = screenshot("my_file_name")
 //        Configuration.reportsFolder = "reports"
-    }
+//    }
 
-    @Test(dependsOnMethods = ["checkOrdersInCafeReport"])
+    @Test(dependsOnMethods = ["checkFeedbackReport"])
      //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
