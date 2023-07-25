@@ -116,7 +116,7 @@ class ReportsTest : BaseTest() {
 //        sleep(10000)
 
         open("https://cabinet.clientomer.ru/$pointBonaCapona/hall.sales.report/")
-        sleep(20000)
+        sleep(50000)
         reportsOrdersInCafePage.clickToOpenDateRange()
         reportsOrdersInCafePage.changeStartDate("04/01/2023")
         reportsOrdersInCafePage.changeEndDate("04/07/2023")
