@@ -30,6 +30,7 @@ class ReportsOrdersInCafePage {
         val mainSiteLink = Selenide.`$`("[class='logo']").scrollIntoView(true)
         mainSiteLink.shouldBe(Condition.exist)
         return true
+
 //    fun downloadTableDateInPdfFile(): String {
 //        val downloadPdfFile = Selenide.`$`("[id='save_pdf'] ")
 //        Selenide.sleep(5000)

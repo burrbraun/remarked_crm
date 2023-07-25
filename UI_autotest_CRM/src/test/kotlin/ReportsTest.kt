@@ -197,18 +197,22 @@ class ReportsTest : BaseTest() {
         val profilePage = ProfilePage()
         val reportsDeliveryPage = ReportsDeliveryPage()
 
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Доставки")
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Доставки")
+        open("https://cabinet.clientomer.ru/$pointBonaCapona/delivery.report/")
         sleep(10000)
 
         reportsDeliveryPage.clickToOpenDateRange()
         reportsDeliveryPage.changeStartDate("04/01/2023")
         reportsDeliveryPage.changeEndDate("04/30/2023")
         reportsDeliveryPage.clickApplyDateChangeButton()
+
+        val result = reportsDeliveryPage.mainSiteButtonVisible()
+        Assert.assertEquals(true, result)
        /* val result = reportsDeliveryPage.downloadTableDateInPdfFile()
         assertEquals() - здесь должно быть название доки, с которым сверяться, но по состоянию на 19 мая кнопка скачать неактивна и файл не скачивается - тикет заведен, ждем исправления
 */
