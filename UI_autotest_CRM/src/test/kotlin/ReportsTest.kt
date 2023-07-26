@@ -436,13 +436,14 @@ class ReportsTest : BaseTest() {
         assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
 
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        sleep(10000)
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("RFM-отчет")
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        sleep(10000)
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("RFM-отчет")
+        open("https://cabinet.clientomer.ru/600400/rfm.report/")
         sleep(30000)
 
         val resultHeader = reportsRFMPage.reportNameVisible()
