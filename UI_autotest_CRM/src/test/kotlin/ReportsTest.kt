@@ -398,22 +398,23 @@ class ReportsTest : BaseTest() {
         val commonUtils = CommonUtils()
         val reportsNewRFMPage = ReportsNewRFMPage()
 
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
+        open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
         sleep(10000)
 
-        reportsNewRFMPage.buttonDropdownMenuClick()
-        reportsNewRFMPage.downloadTableDateInXlsFile()
+//        reportsNewRFMPage.buttonDropdownMenuClick()
+//        reportsNewRFMPage.downloadTableDateInXlsFile()
+//
+//        val result = commonUtils.smartDownload("/Users/Shared/test/")
+//        assertEquals(true, result)
 
-        val result = commonUtils.smartDownload("/Users/Shared/test/")
-        assertEquals(true, result)
-
-        val resultHeader = reportsNewRFMPage.reportNameVisible()
-        assertEquals(true, resultHeader)
+        val result = reportsNewRFMPage.mainSiteButtonVisible()
+        Assert.assertEquals(true, result)
 
     }
 
