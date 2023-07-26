@@ -427,13 +427,13 @@ class ReportsTest : BaseTest() {
         val reportsRFMPage = ReportsRFMPage()
 
         open("https://cabinet.clientomer.ru")
-        loginPage.setValueToLoginEditBox(login)
-        loginPage.setValueToPasswordEditBox(password)
-        loginPage.setValueToPointEditBox(point)
+        loginPage.setValueToLoginEditBox(loginFiesta)
+        loginPage.setValueToPasswordEditBox(passwordFiesta)
+        loginPage.setValueToPointEditBox(pointFiesta)
         loginPage.loginButtonClick()
         Selenide.sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
-        assertEquals(customerName.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
+        assertEquals(customerNameFiesta.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
 
 //        profilePage.leftMenuSingleSelector("Реклама")
@@ -443,7 +443,7 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuSingleSelector("Отчеты")
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("RFM-отчет")
-        open("https://cabinet.clientomer.ru/600400/rfm.report/")
+        open("https://cabinet.clientomer.ru/120004/rfm.report/")
         sleep(30000)
 
         val resultHeader = reportsRFMPage.reportNameVisible()
