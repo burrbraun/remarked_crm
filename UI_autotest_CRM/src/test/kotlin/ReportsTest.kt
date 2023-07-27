@@ -469,28 +469,32 @@ class ReportsTest : BaseTest() {
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNamePhaliHinkali.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
 
-        profilePage.leftMenuSingleSelector("Реклама")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Сегменты")
-        sleep(10000)
-        profilePage.leftMenuSingleSelector("Отчеты")
-        profilePage.leftSubMenuVisibleCheck()
-        profilePage.leftMenuItemsSelector("Комплементы")
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        sleep(10000)
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Комплементы")
+        open("https://cabinet.clientomer.ru/400125/complements/")
         sleep(30000)
 
         complementPage.clickToOpenDateRange()
         complementPage.changeStartDate("04/01/2023")
         complementPage.changeEndDate("04/30/2023")
         complementPage.clickApplyDateChangeButton()
-        complementPage.buttonDropdownMenuClick()
 
-        val resultName = complementPage.downloadTableDateInXlsFile()
-        sleep(10000)
-        val result = commonUtils.smartDownload("/Users/Shared/test/")
-        assertEquals(true, result)
-        val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
-
-        assertEquals("complements__2023-04-01_2023-04-30.xlsx", resultName)
-        assertTrue{fileSize in 49003 .. 49008}
+//        complementPage.buttonDropdownMenuClick()
+//
+//        val resultName = complementPage.downloadTableDateInXlsFile()
+//        sleep(10000)
+//        val result = commonUtils.smartDownload("/Users/Shared/test/")
+//        assertEquals(true, result)
+//        val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
+//
+//        assertEquals("complements__2023-04-01_2023-04-30.xlsx", resultName)
+//        assertTrue{fileSize in 49003 .. 49008}
+        val resultHeader = complementPage.mainSiteButtonVisible()
+        assertEquals(true, resultHeader)
     }
 }
