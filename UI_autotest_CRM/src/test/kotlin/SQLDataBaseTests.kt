@@ -5,6 +5,7 @@ import kotlin.test.assertEquals
 
 class SQLDataBaseTests  {
     @Test
+    @Description("Тест на проверку продаж по поинтам за 48 часов")
     fun checkSales() {
         val sqlBaseUtils = SqlBaseUtils()
         val result = sqlBaseUtils.checkPreviousDaySalesNotEmpty()
