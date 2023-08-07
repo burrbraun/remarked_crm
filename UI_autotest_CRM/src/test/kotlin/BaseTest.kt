@@ -15,6 +15,7 @@ import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
 import com.codeborne.selenide.Selenide.open
+import com.codeborne.selenide.logevents.SelenideLogger
 
 open class BaseTest {
     companion object {
