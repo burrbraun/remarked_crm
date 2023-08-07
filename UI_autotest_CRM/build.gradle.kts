@@ -1,7 +1,7 @@
 
 plugins {
     kotlin("jvm") version "1.8.0"
-    //id ("io.qameta.allure") version "2.9.6"
+    id ("io.qameta.allure") version "2.9.6"
     application
 
 }
@@ -22,13 +22,8 @@ dependencies {
     implementation ("com.opencsv:opencsv:5.3")
     testImplementation("org.testng:testng:7.1.0")
     implementation ("org.selenide:selenide-selenoid:1.1.3")
-//    testImplementation("org.aspectj:aspectjweaver:1.9.5")
-//    testImplementation("io.qameta.allure:allure-testng:2.12.1")
-//    testImplementation("io.qameta.allure:allure-commandline:2.23.1")
-//    testImplementation("io.qameta.allure:allure-assertj:2.12.1")
-//    testImplementation("io.qameta.allure:allure-rest-assured:2.12.1")
-//    testImplementation("io.qameta.allure:allure-java-commons:2.12.1")
-//    testImplementation("io.qameta.allure:allure-selenide:2.12.1")
+    implementation("io.qameta.allure:allure-selenide:2.17.3")
+    implementation("io.qameta.allure:allure-testng:2.17.3")
 }
 
 kotlin {
