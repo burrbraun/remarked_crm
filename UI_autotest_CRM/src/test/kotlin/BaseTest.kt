@@ -58,26 +58,26 @@ open class BaseTest {
         browserSize = "1024×768"
         driverManagerEnabled = true
         headless = false //включает или выключает интерфейс браузера
-        remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
+        //remote = "http://185.189.167.3:4444/wd/hub/" // закомментировать чтобы прогнать локально
         System.err.println("Start WebDriver Initialization")
-        webdriverLogsEnabled= true
-//        Configuration.fileDownload = FileDownloadMode.FOLDER
-//        Configuration.proxyEnabled = false
-       // WebDriverManager.chromedriver().setup()
+        webdriverLogsEnabled= false
+        //Configuration.fileDownload = FileDownloadMode.FOLDER
+        //Configuration.proxyEnabled = false
+        WebDriverManager.chromedriver().setup()
 
         //Create driver object for Chrome
-       // driver = ChromeDriver()
+        //driver = ChromeDriver()
 
         //Navigate to a URL
         System.err.println("trying to up the browser")
         //driver[baseUrl]
 
-        fileDownload = FOLDER
-        downloadsFolder = "/src/test/resources/testResults/"
-        System.setProperty("selenide.reportsFolder", "/src/test/resources/testResults/")
-       // open(baseUrl)
-        timeout = 300000
+        //fileDownload = FOLDER
+        //downloadsFolder = "/src/test/resources/testResults/"
+        //System.setProperty("selenide.reportsFolder", "/src/test/resources/testResults/")
         open(baseUrl)
+        timeout = 300000
+        //open(baseUrl)
 
     }
 }
