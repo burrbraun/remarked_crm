@@ -391,34 +391,6 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkBirthdays"])
-    //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
-    fun newRfmReportCheck() {
-        val loginPage = LoginPage()
-        val profilePage = ProfilePage()
-        val commonUtils = CommonUtils()
-        val reportsNewRFMPage = ReportsNewRFMPage()
-
-//        profilePage.leftMenuSingleSelector("Реклама")
-//        profilePage.leftSubMenuVisibleCheck()
-//        profilePage.leftMenuItemsSelector("Сегменты")
-//        profilePage.leftMenuSingleSelector("Отчеты")
-//        profilePage.leftSubMenuVisibleCheck()
-//        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
-        open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
-        sleep(20000)
-
-//        reportsNewRFMPage.buttonDropdownMenuClick()
-//        reportsNewRFMPage.downloadTableDateInXlsFile()
-//
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-
-        val result = reportsNewRFMPage.mainSiteButtonVisible()
-        Assert.assertEquals(true, result)
-
-    }
-
-    @Test(dependsOnMethods = ["newRfmReportCheck"])
     //Тест-кейс №11:  ”RFM-отчет ”, проверка загрузки заголовка
     fun oldRFMReportCheck() {
 
@@ -496,5 +468,32 @@ class ReportsTest : BaseTest() {
 //        assertTrue{fileSize in 49003 .. 49008}
         val resultHeader = complementPage.mainSiteButtonVisible()
         assertEquals(true, resultHeader)
+    }
+    @Test(dependsOnMethods = ["complementsReportCheck"])
+    //Тест-кейс №11:  ”Новый RFM-отчет ”, смена дат, проверка загрузки страницы через заголовок
+    fun newRfmReportCheck() {
+        val loginPage = LoginPage()
+        val profilePage = ProfilePage()
+        val commonUtils = CommonUtils()
+        val reportsNewRFMPage = ReportsNewRFMPage()
+
+//        profilePage.leftMenuSingleSelector("Реклама")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Сегменты")
+//        profilePage.leftMenuSingleSelector("Отчеты")
+//        profilePage.leftSubMenuVisibleCheck()
+//        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
+        open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
+        sleep(20000)
+
+//        reportsNewRFMPage.buttonDropdownMenuClick()
+//        reportsNewRFMPage.downloadTableDateInXlsFile()
+//
+//        val result = commonUtils.smartDownload("/Users/Shared/test/")
+//        assertEquals(true, result)
+
+        val result = reportsNewRFMPage.mainSiteButtonVisible()
+        Assert.assertEquals(true, result)
+
     }
 }
