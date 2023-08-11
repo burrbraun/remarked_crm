@@ -22,8 +22,8 @@ dependencies {
     implementation ("com.opencsv:opencsv:5.3")
     testImplementation("org.testng:testng:7.1.0")
     implementation ("org.selenide:selenide-selenoid:1.1.3")
-    implementation("io.qameta.allure:allure-selenide:2.17.3")
-    implementation("io.qameta.allure:allure-testng:2.17.3")
+    implementation("io.qameta.allure:allure-selenide:2.21.0")
+    implementation("io.qameta.allure:allure-testng:2.21.0")
 }
 
 kotlin {
