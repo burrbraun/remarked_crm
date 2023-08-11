@@ -50,16 +50,6 @@ open class BaseTest {
     val profilePage = ProfilePage()
 
     @BeforeSuite
-    open fun setupAllureReports() {
-        //SelenideLogger.addListener("AllureSelenide", AllureSelenide())
-
-        // либо для тонкой настройки:
-        SelenideLogger.addListener(
-            "AllureSelenide", AllureSelenide()
-                .screenshots(true)
-                .savePageSource(true)
-        )
-    }
     open fun setUp() {
 
         browser = CHROME
@@ -88,6 +78,16 @@ open class BaseTest {
         timeout = 300000
         //open(baseUrl)
 
+    }
+    open fun setupAllureReports() {
+        //SelenideLogger.addListener("AllureSelenide", AllureSelenide())
+
+        // либо для тонкой настройки:
+        SelenideLogger.addListener(
+            "AllureSelenide", AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+        )
     }
 }
 
