@@ -1,30 +1,17 @@
 import com.codeborne.selenide.Browsers.CHROME
-import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Configuration.*
-import com.codeborne.selenide.FileDownloadMode
-import com.codeborne.selenide.FileDownloadMode.FOLDER
+import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.chrome.ChromeDriver
-import org.testng.annotations.BeforeSuite
-import org.testng.annotations.Test
+import org.testng.annotations.*
 import pages.CommonUtils
 import pages.LoginPage
 import pages.ProfilePage
-import kotlin.test.assertEquals
-import com.codeborne.selenide.Selenide.open
-import com.codeborne.selenide.logevents.SelenideLogger
-import org.apache.commons.io.FileUtils
-import org.openqa.selenium.OutputType
-import org.openqa.selenium.TakesScreenshot
-import org.testng.ITestResult
-import org.testng.annotations.AfterMethod
-import org.testng.annotations.AfterSuite
-import java.io.File
-import java.io.IOException
 import java.util.*
+import kotlin.test.assertEquals
+
 
 open class BaseTest {
     companion object {
@@ -127,19 +114,10 @@ open class BaseTest {
         assertEquals(expectedUrl,actualUrl)
 
     }
-        @AfterSuite
-        @Throws(IOException::class)
-        fun takeScreenShotOnFailure(testResult: ITestResult) {
-            if (testResult.status == ITestResult.FAILURE) {
-                val scrFile: File = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
-                FileUtils.copyFile(
-                    scrFile, File(
-                        "errorScreenshots\\" + testResult.name + "-"
-                                + Arrays.toString(testResult.parameters) + ".jpg"
-                    )
-                )
-            }
-        }
-}
+
+        @Listeners(AllureScreenShooter::class)
+        class BaseTest
+
+    }
 
 

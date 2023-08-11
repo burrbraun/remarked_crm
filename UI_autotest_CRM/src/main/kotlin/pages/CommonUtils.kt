@@ -69,4 +69,5 @@ class CommonUtils {
        val decryptedString: String? = aesEncryptionDecryption.decrypt(encryptedString, secretKey)
         return decryptedString
    }
+
 }
