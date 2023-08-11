@@ -507,17 +507,5 @@ class ReportsTest : BaseTest() {
 
     }
 
-    @AfterMethod
-    @Throws(IOException::class)
-    fun takeScreenShotOnFailure(testResult: ITestResult) {
-        if (testResult.status == ITestResult.FAILURE) {
-            val scrFile: File = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
-            FileUtils.copyFile(
-                scrFile, File(
-                    "errorScreenshots\\" + testResult.name + "-"
-                            + Arrays.toString(testResult.parameters) + ".jpg"
-                )
-            )
-        }
-    }
+
 }
