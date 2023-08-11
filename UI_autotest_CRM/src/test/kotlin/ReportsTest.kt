@@ -1,15 +1,21 @@
-import com.codeborne.selenide.Condition
-import com.codeborne.selenide.Configuration
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
-import org.openqa.selenium.support.ui.ExpectedConditions
+import io.qameta.allure.Attachment
+import org.apache.commons.io.FileUtils
+import org.openqa.selenium.OutputType
+import org.openqa.selenium.TakesScreenshot
 import org.testng.Assert
+import org.testng.ITestResult
+import org.testng.annotations.AfterMethod
 import org.testng.annotations.Test
 import pages.*
+import java.io.File
+import java.io.IOException
 import java.lang.Thread.sleep
+import java.util.*
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+
 
 class ReportsTest : BaseTest() {
     @Test
@@ -23,6 +29,10 @@ class ReportsTest : BaseTest() {
         val actualUserName= profilePage.checkCustomerName()
         assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
         System.err.println("auth passed")
+        @Attachment(value = "Screenshooot", type = "image/png")
+        fun saveAllureScreenshot(s: String): ByteArray {
+            return (driver as TakesScreenshot).getScreenshotAs(OutputType.BYTES)
+        }
     }
 
     @Test(dependsOnMethods = ["checkAuthByUserName"]) //Тест-кейс №1: открытие и закрытие списка отчетов
@@ -495,5 +505,19 @@ class ReportsTest : BaseTest() {
         val result = reportsNewRFMPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
 
+    }
+
+    @AfterMethod
+    @Throws(IOException::class)
+    fun takeScreenShotOnFailure(testResult: ITestResult) {
+        if (testResult.status == ITestResult.FAILURE) {
+            val scrFile: File = (driver as TakesScreenshot).getScreenshotAs(OutputType.FILE)
+            FileUtils.copyFile(
+                scrFile, File(
+                    "errorScreenshots\\" + testResult.name + "-"
+                            + Arrays.toString(testResult.parameters) + ".jpg"
+                )
+            )
+        }
     }
 }
