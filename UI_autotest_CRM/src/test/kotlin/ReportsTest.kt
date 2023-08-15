@@ -494,7 +494,7 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
         open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
-        sleep(30000)
+        sleep(60000)
 
 //        reportsNewRFMPage.buttonDropdownMenuClick()
 //        reportsNewRFMPage.downloadTableDateInXlsFile()
@@ -504,8 +504,5 @@ class ReportsTest : BaseTest() {
 
         val result = reportsNewRFMPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-
     }
-
-
 }
