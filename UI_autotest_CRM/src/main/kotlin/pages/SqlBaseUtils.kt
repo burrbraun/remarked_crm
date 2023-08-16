@@ -189,7 +189,6 @@ class SqlBaseUtils {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
         val conn = DriverManager.getConnection(myUrl,  login, password )
         val query = "SELECT DISTINCT source_providers  FROM clients_sources WHERE source_type  = 'telephony' AND source_active = 1"
-        Allure.addDescription(query)
         val st = conn.createStatement()
         val rs = st.executeQuery(query)
         val stCalls = conn.createStatement()
