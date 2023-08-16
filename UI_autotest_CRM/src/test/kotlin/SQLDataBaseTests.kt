@@ -24,7 +24,7 @@ class SQLDataBaseTests  {
     @Description("Проверка продаж за последние 48 часов для поинтов с активной интеграцией --продажи-- ")
     fun checkActiveCustomersSalesForPrevTwoDays(){
         val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nНет продаж за последние 48 часов\n")
+        System.out.format("--------------------------\nНет продаж за последние 48 часов:\n")
         sqlBaseUtils.getActiveUsersAgain()
         //val file = SqlBaseUtils.OpenCsvWriterExample
         //assertEquals(true, result)
@@ -32,10 +32,10 @@ class SQLDataBaseTests  {
     }
 
     @Test(dependsOnMethods = ["checkActiveCustomersSalesForPrevTwoDays"]) //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
-    @Description("Проверка телефоний и показ тех поинтов, которые не получали обновлений последние 48 часов")
+    @Description("Проверка активности телефоний (получения обновлений)")
     fun checkActiveCustomersCallsForPrevTime() {
         val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\n")
+        System.out.format("--------------------------\nТелефонии ниже неактивны последние 48 часов:\n")
         sqlBaseUtils.getUsersWithActivePhoneCalls()
     }
 
@@ -43,7 +43,7 @@ class SQLDataBaseTests  {
     @Description("Проверка отсутствия звонков на поинтах за последние 24 часа")
     fun checkActivePhoneCalls() {
         val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\n")
+        System.out.format("--------------------------\nПоинты без обновлений телефонии последние 24 часа:\n")
         sqlBaseUtils.fromAllCallBasesUpdates()
     }
 

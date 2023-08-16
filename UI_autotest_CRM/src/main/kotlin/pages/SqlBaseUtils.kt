@@ -200,7 +200,7 @@ class SqlBaseUtils {
             val result = stCalls.executeQuery(queryCalls)
 
             if (!result.next()) {
-                System.out.format("Телефония %s неактивна последние 48 часов;\n", operator)
+                System.out.format("\n", operator)
 
             }
         }
@@ -262,7 +262,7 @@ fun fromAllCallBasesUpdates() {
     }
 
     numbersWithoutUpdates.forEach { point ->
-        println("Поинт без обновлений телефонии последние 24 часа: $point ;")
+        println("$point")
     }
 
     connection.close() // Закрываем соединение с базой данных
