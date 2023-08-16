@@ -200,7 +200,7 @@ class SqlBaseUtils {
             val result = stCalls.executeQuery(queryCalls)
 
             if (!result.next()) {
-                System.out.format("\n", operator)
+                System.out.format("%s\n", operator)
 
             }
         }
