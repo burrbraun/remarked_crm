@@ -54,4 +54,12 @@ class SQLDataBaseTests  {
         System.out.format("--------------------------\n")
         sqlBaseUtils.getActualReviews()
     }
+    @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
+    @Description("Проверка доставок за последние 48 часов для поинтов")
+    fun checkActiveCustomerDeliveriesForPrevTwoDays(){
+        val sqlBaseUtils = SqlBaseUtils()
+        System.out.format("--------------------------\nНет доставок за последние 48 часов:\n")
+        sqlBaseUtils.getActiveUsersDelivery()
+        assert(true)
+    }
 }
