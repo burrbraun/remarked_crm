@@ -151,7 +151,7 @@ class SqlBaseUtils {
             var pointId = rs.getInt("point")
 
             val queryPurchases =
-                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND cl_purchases.date < (CURDATE() - 2)  LIMIT 1"
+                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND cl_purchases.date > (CURDATE() - 2)  LIMIT 1"
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
