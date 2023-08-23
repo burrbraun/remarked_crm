@@ -151,7 +151,7 @@ class SqlBaseUtils {
             var pointId = rs.getInt("point")
 
             val queryPurchases =
-                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND cl_purchases.date > (CURDATE() - 2)  LIMIT 1"
+                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND order_type = 'sales' AND cl_purchases.date > (CURDATE() - 2)  LIMIT 1"
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
@@ -323,6 +323,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
         statement.close()
         connection.close()
     }
+
     fun getActiveUsersDelivery() //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
     {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -340,7 +341,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             var pointId = rs.getInt("point")
 
             val queryPurchases =
-                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND cl_purchases.date > (CURDATE() - 2)  LIMIT 1"
+                "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND order_type = 'delivery' AND cl_purchases.date > (CURDATE() - 2)  LIMIT 1"
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {

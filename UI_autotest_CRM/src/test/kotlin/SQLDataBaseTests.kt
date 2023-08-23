@@ -1,7 +1,6 @@
 import io.qameta.allure.Description
 import org.testng.annotations.Test
 import pages.SqlBaseUtils
-import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
 class SQLDataBaseTests  {
