@@ -2,6 +2,7 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
 import io.qameta.allure.Attachment
+import io.qameta.allure.Description
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
@@ -143,6 +144,7 @@ class ReportsTest : BaseTest() {
 //    }
 
     @Test(dependsOnMethods = ["checkFeedbackReport"])
+    @Description("Тест на проверку  загрузки отчета с отзывами")
      //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
