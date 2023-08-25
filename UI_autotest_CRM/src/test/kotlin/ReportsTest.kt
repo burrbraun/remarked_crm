@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
+import io.qameta.allure.Allure.step
 import io.qameta.allure.Attachment
 import io.qameta.allure.Description
 import org.apache.commons.io.FileUtils
@@ -20,11 +21,16 @@ import kotlin.test.assertEquals
 
 class ReportsTest : BaseTest() {
     @Test
+    @Description("Проверка работы сценария авторизации пользователя на сайте")
      // Тест авторизации
     fun checkAuthByUserName() {
+        step("Вводим логин")
         loginPage.setValueToLoginEditBox(loginBonaCapona)
+        step("Вводим пароль")
         loginPage.setValueToPasswordEditBox(passwordBonaCapona)
+        step("Вводим нужный номер поинта")
         loginPage.setValueToPointEditBox(pointBonaCapona)
+        step("Нажимаем на кнопку 'войти' ")
         loginPage.loginButtonClick()
         Selenide.sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
