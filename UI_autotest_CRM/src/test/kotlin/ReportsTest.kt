@@ -43,12 +43,18 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkAuthByUserName"]) //Тест-кейс №1: открытие и закрытие списка отчетов
+    @Description("Открытие и закрытие списка отчетов в левом боковом меню")
     fun checkLeftMenuNavigationOpenClose(){
         val profilePage = ProfilePage()
+        step("Нажать на отчеты в левом меню")
         profilePage.leftMenuSingleSelector("Отчеты")
+        step("Убедиться, что видим появившееся подменю")
         profilePage.leftSubMenuVisibleCheck()
+        step("Сделать скриншот для проверки")
         val pngFileName: String? = screenshot("checkLeftMenuNavigationOpenClose")
+        step("Повторно нажать на отчеты чтобы закрыть раскрывшийся список")
         profilePage.leftMenuSingleSelector("Отчеты")
+        step("Убедиться, что список закрылся и подменю больше не видно")
         profilePage.leftSubMenuInvisibleCheck()
         System.err.println("left menu passed")
     }
