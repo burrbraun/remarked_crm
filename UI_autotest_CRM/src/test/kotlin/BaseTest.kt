@@ -98,7 +98,7 @@ open class BaseTest {
     class Auth : BaseTest() {
     @Test(priority=1)
     @AllureId("34")
-    @Feature("Деление")
+    @Feature("авторизация")
     fun checkAuthByUserName() {
         step("Вводим логин")
         loginPage.setValueToLoginEditBox(login)
