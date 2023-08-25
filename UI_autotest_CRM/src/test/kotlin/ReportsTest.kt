@@ -87,6 +87,7 @@ class ReportsTest : BaseTest() {
 //    }
 
     @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №3 "Отзывы" и смена дат
+    @Description("Открытие отчета с отзывами, смена дат и проверка загрузки кнопки перехода на основной сайт внизу")
     fun checkFeedbackReport() {
         val profilePage = ProfilePage()
         val reviewReportPage = ReviewsReportPage()
@@ -103,13 +104,19 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuItemsSelector( "Отзывы")
 
         open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.reviews/")
+        step("Перейти на страницу с отзывами")
         sleep(10000)
         reviewReportPage.clickToOpenDateRange()
+        step("Открыть календарь в правом верхнем углу для смены дат")
         reviewReportPage.changeStartDate("04/01/2023")
+        step("Установить дату начала периода 04/01/2023")
         reviewReportPage.changeEndDate("04/02/2023")
+        step("Установить дату конца периода 04/02/2023")
         reviewReportPage.clickApplyDateChangeButton()
+        step("Подтвердить выбор дат нажатием на 'применить'")
         sleep(10000)
         val result = reviewReportPage.mainSiteButtonVisible()
+        step("Убедиться, что кнопка перехода на главный сайт внизу видна")
         Assert.assertEquals(true, result)
 //        val resultName = reviewReportPage.downloadTableDateInPdfFile()
 //        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
