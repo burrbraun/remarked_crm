@@ -35,6 +35,53 @@ class SQLDataBaseTests  {
         }
         Allure.addAttachment("Console Output", consoleOutput)
     }
+
+    @Test(dependsOnMethods = ["checkActiveCustomersSalesForPrevTwoDays"]) //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
+    @Description("Проверка активности телефоний (получения обновлений)")
+    fun checkActiveCustomersCallsForPrevTime() {
+        val consoleOutput = captureConsoleOutput {
+            val sqlBaseUtils = SqlBaseUtils()
+            System.out.format("--------------------------\nТелефонии ниже неактивны последние 48 часов:\n")
+            sqlBaseUtils.getUsersWithActivePhoneCalls()
+        }
+        Allure.addAttachment("Console Output", consoleOutput)
+    }
+
+
+    @Test(dependsOnMethods = ["checkActiveCustomersCallsForPrevTime"]) //тест проверяет у каких поинтов сканер не обнаружил звонков за последние 24 часа
+    @Description("Проверка отсутствия звонков на поинтах за последние 24 часа")
+    fun checkActivePhoneCalls() {
+        val consoleOutput = captureConsoleOutput {
+        val sqlBaseUtils = SqlBaseUtils()
+        System.out.format("--------------------------\nПоинты без обновлений телефонии последние 24 часа:\n")
+        sqlBaseUtils.fromAllCallBasesUpdates()
+        }
+        Allure.addAttachment("Console Output", consoleOutput)
+    }
+
+    @Test(dependsOnMethods = ["checkActivePhoneCalls"]) //тест проверяет что отзывы приходят с порталов отзывов и их количество
+    @Description("Проверка работы порталов отзывов и количества отзывов с каждого из них")
+    fun checkGetActualReview () {
+        val consoleOutput = captureConsoleOutput {
+        val sqlBaseUtils = SqlBaseUtils()
+        System.out.format("--------------------------\n")
+        sqlBaseUtils.getActualReviews()
+    }
+        Allure.addAttachment("Console Output", consoleOutput)
+    }
+
+    @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
+    @Description("Проверка доставок за последние 48 часов для поинтов")
+    fun checkActiveCustomerDeliveriesForPrevTwoDays(){
+        val consoleOutput = captureConsoleOutput {
+        val sqlBaseUtils = SqlBaseUtils()
+        System.out.format("--------------------------\nНет доставок за последние 48 часов:\n")
+        sqlBaseUtils.getActiveUsersDelivery()
+        assert(true)
+    }
+        Allure.addAttachment("Console Output", consoleOutput)
+    }
+
     private fun captureConsoleOutput(block: () -> Unit): String {
         val outputStream = ByteArrayOutputStream()
         val printStream = PrintStream(outputStream, true)
@@ -53,37 +100,5 @@ class SQLDataBaseTests  {
         }
 
         return outputStream.toString()
-    }
-
-    @Test(dependsOnMethods = ["checkActiveCustomersSalesForPrevTwoDays"]) //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
-    @Description("Проверка активности телефоний (получения обновлений)")
-    fun checkActiveCustomersCallsForPrevTime() {
-        val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nТелефонии ниже неактивны последние 48 часов:\n")
-        sqlBaseUtils.getUsersWithActivePhoneCalls()
-    }
-
-    @Test(dependsOnMethods = ["checkActiveCustomersCallsForPrevTime"]) //тест проверяет у каких поинтов сканер не обнаружил звонков за последние 24 часа
-    @Description("Проверка отсутствия звонков на поинтах за последние 24 часа")
-    fun checkActivePhoneCalls() {
-        val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nПоинты без обновлений телефонии последние 24 часа:\n")
-        sqlBaseUtils.fromAllCallBasesUpdates()
-    }
-
-    @Test(dependsOnMethods = ["checkActivePhoneCalls"]) //тест проверяет что отзывы приходят с порталов отзывов и их количество
-    @Description("Проверка работы порталов отзывов и количества отзывов с каждого из них")
-    fun checkGetActualReview () {
-        val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\n")
-        sqlBaseUtils.getActualReviews()
-    }
-    @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
-    @Description("Проверка доставок за последние 48 часов для поинтов")
-    fun checkActiveCustomerDeliveriesForPrevTwoDays(){
-        val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nНет доставок за последние 48 часов:\n")
-        sqlBaseUtils.getActiveUsersDelivery()
-        assert(true)
     }
 }
