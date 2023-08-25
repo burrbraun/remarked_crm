@@ -536,6 +536,7 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuSingleSelector("Отчеты")
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
+        step("Открыть отчет 'Новый RFM отчет'")
         open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
         sleep(60000)
 
@@ -544,7 +545,7 @@ class ReportsTest : BaseTest() {
 //
 //        val result = commonUtils.smartDownload("/Users/Shared/test/")
 //        assertEquals(true, result)
-
+        step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsNewRFMPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
     }
