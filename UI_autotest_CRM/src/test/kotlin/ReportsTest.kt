@@ -102,21 +102,20 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftSubMenuVisibleCheck()
 //        sleep(10000)
 //        profilePage.leftMenuItemsSelector( "Отзывы")
-
-        open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.reviews/")
         step("Перейти на страницу с отзывами")
+        open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.reviews/")
         sleep(10000)
+        step("Открыть календарь для смены дат")
         reviewReportPage.clickToOpenDateRange()
-        step("Открыть календарь в правом верхнем углу для смены дат")
-        reviewReportPage.changeStartDate("04/01/2023")
         step("Установить дату начала периода 04/01/2023")
-        reviewReportPage.changeEndDate("04/02/2023")
+        reviewReportPage.changeStartDate("04/01/2023")
         step("Установить дату конца периода 04/02/2023")
-        reviewReportPage.clickApplyDateChangeButton()
+        reviewReportPage.changeEndDate("04/02/2023")
         step("Подтвердить выбор дат нажатием на 'применить'")
+        reviewReportPage.clickApplyDateChangeButton()
         sleep(10000)
+        step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
         val result = reviewReportPage.mainSiteButtonVisible()
-        step("Убедиться, что кнопка перехода на главный сайт внизу видна")
         Assert.assertEquals(true, result)
 //        val resultName = reviewReportPage.downloadTableDateInPdfFile()
 //        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
@@ -163,7 +162,7 @@ class ReportsTest : BaseTest() {
 //    }
 
     @Test(dependsOnMethods = ["checkFeedbackReport"])
-    @Description("Тест на проверку  загрузки отчета с отзывами")
+    @Description("Тест на проверку загрузки отчета Гостевой WiFi")
      //Тест-кейс №5:  “Гостевой WiFi”, смена дат и скачивание отчета
     fun checkReportWifiGuest() {
         val profilePage = ProfilePage()
@@ -178,12 +177,18 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("Гостевой WiFi")
 //        sleep(10000)
+        step("Открыть страницу с отчетом 'Гостевой WiFi'")
         open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.wifi/")
         sleep(10000)
+        step("Открыть календарь для смены дат")
         reportsGuestWifiPage.clickToOpenDateRange()
+        step("Установить дату начала периода 04/01/2023")
         reportsGuestWifiPage.changeStartDate("04/01/2023")
+        step("Установить дату конца периода 04/30/2023")
         reportsGuestWifiPage.changeEndDate("04/30/2023")
+        step("Нажать на кнопку 'Применить' для подтверждения дат")
         reportsGuestWifiPage.clickApplyDateChangeButton()
+        step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsGuestWifiPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
         //Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
@@ -198,6 +203,7 @@ class ReportsTest : BaseTest() {
     }
 
     @Test(dependsOnMethods = ["checkReportWifiGuest"])
+    @Description("Отчет Сводка и смена дат")
      //Тест-кейс №6:  “Сводка” и смена дат
     fun checkSummaryReport() {
         val profilePage = ProfilePage()
@@ -209,20 +215,26 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuSingleSelector("Отчеты")
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("Сводка")
+        step("Открыть страницу с отчетом Сводка")
         open("https://cabinet.clientomer.ru/$pointBonaCapona/summary.report/")
         sleep(10000)
+        step("Открыть календарь для смены дат")
         reportsSummaryPage.clickToOpenDateRange()
+        step("Установить дату начала периода 04/01/2023")
         reportsSummaryPage.changeStartDate("04/01/2023")
+        step("Установить дату конца периода 04/30/2023")
         reportsSummaryPage.changeEndDate("04/30/2023")
+        step("Нажать на кнопку 'Применить' для подтверждения дат")
         reportsSummaryPage.clickApplyDateChangeButton()
         sleep(15000)
-
+        step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsSummaryPage.recountButtonVisible()
         Assert.assertEquals(true, result) //Здесь происходит проверка по наличию кнопки "Пересчитать" внизу страницы
 
     }
 
     @Test(dependsOnMethods = ["checkSummaryReport"])
+    @Description("Проверка отчета Доставки")
      //Тест-кейс №7:  ”Доставки”, смена дат и скачивание отчета
     fun checkDeliveryReport() {
         val profilePage = ProfilePage()
@@ -234,14 +246,18 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuSingleSelector("Отчеты")
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("Доставки")
+        step("Открыть страницу с отчетом Доставки")
         open("https://cabinet.clientomer.ru/$pointBonaCapona/delivery.report/")
         sleep(10000)
-
+        step("Открыть календарь для смены дат")
         reportsDeliveryPage.clickToOpenDateRange()
+        step("Установить дату начала периода 04/01/2023")
         reportsDeliveryPage.changeStartDate("04/01/2023")
+        step("Установить дату начала периода 04/30/2023")
         reportsDeliveryPage.changeEndDate("04/30/2023")
+        step("Нажать на кнопку 'Применить' для подтверждения дат")
         reportsDeliveryPage.clickApplyDateChangeButton()
-
+        step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsDeliveryPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
        /* val result = reportsDeliveryPage.downloadTableDateInPdfFile()
@@ -251,6 +267,7 @@ class ReportsTest : BaseTest() {
 
     @Test(dependsOnMethods = ["checkDeliveryReport"])
     //Тест-кейс №8:  ”ABC анализ по блюдам”, смена дат и скачивание отчета
+    @Description("Проверка отчета АВС анализ по блюдам")
     fun checkReportsABCDish() {
         val profilePage = ProfilePage()
         val abcDishPage = ABCDishPage()
@@ -262,14 +279,19 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuSingleSelector("Отчеты")
 //        profilePage.leftSubMenuVisibleCheck()
 //        profilePage.leftMenuItemsSelector("ABC анализ по блюдам")
+        step("Открыть отчет АВС анализ по блюдам")
         open("https://cabinet.clientomer.ru/$pointBonaCapona/analytics.abc/")
         sleep(10000)
-
+        step("Открыть календарь для смены дат")
         abcDishPage.clickToOpenDateRange()
+        step("Установить дату начала периода 04/01/2023")
         abcDishPage.changeStartDate("04/01/2023")
+        step("Установить дату конца периода 04/07/2023")
         abcDishPage.changeEndDate("04/07/2023")
+        step("Нажать на кнопку 'Применить' для подтверждения дат")
         abcDishPage.clickApplyDateChangeButton()
         sleep(10000)
+        step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = abcDishPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
 //        abcDishPage.buttonDropdownMenuClick()
