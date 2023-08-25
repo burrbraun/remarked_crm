@@ -5,6 +5,8 @@ import com.codeborne.selenide.Selenide.sleep
 import com.codeborne.selenide.WebDriverRunner
 import com.codeborne.selenide.logevents.SelenideLogger
 import io.github.bonigarcia.wdm.WebDriverManager
+import io.qameta.allure.Allure.step
+import io.qameta.allure.Step
 import io.qameta.allure.selenide.AllureSelenide
 import org.openqa.selenium.WebDriver
 import org.testng.annotations.BeforeSuite
@@ -94,9 +96,13 @@ open class BaseTest {
     class Auth : BaseTest() {
     @Test(priority=1)
     fun checkAuthByUserName() {
+        step ("Вводим логин")
         loginPage.setValueToLoginEditBox(login)
+        step ("Вводим пароль")
         loginPage.setValueToPasswordEditBox(password)
+        step ("вводим нужный номер поинта")
         loginPage.setValueToPointEditBox(point)
+        step ("нажимаем на кнопку 'войти' ")
         loginPage.loginButtonClick()
         sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
