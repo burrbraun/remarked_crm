@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.screenshot
+import io.qameta.allure.Allure
 import io.qameta.allure.Allure.step
 import io.qameta.allure.Attachment
 import io.qameta.allure.Description
@@ -12,8 +13,10 @@ import org.testng.ITestResult
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.Test
 import pages.*
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.io.PrintStream
 import java.lang.Thread.sleep
 import java.util.*
 import kotlin.test.assertEquals
@@ -24,18 +27,21 @@ class ReportsTest : BaseTest() {
     @Description("Проверка работы сценария авторизации пользователя на сайте")
      // Тест авторизации
     fun checkAuthByUserName() {
-        step("Вводим логин")
-        loginPage.setValueToLoginEditBox(loginBonaCapona)
-        step("Вводим пароль")
-        loginPage.setValueToPasswordEditBox(passwordBonaCapona)
-        step("Вводим нужный номер поинта")
-        loginPage.setValueToPointEditBox(pointBonaCapona)
-        step("Нажимаем на кнопку 'войти' ")
-        loginPage.loginButtonClick()
-        Selenide.sleep(15000)
-        val actualUserName= profilePage.checkCustomerName()
-        assertEquals(customerNameBonaCapona.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
-        System.err.println("auth passed")
+        val consoleOutput = captureConsoleOutput {
+            step("Вводим логин")
+            loginPage.setValueToLoginEditBox(loginBonaCapona)
+            step("Вводим пароль")
+            loginPage.setValueToPasswordEditBox(passwordBonaCapona)
+            step("Вводим нужный номер поинта")
+            loginPage.setValueToPointEditBox(pointBonaCapona)
+            step("Нажимаем на кнопку 'войти' ")
+            loginPage.loginButtonClick()
+            Selenide.sleep(15000)
+            val actualUserName = profilePage.checkCustomerName()
+            assertEquals(customerNameBonaCapona.lowercase().trimEnd(), actualUserName.lowercase().trimEnd())
+            System.err.println("auth passed test message")
+        }
+        Allure.addAttachment("Console Output", consoleOutput, "text/plain")
         @Attachment(value = "Screenshooot", type = "image/png")
         fun saveAllureScreenshot(s: String): ByteArray {
             return (driver as TakesScreenshot).getScreenshotAs(OutputType.BYTES)
@@ -548,5 +554,24 @@ class ReportsTest : BaseTest() {
         step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsNewRFMPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
+    }
+    private fun captureConsoleOutput(block: () -> Unit): String {
+        val outputStream = ByteArrayOutputStream()
+        val printStream = PrintStream(outputStream, true)
+
+        val systemOut = System.out
+        val systemErr = System.err
+
+        try {
+            System.setOut(printStream)
+            System.setErr(printStream)
+
+            block.invoke()
+        } finally {
+            System.setOut(systemOut)
+            System.setErr(systemErr)
+        }
+
+        return outputStream.toString()
     }
 }
