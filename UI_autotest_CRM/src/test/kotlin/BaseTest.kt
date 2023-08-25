@@ -15,6 +15,7 @@ import pages.CommonUtils
 import pages.LoginPage
 import pages.ProfilePage
 import kotlin.test.assertEquals
+import io.qameta.allure.AllureId
 
 
 open class BaseTest {
@@ -95,14 +96,16 @@ open class BaseTest {
 
     class Auth : BaseTest() {
     @Test(priority=1)
+    @AllureId("34")
+    @Step("Проверяем авторизацию")
     fun checkAuthByUserName() {
-        step ("Вводим логин")
+        step("Вводим логин")
         loginPage.setValueToLoginEditBox(login)
-        step ("Вводим пароль")
+        step("Вводим пароль")
         loginPage.setValueToPasswordEditBox(password)
-        step ("вводим нужный номер поинта")
+        step("вводим нужный номер поинта")
         loginPage.setValueToPointEditBox(point)
-        step ("нажимаем на кнопку 'войти' ")
+        step("нажимаем на кнопку 'войти' ")
         loginPage.loginButtonClick()
         sleep(15000)
         val actualUserName= profilePage.checkCustomerName()
