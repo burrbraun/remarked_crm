@@ -32,6 +32,7 @@ kotlin {
 
 val suite1 = project.hasProperty("suiteReportsTest")
 val suite2 = project.hasProperty("suiteSQLTests")
+val suite3 = project.hasProperty("suiteWhatsappTests")
 
 tasks.test {
     useTestNG() {
@@ -43,6 +44,9 @@ tasks.test {
         }
         if (suite2) {
             suites ("src/test/resources/suiteSQLTests.xml")
+        }
+        if (suite3) {
+            suites ("src/test/resources/suiteWhatsappTests.xml")
         }
     }
 }
