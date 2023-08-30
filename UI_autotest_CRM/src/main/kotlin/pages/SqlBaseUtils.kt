@@ -5,6 +5,7 @@ import io.qameta.allure.Allure
 import java.io.FileWriter
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -354,5 +355,32 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
         st.close()
         //     return true
     }
+
+    fun checkWhatsAppFeedbackCollectingForPrev25Hours() {
+        val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val now = LocalDateTime.now().minusHours(24)
+        val time = dtf.format(now)
+        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
+
+        try {
+            val conn = DriverManager.getConnection(myUrl, login, password)
+            val query = "SELECT point FROM clients_sources WHERE source_providers = 'feedbackaftervisit' AND point NOT IN ( SELECT DISTINCT point FROM cl_guests_chats WHERE date > (NOW() - INTERVAL 25 HOUR))"
+            val st = conn.createStatement()
+            val rs = st.executeQuery(query)
+
+            while (rs.next()) {
+                val point = rs.getInt("point")
+                System.out.format("%s  \n", point)
+            }
+
+            rs.close()
+            st.close()
+            conn.close()
+        } catch (e: SQLException) {
+            // Обработка исключения
+            e.printStackTrace()
+        }
+    }
+
 
 }
