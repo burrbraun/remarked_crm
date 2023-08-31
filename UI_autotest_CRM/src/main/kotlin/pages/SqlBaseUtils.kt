@@ -2,6 +2,8 @@ package pages
 
 import com.opencsv.CSVWriter
 import io.qameta.allure.Allure
+import io.qameta.allure.Allure.step
+import io.qameta.allure.Step
 import java.io.FileWriter
 import java.sql.Connection
 import java.sql.DriverManager
@@ -380,6 +382,35 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             // Обработка исключения
             e.printStackTrace()
         }
+    }
+    fun checkPhoneNumberWhatsAppActiveStatusChangeForPrevTwoDays() {
+            val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val now = LocalDateTime.now().minusHours(24)
+            val time = dtf.format(now)
+            val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
+
+            try {
+                step("Подключаемся к базе")
+                val conn = DriverManager.getConnection(myUrl, login, password)
+                step("Отправляем запрос к базе чтобы получить все поинты и номера телефонов, у которых номер либо отвязался, либо стал неактивен за последние 2 дня (меньший период нельзя, т.к. информация обновляется раз в сутки в полночь предыдущего дня)")
+                val query = "SELECT DISTINCT point, phone FROM cl_whatsapp_accounts WHERE active < 2 AND notify_date > (CURDATE() - 2)"
+                val st = conn.createStatement()
+                val rs = st.executeQuery(query)
+
+                while (rs.next()) {
+                    val point = rs.getInt("point")
+                    System.out.println("https://cabinet.clientomer.ru/$point $point")
+                }
+
+                rs.close()
+                st.close()
+                conn.close()
+            } catch (e: SQLException) {
+                // Обработка исключения
+                e.printStackTrace()
+            }
+
+
     }
 
 
