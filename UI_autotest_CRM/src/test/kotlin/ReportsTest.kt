@@ -544,7 +544,7 @@ class ReportsTest : BaseTest() {
 //        profilePage.leftMenuItemsSelector("Новый RFM-отчёт")
         step("Открыть отчет 'Новый RFM отчет'")
         open("https://cabinet.clientomer.ru/400125/new.rfm.report/")
-        sleep(60000)
+        sleep(120000)
 
 //        reportsNewRFMPage.buttonDropdownMenuClick()
 //        reportsNewRFMPage.downloadTableDateInXlsFile()
