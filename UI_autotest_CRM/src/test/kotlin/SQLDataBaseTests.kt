@@ -82,7 +82,7 @@ class SQLDataBaseTests  {
         Allure.addAttachment("Console Output", consoleOutput)
     }
 
-    @Test//(dependsOnMethods = ["checkActiveCustomerDeliveriesForPrevTwoDays"])
+    @Test(dependsOnMethods = ["checkActiveCustomerDeliveriesForPrevTwoDays"])
     @Description("Проверка смены статуса активности номера телефона, привязанного к whatsApp в базе с -Привязан- (2) на -Отвязан- (1) или -Неактивен- (0) за последние сутки ")
     fun checkIfActiveNumChangedFromTwoInPastTwoDays() {
         val consoleOutput = captureConsoleOutput {
