@@ -82,12 +82,12 @@ class SQLDataBaseTests  {
         Allure.addAttachment("Console Output", consoleOutput)
     }
 
-    @Test(dependsOnMethods = ["checkActiveCustomerDeliveriesForPrevTwoDays"])
-    @Description("Проверка смены статуса активности номера телефона, привязанного к whatsApp в базе с -Привязан- (2) на -Отвязан- (1) или -Неактивен- (0) за последние 2 дня")
+    @Test//(dependsOnMethods = ["checkActiveCustomerDeliveriesForPrevTwoDays"])
+    @Description("Проверка смены статуса активности номера телефона, привязанного к whatsApp в базе с -Привязан- (2) на -Отвязан- (1) или -Неактивен- (0) за последние сутки ")
     fun checkIfActiveNumChangedFromTwoInPastTwoDays() {
         val consoleOutput = captureConsoleOutput {
             val sqlBaseUtils = SqlBaseUtils()
-            System.out.format("--------------------------\nПоинты, где привязка телефона к вацапу либо отвязалась, либо отключилась за последние 48 часов\n")
+            System.out.format("--------------------------\nПоинты, где привязка телефона к вацапу либо отвязалась, либо отключилась за последние 24 часа\n")
             sqlBaseUtils.checkPhoneNumberWhatsAppActiveStatusChangeForPrevTwoDays()
             assert(true)
         }

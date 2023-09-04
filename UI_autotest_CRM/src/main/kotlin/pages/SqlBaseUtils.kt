@@ -392,8 +392,8 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             try {
                 step("Подключаемся к базе")
                 val conn = DriverManager.getConnection(myUrl, login, password)
-                step("Отправляем запрос к базе чтобы получить все поинты и номера телефонов, у которых номер либо отвязался, либо стал неактивен за последние 2 дня (меньший период нельзя, т.к. информация обновляется раз в сутки в полночь предыдущего дня)")
-                val query = "SELECT DISTINCT point, phone FROM cl_whatsapp_accounts WHERE active < 2 AND notify_date > (CURDATE() - 2)"
+                step("Отправляем запрос к базе чтобы получить все поинты и номера телефонов, у которых номер либо отвязался, либо стал неактивен за последний 1 день (меньший период нельзя, т.к. информация обновляется раз в сутки в полночь предыдущего дня)")
+                val query = "SELECT DISTINCT point, phone FROM cl_whatsapp_accounts WHERE active < 2 AND notify_date >= (CURDATE() - 1)"
                 val st = conn.createStatement()
                 val rs = st.executeQuery(query)
 
