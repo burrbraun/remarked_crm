@@ -17,6 +17,7 @@ class WhatsAppFeedbackReceiveTest {
         }
         Allure.addAttachment("Console Output", consoleOutput)
     }
+
     private fun captureConsoleOutput(block: () -> Unit): String {
         val outputStream = ByteArrayOutputStream()
         val printStream = PrintStream(outputStream, true)

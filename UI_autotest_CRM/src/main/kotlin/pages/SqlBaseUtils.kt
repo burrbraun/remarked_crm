@@ -305,7 +305,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
         val connection = DriverManager.getConnection(myUrl,  login, password )
         val statement = connection.createStatement()
         val sources = mutableListOf<String>()
-        val sourceQuery =  "SELECT DISTINCT source FROM feedback WHERE source NOT LIKE ''"
+        val sourceQuery =  "SELECT DISTINCT source FROM feedback WHERE source NOT LIKE '' ORDER BY source ASC"
         val sourceResultSet = statement.executeQuery(sourceQuery)
         while (sourceResultSet.next()) {
             val source = sourceResultSet.getString("source")
@@ -320,7 +320,8 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
                 reviewsCounts[source] = count
             }
         }
-        for ((source, count) in reviewsCounts) {
+        val sortedReviewsCounts = reviewsCounts.toSortedMap(compareBy { it.toLowerCase() })
+        for ((source, count) in sortedReviewsCounts) {
             println("Источник: $source, количество отзывов за последние 72 часа: $count ;")
         }
         statement.close()

@@ -59,15 +59,15 @@ class SQLDataBaseTests  {
         Allure.addAttachment("Console Output", consoleOutput)
     }
 
-    @Test(dependsOnMethods = ["checkActivePhoneCalls"]) //тест проверяет что отзывы приходят с порталов отзывов и их количество
+    @Test//(dependsOnMethods = ["checkActivePhoneCalls"]) //тест проверяет что отзывы приходят с порталов отзывов и их количество
     @Description("Проверка работы порталов отзывов и количества отзывов с каждого из них")
     fun checkGetActualReview () {
-        val consoleOutput = captureConsoleOutput {
+        //val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
         System.out.format("--------------------------\n")
         sqlBaseUtils.getActualReviews()
-    }
-        Allure.addAttachment("Console Output", consoleOutput)
+//    }
+//        Allure.addAttachment("Console Output", consoleOutput)
     }
 
     @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
