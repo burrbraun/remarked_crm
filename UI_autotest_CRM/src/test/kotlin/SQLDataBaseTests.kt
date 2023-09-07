@@ -22,18 +22,18 @@ class SQLDataBaseTests  {
 //        //assertEquals(true, result)
 //    } //метод работает некорректно
 
-    @Test(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
+    @Test//(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
     @Description("Проверка продаж за последние 48 часов для поинтов с активной интеграцией --продажи-- ")
     fun checkActiveCustomersSalesForPrevTwoDays(){
-        val consoleOutput = captureConsoleOutput {
+        //val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
         System.out.format("--------------------------\nНет продаж за последние 48 часов:\n")
         sqlBaseUtils.getActiveUsersAgain()
         //val file = SqlBaseUtils.OpenCsvWriterExample
         //assertEquals(true, result)
         assert(true)
-        }
-        Allure.addAttachment("Console Output", consoleOutput)
+        //}
+        //Allure.addAttachment("Console Output", consoleOutput)
     }
 
     @Test(dependsOnMethods = ["checkActiveCustomersSalesForPrevTwoDays"]) //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
@@ -70,7 +70,7 @@ class SQLDataBaseTests  {
         Allure.addAttachment("Console Output", consoleOutput)
     }
 
-    @Test//(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
+    @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
     @Description("Проверка доставок за последние 48 часов для поинтов")
     fun checkActiveCustomerDeliveriesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
