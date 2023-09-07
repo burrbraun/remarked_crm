@@ -367,7 +367,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
 
         try {
             val conn = DriverManager.getConnection(myUrl, login, password)
-            val query = "SELECT point FROM clients_sources WHERE source_providers = 'feedbackaftervisit' AND point NOT IN ( SELECT DISTINCT point FROM cl_guests_chats WHERE date > (NOW() - INTERVAL 25 HOUR))"
+            val query = "SELECT point FROM clients_sources WHERE source_providers = 'feedbackaftervisit' AND source_active = 1 AND point NOT IN ( SELECT DISTINCT point FROM cl_guests_chats WHERE date > (NOW() - INTERVAL 25 HOUR))"
             val st = conn.createStatement()
             val rs = st.executeQuery(query)
 
