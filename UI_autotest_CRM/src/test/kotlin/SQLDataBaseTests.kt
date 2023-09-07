@@ -70,7 +70,7 @@ class SQLDataBaseTests  {
         Allure.addAttachment("Console Output", consoleOutput)
     }
 
-    @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
+    @Test//(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
     @Description("Проверка доставок за последние 48 часов для поинтов")
     fun checkActiveCustomerDeliveriesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
