@@ -33,6 +33,7 @@ class SqlBaseUtils {
                 return true
             }
             st.close()
+            conn.close()
 
             // iterate through the java resultset
             /*while (rs.next()) {
@@ -210,6 +211,7 @@ class SqlBaseUtils {
         }
         stCalls.close()
         st.close()
+        conn.close()
     }
 
 //    fun getActiveCallsBaseUpdates() {
@@ -377,7 +379,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
 
             while (rs.next()) {
                 val point = rs.getInt("point")
-                System.out.format("%s  \n", point)
+                System.out.format("%s  https://cabinet.clientomer.ru/$point/chat.app/\n", point)
             }
 
             rs.close()
@@ -404,7 +406,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
 
                 while (rs.next()) {
                     val point = rs.getInt("point")
-                    System.out.println("https://cabinet.clientomer.ru/$point $point")
+                    System.out.println("https://cabinet.clientomer.ru/$point/chat.app/ $point")
                 }
 
                 rs.close()
