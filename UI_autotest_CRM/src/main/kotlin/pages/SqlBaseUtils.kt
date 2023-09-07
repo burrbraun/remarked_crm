@@ -350,7 +350,7 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                println(" $pointId , $name")
+                println(" https://cabinet.clientomer.ru/$pointId/delivery.list/ $pointId , $name")
 
                 // return false
             }
