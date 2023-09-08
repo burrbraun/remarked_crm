@@ -33,4 +33,11 @@ class WifiAuthSourcePage {
         mainSiteLink.shouldBe(Condition.exist)
         return true
     }
+
+    fun logOut() {
+        val profileNameMenu = Selenide.`$`("[class='dropdown-toggle']")
+        profileNameMenu.click()
+        val logOutButton = Selenide.`$`("[class='icon-switch2']")
+        logOutButton.click()
+    }
 }

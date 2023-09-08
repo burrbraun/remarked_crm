@@ -45,6 +45,7 @@ class ResourcesCRMTest : BaseTest() {
         Allure.step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
         val result = wifiAuthSourcePage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
+
     }
 
 }

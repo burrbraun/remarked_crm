@@ -35,15 +35,6 @@ class SqlBaseUtils {
             st.close()
             conn.close()
 
-            // iterate through the java resultset
-            /*while (rs.next()) {
-                val id = rs.getInt("id")
-                //if id != now
-
-                // print the results
-                System.out.format("%s\n", id)
-            }
-            st.close()*/
         } catch (e: Exception) {
             System.err.println("Got an exception! ")
             System.err.println(e.message)
@@ -122,21 +113,21 @@ class SqlBaseUtils {
         }
     }
 
-    fun main() {
-        val csvData = createCsvDataSimple()
-        CSVWriter(FileWriter("/Users/Shared/test/test.csv")).use { writer -> writer.writeAll(csvData) }
-    }
-
-    private fun createCsvDataSimple(): List<Array<String>> {
-        val header = arrayOf("id", "name", "address", "phone")
-        val record1 = arrayOf("1", "first name", "address 1", "11111")
-        val record2 = arrayOf("2", "second name", "address 2", "22222")
-        val list: MutableList<Array<String>> = ArrayList()
-        list.add(header)
-        list.add(record1)
-        list.add(record2)
-        return list
-    }
+//    fun main() {
+//        val csvData = createCsvDataSimple()
+//        CSVWriter(FileWriter("/Users/Shared/test/test.csv")).use { writer -> writer.writeAll(csvData) }
+//    }
+//
+//    private fun createCsvDataSimple(): List<Array<String>> {
+//        val header = arrayOf("id", "name", "address", "phone")
+//        val record1 = arrayOf("1", "first name", "address 1", "11111")
+//        val record2 = arrayOf("2", "second name", "address 2", "22222")
+//        val list: MutableList<Array<String>> = ArrayList()
+//        list.add(header)
+//        list.add(record1)
+//        list.add(record2)
+//        return list
+//    }
 
     fun getActiveUsersAgain() //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
     {
@@ -245,34 +236,39 @@ class SqlBaseUtils {
 
 
 
-fun fromAllCallBasesUpdates() {
-    val points = getPointsWithActiveCalls() // Получаем список поинтов с активной телефонией
-    val tableNames = listOf("telephony_alloka_data", "telephony_callibri_calls_data","telephony_calltouch_data","telephony_default_data","telephony_domru_data","telephony_mtt_data","telephony_obit_data","telephony_onlinepbx_data","telephony_sipuni_data","telephony_telphin_data","telephony_westcall_data","telephony_zebratelecom_data")
-    val startDate = LocalDate.now().minusDays(1)
-    val connection = getConnection() // Получаем соединение с базой данных
+    fun fromAllCallBasesUpdates() {
+        val pointsWithNames = getPointsWithActiveCalls() // Get the list of points with active calls and names
+        val tableNames = listOf(
+            "telephony_alloka_data", "telephony_callibri_calls_data", "telephony_calltouch_data",
+            "telephony_default_data", "telephony_domru_data", "telephony_mtt_data", "telephony_obit_data",
+            "telephony_onlinepbx_data", "telephony_sipuni_data", "telephony_telphin_data",
+            "telephony_westcall_data", "telephony_zebratelecom_data"
+        )
+        val startDate = LocalDate.now().minusDays(1)
+        val connection = getConnection() // Get the database connection
 
-    val numbersWithoutUpdates = mutableListOf<String>()
+        val numbersWithoutUpdates = mutableListOf<Pair<String, String>>() // List of (point, name) pairs
 
-    points.forEach { point ->
-        var hasUpdates = false
-        tableNames.forEach { tableName ->
-            val rowsCount = getRowsCount(connection, tableName, point, startDate)
-            if (rowsCount > 0) {
-                hasUpdates = true
-                return@forEach
+        pointsWithNames.forEach { (point, name) ->
+            var hasUpdates = false
+            tableNames.forEach { tableName ->
+                val rowsCount = getRowsCount(connection, tableName, point, startDate)
+                if (rowsCount > 0) {
+                    hasUpdates = true
+                    return@forEach
+                }
+            }
+            if (!hasUpdates) {
+                numbersWithoutUpdates.add(point to name) // Add the (point, name) pair to the list
             }
         }
-        if (!hasUpdates) {
-            numbersWithoutUpdates.add(point)
+
+        numbersWithoutUpdates.forEach { (point, name) ->
+            println("https://cabinet.clientomer.ru/$point/integration.telephony.calls/ $point, $name") // Print the point and name
         }
-    }
 
-    numbersWithoutUpdates.forEach { point ->
-        println("$point")
+        connection.close() // Close the database connection
     }
-
-    connection.close() // Закрываем соединение с базой данных
-}
 
 private fun getConnection(): Connection {
     val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
@@ -280,23 +276,25 @@ private fun getConnection(): Connection {
     return conn
 }
 
-private fun getPointsWithActiveCalls(): List<String> {
-    val connection = getConnection()
-    val statement = connection.createStatement()
-    val sql = "SELECT clients_sources.point FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id WHERE clients_sources.source_type LIKE 'telephony' AND clients_sources.source_active=1 AND clients_cabinet.active=1 AND clients_sources.source_providers NOT LIKE 'mt%'"
-    val resultSet = statement.executeQuery(sql)
-    val pointsWithActiveCalls = mutableListOf<String>()
-    while (resultSet.next()) {
-        pointsWithActiveCalls.add(resultSet.getString("point"))
+    private fun getPointsWithActiveCalls(): List<Pair<String, String>> {
+        val connection = getConnection()
+        val statement = connection.createStatement()
+        val sql = "SELECT clients_sources.point, clients_config.name FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE clients_sources.source_type LIKE 'telephony' AND clients_sources.source_active=1 AND clients_cabinet.active=1 AND clients_sources.source_providers NOT LIKE 'mt%'"
+        val resultSet = statement.executeQuery(sql)
+        val pointsWithActiveCalls = mutableListOf<Pair<String, String>>()
+        while (resultSet.next()) {
+            val point = resultSet.getString("point")
+            val name = resultSet.getString("name")
+            pointsWithActiveCalls.add(point to name)
+        }
+        statement.close()
+        connection.close()
+        return pointsWithActiveCalls
     }
-    statement.close()
-    connection.close()
-    return pointsWithActiveCalls
-}
 
 private fun getRowsCount(connection: Connection, tableName: String, point: String, startDate: LocalDate): Int {
     val statement = connection.createStatement()
-    val sql = "SELECT DISTINCT COUNT(*) FROM $tableName WHERE point='$point' AND date >= '${startDate.format(DateTimeFormatter.ISO_LOCAL_DATE)}' LIMIT 1"
+    val sql = "SELECT DISTINCT COUNT(*) FROM $tableName JOIN clients_cabinet ON $tableName.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE point='$point' AND date >= '${startDate.format(DateTimeFormatter.ISO_LOCAL_DATE)}' LIMIT 1"
     val resultSet = statement.executeQuery(sql)
     resultSet.next()
     val rowsCount = resultSet.getInt(1)

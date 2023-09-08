@@ -48,10 +48,10 @@ class SQLDataBaseTests  {
     }
 
 
-    @Test(dependsOnMethods = ["checkActiveCustomersCallsForPrevTime"]) //тест проверяет у каких поинтов сканер не обнаружил звонков за последние 24 часа
+    @Test//(dependsOnMethods = ["checkActiveCustomersCallsForPrevTime"]) //тест проверяет у каких поинтов сканер не обнаружил звонков за последние 24 часа
     @Description("Проверка отсутствия звонков на поинтах за последние 24 часа")
     fun checkActivePhoneCalls() {
-        val consoleOutput = captureConsoleOutput {
+       val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
         System.out.format("--------------------------\nПоинты без обновлений телефонии последние 24 часа:\n")
         sqlBaseUtils.fromAllCallBasesUpdates()
