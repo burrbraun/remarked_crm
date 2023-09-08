@@ -22,7 +22,7 @@ class SQLDataBaseTests  {
 //        //assertEquals(true, result)
 //    } //метод работает некорректно
 
-    @Test//(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
+    @Test(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
     @Description("Проверка продаж за последние 48 часов для поинтов с активной интеграцией --продажи-- ")
     fun checkActiveCustomersSalesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
