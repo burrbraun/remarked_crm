@@ -371,13 +371,14 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
 
         try {
             val conn = DriverManager.getConnection(myUrl, login, password)
-            val query = "SELECT point FROM clients_sources WHERE source_providers = 'feedbackaftervisit' AND source_active = 1 AND point NOT IN ( SELECT DISTINCT point FROM cl_guests_chats WHERE date > (NOW() - INTERVAL 25 HOUR))"
+            val query = "SELECT point , clients_config.name FROM clients_sources JOIN clients_cabinet ON clients_cabinet.point_id = clients_sources.`point` JOIN clients_config ON clients_config.id = clients_cabinet.client_id WHERE source_providers = 'feedbackaftervisit' AND source_active = 1 AND point NOT IN ( SELECT DISTINCT point FROM cl_guests_chats WHERE date > (NOW() - INTERVAL 25 HOUR))"
             val st = conn.createStatement()
             val rs = st.executeQuery(query)
 
             while (rs.next()) {
                 val point = rs.getInt("point")
-                System.out.format("%s  https://cabinet.clientomer.ru/$point/chat.app/\n", point)
+                val name = rs.getString("name")
+                System.out.format("https://cabinet.clientomer.ru/$point/chat.app/ $point $name \n")
             }
 
             rs.close()
