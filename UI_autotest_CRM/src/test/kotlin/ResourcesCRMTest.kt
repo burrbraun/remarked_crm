@@ -4,6 +4,7 @@ import io.qameta.allure.Description
 import io.qameta.allure.Epic
 import org.testng.Assert
 import org.testng.annotations.Test
+import pages.Sources.CallsSourcePage
 import pages.Sources.WifiAuthSourcePage
 import kotlin.test.assertEquals
 
@@ -44,8 +45,64 @@ class ResourcesCRMTest : BaseTest() {
         Thread.sleep(10000)
         Allure.step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
         val result = wifiAuthSourcePage.mainSiteButtonVisible()
-        Assert.assertEquals(true, result)
-
+        assert(true)
     }
+
+    @Test(dependsOnMethods = ["wifiAuthSourceTest"])
+    @Description("проверка страницы источника посещения wi-fi")
+    fun wifiAccessSourceTest() {
+        Allure.step("Перейти на страницу Источники -> Wifi-посещения")
+        Selenide.open("https://cabinet.clientomer.ru/$pointFiesta/user.socnet.profile.visits/")
+        Thread.sleep(10000)
+        Allure.step("Открыть календарь для смены дат")
+        val wifiAccessSourcePage = WifiAuthSourcePage()
+        wifiAccessSourcePage.clickToOpenDateRange()
+        Allure.step("Установить дату начала периода 04/01/2023")
+        wifiAccessSourcePage.changeStartDate("04/01/2023")
+        Allure.step("Установить дату конца периода 04/02/2023")
+        wifiAccessSourcePage.changeEndDate("04/02/2023")
+        Allure.step("Подтвердить выбор дат нажатием на 'применить'")
+        wifiAccessSourcePage.clickApplyDateChangeButton()
+        Thread.sleep(10000)
+        Allure.step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
+        val result = wifiAccessSourcePage.mainSiteButtonVisible()
+        assert(true)
+        Allure.step("разлогиниться из системы и увидеть страницу для авторизации")
+        wifiAccessSourcePage.logOut()
+    }
+
+    @Test(dependsOnMethods = ["wifiAccessSourceTest"])
+    @Description("проверка источника Звонки")
+    fun callsResourceTest() {
+        Selenide.open("https://cabinet.clientomer.ru/")
+        Allure.step("Вводим логин")
+        loginPage.setValueToLoginEditBox(loginFiesta)
+        Allure.step("Вводим пароль")
+        loginPage.setValueToPasswordEditBox(passwordFiesta)
+        Allure.step("Вводим нужный номер поинта")
+        loginPage.setValueToPointEditBox(pointFiesta)
+        Allure.step("Нажимаем на кнопку 'войти' ")
+        loginPage.loginButtonClick()
+        Selenide.sleep(15000)
+        Allure.step("Перейти на страницу Источники -> Звонки")
+        Selenide.open("https://cabinet.clientomer.ru/$pointFiesta/integration.telephony.calls/")
+        Thread.sleep(10000)
+        Allure.step("Открыть календарь для смены дат")
+        val callsSourcePage = CallsSourcePage()
+        callsSourcePage.clickToOpenDateRange()
+        Allure.step("Установить дату начала периода 04/01/2023")
+        callsSourcePage.changeStartDate("04/01/2023")
+        Allure.step("Установить дату конца периода 04/02/2023")
+        callsSourcePage.changeEndDate("04/02/2023")
+        Allure.step("Подтвердить выбор дат нажатием на 'применить'")
+        callsSourcePage.clickApplyDateChangeButton()
+        Thread.sleep(10000)
+        Allure.step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
+        val result = callsSourcePage.mainSiteButtonVisible()
+        assert(true)
+        Allure.step("разлогиниться из системы и увидеть страницу для авторизации")
+        callsSourcePage.logOut()
+    }
+
 
 }

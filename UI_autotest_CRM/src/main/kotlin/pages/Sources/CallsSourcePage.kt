@@ -3,7 +3,7 @@ package pages.Sources
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide
 
-class WifiAuthSourcePage {
+class CallsSourcePage {
     fun clickToOpenDateRange() {
         val dateRange = Selenide.`$`("[id='reportrange']")
         dateRange.shouldBe(Condition.visible)
