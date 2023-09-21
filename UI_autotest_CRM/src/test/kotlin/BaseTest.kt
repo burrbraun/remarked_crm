@@ -32,24 +32,32 @@ open class BaseTest {
     val loginPhaliHinkali = "Phali"
     val loginJoliWooFinegans = "administrator"
     val loginFiesta = "admin"
+    val loginTestCabinet = "7999999"
+    val loginPavelCabinet = "test"
 
     val password = utils.encryptionPasswords(System.getenv("PIZZALINO_PASSWORD")) //пароль пиццалино
     val passwordBonaCapona = utils.encryptionPasswords(System.getenv("BONACAPONA_PASSWORD")) //пароль бона капона
     val passwordPhaliHinkali = utils.encryptionPasswords(System.getenv("PHALIHINKALI_PASSWORD")) //пароль пхали хинкали
     val passwordJoliWooFinegans = utils.encryptionPasswords(System.getenv("JOLIWOOFINEGANS_PASSWORD")) //пароль джоливу финеганс
     val passwordFiesta = utils.encryptionPasswords(System.getenv("FIESTA_PASSWORD")) //пароль фиесты
+    val passwordTestCabinet = "7999999"
+    val passwordPavelCabinet = "test"
 
     val point = "600400"
     val pointBonaCapona = "600320"
     val pointPhaliHinkali = "400125"
     val pointJoliWooFinegans = "400115"
     val pointFiesta = "120004"
+    val pointTestCabinet = "7999999"
+    val pointPavelCabinet = "555222"
 
     val customerName = "Pizzalino"
     val customerNameBonaCapona = "bona capona - общий лк (только боны)"
     val customerNamePhaliHinkali = "Пхали-Хинкали — общий кабинет"
     val customerNameJoliWooFinegans = "Joly Woo and Finnegans - общий кабинет"
     val customerNameFiesta = "ФИЕСТА ПИЦЦА ОБЩИЙ"
+    val customerNameTestCabinet = ""
+    val customerPavelCabinet = ""
 
     val loginPage = LoginPage()
     val profilePage = ProfilePage()
