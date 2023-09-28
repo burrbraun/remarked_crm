@@ -68,5 +68,14 @@ class ProfilePage {
         val logOutButton = `$`("[class='icon-switch2']")
         logOutButton.click()
     }
+    fun checkCustomerNameInReserves(): String {
+        val customerNameInReserves = `$$`(" [id = 'dropdown-user'] ")
+        val elementsValue =  customerNameInReserves[0].text()
+        return elementsValue
+    }
+    fun clickOnReservesListButton() {
+        val reservesList = `$`(".nav-item.open-main-list")
+        reservesList.click()
+    }
 
 }

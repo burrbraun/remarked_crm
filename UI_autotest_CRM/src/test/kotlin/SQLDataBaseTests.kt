@@ -27,7 +27,7 @@ class SQLDataBaseTests  {
     fun checkActiveCustomersSalesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nНет продаж за последние 48 часов:\n")
+        System.out.format("--------------------------\nНет продаж за последние 24 часа:\n")
         sqlBaseUtils.getActiveUsersAgain()
         //val file = SqlBaseUtils.OpenCsvWriterExample
         //assertEquals(true, result)
@@ -71,11 +71,11 @@ class SQLDataBaseTests  {
     }
 
     @Test(dependsOnMethods = ["checkGetActualReview"]) //тест проверяет были ли доставки за последние 48 часов у поинтов с активным источником данных доставки
-    @Description("Проверка доставок за последние 48 часов для поинтов")
+    @Description("Проверка доставок за последние 24 часа для поинтов")
     fun checkActiveCustomerDeliveriesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
-        System.out.format("--------------------------\nНет доставок за последние 48 часов:\n")
+        System.out.format("--------------------------\nНет доставок за последние 24 часа:\n")
         sqlBaseUtils.getActiveUsersDelivery()
         assert(true)
     }
