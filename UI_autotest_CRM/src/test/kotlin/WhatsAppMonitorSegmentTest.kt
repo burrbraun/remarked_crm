@@ -172,3 +172,62 @@
 //}
 //
 //}
+
+import java.sql.DriverManager
+import java.sql.Timestamp
+import java.util.*
+
+
+fun main() {
+    val url = "jdbc:mysql://185.189.167.3:3310/clientomer?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Europe/Moscow"
+    val username = "clientomer_rd"
+    val password = "kysbH0PmEMitG3SK"
+
+    val connection = DriverManager.getConnection(url, username, password)
+
+    val sql = "SELECT * FROM `sms_by_segment_settings` WHERE `type` = 'whatsapp' AND `active` = 1;"
+
+    val currentDate = Timestamp(System.currentTimeMillis())
+    val pastDate = Timestamp(currentDate.time - 90000 * 1000) // 25 hours ago
+
+    connection.createStatement().use { statement ->
+        val resultSet = statement.executeQuery(sql)
+        while (resultSet.next()) {
+            val segmentId = resultSet.getInt("segment_id")
+
+            val segmentSql = "SELECT * FROM `segments_cache` WHERE `segment_id` = $segmentId"
+            val segmentResultSet = connection.createStatement().executeQuery(segmentSql)
+            if (segmentResultSet.next()) {
+                val segmentCount = segmentResultSet.getInt("with_allowed_phone_count")
+                val segmentDate = segmentResultSet.getTimestamp("date")
+
+                val errorSql = "SELECT COUNT(id) FROM `sms_by_segment_stats` WHERE `cfg_id` = ${resultSet.getInt("id")} AND `date` BETWEEN ? AND ? AND internal_status = 'error'"
+                val errorPreparedStatement = connection.prepareStatement(errorSql)
+                errorPreparedStatement.setTimestamp(1, pastDate)
+                errorPreparedStatement.setTimestamp(2, currentDate)
+                val errorResultSet = errorPreparedStatement.executeQuery()
+                val errorCount = if (errorResultSet.next()) errorResultSet.getInt(1) else 0
+
+                val sentSql = "SELECT COUNT(id) FROM `sms_by_segment_stats` WHERE `cfg_id` = ${resultSet.getInt("id")} AND `date` BETWEEN ? AND ? AND internal_status = 'history'"
+                val sentPreparedStatement = connection.prepareStatement(sentSql)
+                sentPreparedStatement.setTimestamp(1, pastDate)
+                sentPreparedStatement.setTimestamp(2, currentDate)
+                val sentResultSet = sentPreparedStatement.executeQuery()
+                val sentCount = if (sentResultSet.next()) sentResultSet.getInt(1) else 0
+
+                val queueSql = "SELECT COUNT(id) FROM `sms_by_segment_stats` WHERE `cfg_id` = ${resultSet.getInt("id")} AND `date` BETWEEN ? AND ? AND internal_status = 'queue'"
+                val queuePreparedStatement = connection.prepareStatement(queueSql)
+                queuePreparedStatement.setTimestamp(1, pastDate)
+                queuePreparedStatement.setTimestamp(2, currentDate)
+                val queueResultSet = queuePreparedStatement.executeQuery()
+                val queueCount = if (queueResultSet.next()) queueResultSet.getInt(1) else 0
+
+                val updatedDate = segmentResultSet.getTimestamp("date")
+
+                // Дальнейшая обработка результатов запросов...
+            }
+        }
+    }
+
+    connection.close()
+}
