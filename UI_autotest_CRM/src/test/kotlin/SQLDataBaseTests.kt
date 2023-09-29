@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 
 class SQLDataBaseTests  {
     @Test
-    @Description("Тест на проверку наличия обновлений базы продаж за последние 48 часов")
+    @Description("Тест на проверку наличия обновлений базы продаж за последние 48 часов (проверка работоспособности сканера)")
     fun checkSales() {
         val sqlBaseUtils = SqlBaseUtils()
         val result = sqlBaseUtils.checkPreviousDaySalesNotEmpty()
@@ -23,7 +23,7 @@ class SQLDataBaseTests  {
 //    } //метод работает некорректно
 
     @Test(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 48 часов у поинтов с активным источником данных продажи
-    @Description("Проверка продаж за последние 48 часов для поинтов с активной интеграцией --продажи-- ")
+    @Description("Проверка продаж за последние 24 часа для поинтов с активной интеграцией --продажи-- ")
     fun checkActiveCustomersSalesForPrevTwoDays(){
         val consoleOutput = captureConsoleOutput {
         val sqlBaseUtils = SqlBaseUtils()
