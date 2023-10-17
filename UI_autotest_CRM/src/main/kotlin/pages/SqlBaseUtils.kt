@@ -138,20 +138,21 @@ class SqlBaseUtils {
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
         val conn = DriverManager.getConnection(myUrl,  login, password )
         val query =
-            "SELECT DISTINCT clients_sources.point , clients_config.name FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active=1 AND clients_cabinet.active=1 AND clients_sources.point <> clients_sources.guest_point AND clients_sources.source_providers NOT IN ('iikodelivery', 'iikocloud')"
+            "SELECT DISTINCT clients_sources.point , clients_config.name , clients_sources.source_providers FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active=1 AND clients_cabinet.active=1 AND clients_sources.point <> clients_sources.guest_point AND clients_sources.source_providers NOT IN ('iikodelivery', 'iikocloud')"
         val st = conn.createStatement()
         val rs = st.executeQuery(query)
         val stPurchases = conn.createStatement()
         while (rs.next()) {
             var pointId = rs.getInt("point")
             var name = rs.getString("name")
+            var sourceProviders = rs.getString("source_providers")
 
             val queryPurchases =
                 "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND order_type = 'sales' AND cl_purchases.date > (CURDATE() - 1)  LIMIT 1"
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                println(" https://cabinet.clientomer.ru/$pointId/sales.list/ $pointId , $name")
+                println(" https://cabinet.clientomer.ru/$pointId/sales.list/ $pointId , $name , $sourceProviders")
 
                // return false
             }
@@ -339,20 +340,21 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
         val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
         val conn = DriverManager.getConnection(myUrl,  login, password )
         val query =
-            "SELECT DISTINCT clients_sources.point, clients_config.name FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active = 1 AND clients_cabinet.active = 1 AND clients_sources.point <> clients_sources.guest_point AND clients_sources.source_providers IN ('iikodelivery', 'iikocloud')"
+            "SELECT DISTINCT clients_sources.point, clients_config.name, clients_sources.source_providers FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id JOIN clients_config ON clients_cabinet.client_id = clients_config.id WHERE clients_sources.source_type LIKE 'sales' AND clients_sources.source_active = 1 AND clients_cabinet.active = 1 AND clients_sources.point <> clients_sources.guest_point AND clients_sources.source_providers IN ('iikodelivery', 'iikocloud')"
         val st = conn.createStatement()
         val rs = st.executeQuery(query)
         val stPurchases = conn.createStatement()
         while (rs.next()) {
             var pointId = rs.getInt("point")
             var name = rs.getString("name")
+            var sourceProviders = rs.getString("source_providers")
 
             val queryPurchases =
                 "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point = $pointId AND order_type = 'delivery' AND cl_purchases.date > (CURDATE() - 1)  LIMIT 1"
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                println(" https://cabinet.clientomer.ru/$pointId/delivery.list/ $pointId , $name")
+                println(" https://cabinet.clientomer.ru/$pointId/delivery.list/ $pointId , $name , $sourceProviders")
 
                 // return false
             }
