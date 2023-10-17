@@ -15,13 +15,6 @@ class SQLDataBaseTests  {
         assertEquals(true,result)
     }
 
-//    @Test//(dependsOnMethods = ["checkSales"])
-//    fun checkActiveCustomersSales() {
-//        val sqlBaseUtils = SqlBaseUtils()
-//        sqlBaseUtils.getActiveUsers()
-//        //assertEquals(true, result)
-//    } //метод работает некорректно
-
     @Test//(dependsOnMethods = ["checkSales"]) //тест проверяет были ли продажи за последние 24 часа у поинтов с активным источником данных продажи
     @Description("Проверка продаж за последние 24 часа для поинтов с активной интеграцией --продажи-- ")
     fun checkActiveCustomersSalesForPrevTwoDays(){
@@ -29,8 +22,6 @@ class SQLDataBaseTests  {
         val sqlBaseUtils = SqlBaseUtils()
         System.out.format("--------------------------\nНет продаж за последние 24 часа:\n")
         sqlBaseUtils.getActiveUsersAgain()
-        //val file = SqlBaseUtils.OpenCsvWriterExample
-        //assertEquals(true, result)
         assert(true)
         }
         Allure.addAttachment("Console Output", consoleOutput)

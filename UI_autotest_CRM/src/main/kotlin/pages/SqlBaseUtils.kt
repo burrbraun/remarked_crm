@@ -42,47 +42,6 @@ class SqlBaseUtils {
         return false
     }
 
-//    fun getActiveUsers() {
-//        val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-//        val now = LocalDateTime.now().minusHours(24)
-//        val time = dtf.format(now)
-//        // try {
-//        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-//        val conn = DriverManager.getConnection(myUrl,  login, password )
-//        val query = "SELECT point_id FROM clients_cabinet WHERE active = 1"
-//        val st = conn.createStatement()
-//        val rs = st.executeQuery(query)
-//
-//        while (rs.next()) {
-//            var pointId = rs.getInt("point_id")
-//            val stPurchases = conn.createStatement()
-//            val queryPurchases =
-//                "SELECT id FROM cl_purchases WHERE point = '$pointId' AND date < '$time' LIMIT 1"
-//            val result = stPurchases.executeQuery(queryPurchases)
-//            var sizeOfThePurchaseTable = 0
-//            if (result != null) {
-//                result.last()
-//                sizeOfThePurchaseTable = result.row
-//                System.out.format("%s active\n", pointId) //проверяю, какие поинты попадают в цикл
-//            }
-//
-//            if (sizeOfThePurchaseTable == 0) {
-//                System.out.format("%s disabled\n", pointId)
-//            }
-//            stPurchases.close()
-//        }
-//        st.close()
-//
-//
-//        //} catch (e: Exception)
-//        /*{
-//        System.err.println("Got an exception! ")
-//        System.err.println(e.message)
-//    }*/
-//
-//        // }
-//    }
-
     fun getActiveSalesForAllUsers() {
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now()
@@ -101,33 +60,12 @@ class SqlBaseUtils {
             val stPurchases = conn.createStatement()
             val queryPurchases =
                 "SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point IN ($pointId) AND cl_purchases.date < (CURDATE() - 2) LIMIT 1"
-            //"SELECT cl_purchases.point FROM cl_purchases WHERE cl_purchases.point IN ($pointId) AND cl_purchases.date = (CURRENT DATE - 2) GROUP BY cl_purchases.point HAVING COUNT(point)>0"
             val st2 = conn.createStatement()
             val rs2 = st.executeQuery(query)
-            /*while (rs2.next()) {
-                var pointId2 = rs2.getInt("point_id")
-                val stPurchases2 = conn.createStatement()
-                val queryPurchases2 = ""
-            }*/
 
         }
     }
 
-//    fun main() {
-//        val csvData = createCsvDataSimple()
-//        CSVWriter(FileWriter("/Users/Shared/test/test.csv")).use { writer -> writer.writeAll(csvData) }
-//    }
-//
-//    private fun createCsvDataSimple(): List<Array<String>> {
-//        val header = arrayOf("id", "name", "address", "phone")
-//        val record1 = arrayOf("1", "first name", "address 1", "11111")
-//        val record2 = arrayOf("2", "second name", "address 2", "22222")
-//        val list: MutableList<Array<String>> = ArrayList()
-//        list.add(header)
-//        list.add(record1)
-//        list.add(record2)
-//        return list
-//    }
 
     fun getActiveUsersAgain() //тест проверяет были ли продажи за последние 24 часов у поинтов с активным источником данных продажи
     {
@@ -152,32 +90,17 @@ class SqlBaseUtils {
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                println(" https://cabinet.clientomer.ru/$pointId/sales.list/ $pointId , $name , $sourceProviders")
+                println(" https://cabinet.clientomer.ru/$pointId/sales.list/ , $sourceProviders , $pointId , $name ")
 
-               // return false
             }
         }
             stPurchases.close()
             st.close()
         conn.close()
-   //     return true
     }
 
 
-/*        fun main(args: Array<String>) {
-            val csvData = createCsvDataSimple()
-            CSVWriter(FileWriter("/Users/Shared/test")).use { writer -> writer.writeAll(csvData) }
-        }
 
-        fun createCsvDataSimple(): List<Array<String>> {
-            val header = arrayOf("point")
-            val record1 = arrayOf("1")
-            val list: MutableList<Array<String>> = ArrayList()
-            list.add(header)
-            list.add(record1)
-
-            return list
-        }*/
 
     fun getUsersWithActivePhoneCalls() //тест проверяет какие телефонии не получали обновлений за последние 3+45 часов
     {
@@ -205,37 +128,6 @@ class SqlBaseUtils {
         st.close()
         conn.close()
     }
-
-//    fun getActiveCallsBaseUpdates() {
-//        val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-//        val now = LocalDateTime.now().minusHours(24)
-//        val time = dtf.format(now)
-//        val myUrl = "jdbc:mysql://95.143.188.9:3310/clientomer?serverTimezone=UTC"
-//        val conn = DriverManager.getConnection(myUrl,  login, password )
-//        )
-//        val pointsAndOperatorsWithActiveCalls = "SELECT clients_sources.point, clients_sources.source_providers FROM clients_sources JOIN clients_cabinet ON clients_sources.point = clients_cabinet.point_id WHERE clients_sources.source_type LIKE 'telephony' AND clients_sources.source_active=1 AND clients_cabinet.active=1"
-//        val st = conn.createStatement()
-//        val rs = st.executeQuery(pointsAndOperatorsWithActiveCalls)
-//        //val stCalls = conn.createStatement()
-//        //val operators = listOf("alloka", "calltouch", "domru", "onlinepbx", "sipuni", "telphin", "westcall", "zebratelecom")
-//        val tableNames = listOf("telephony_alloka_data", "telephony_callibri_calls_data","telephony_calltouch_data","telephony_default_data","telephony_domru_data","telephony_mtt_data","telephony_obit_data","telephony_onlinepbx_data","telephony_sipuni_data","telephony_telphin_data","telephony_westcall_data","telephony_zebratelecom_data")
-//
-//            pointsAndOperatorsWithActiveCalls.forEach{point ->
-//                tableNames.forEach{
-//                tableName ->
-//                val rowsCount = getRowsCount(tableName, point, now)
-//                println("Таблица: $tableName, POINT: $point, Количество новых строк за последние два дня: $rowsCount")
-//            }
-//            }
-//
-//        st.close() // Закрываем соединение с базой данных
-//    }
-//            }
-//                println(it)
-//            }
-
-
-
 
     fun fromAllCallBasesUpdates() {
         val pointsWithNames = getPointsWithActiveCalls() // Get the list of points with active calls and names
@@ -354,15 +246,15 @@ private fun getRowsCount(connection: Connection, tableName: String, point: Strin
             val result = stPurchases.executeQuery(queryPurchases)
 
             if (!result.next())  {
-                println(" https://cabinet.clientomer.ru/$pointId/delivery.list/ $pointId , $name , $sourceProviders")
+                println(" https://cabinet.clientomer.ru/$pointId/delivery.list/ , $sourceProviders ,  $pointId , $name ")
 
-                // return false
+
             }
         }
         stPurchases.close()
         st.close()
         conn.close()
-        //     return true
+
     }
 
     fun checkWhatsAppFeedbackCollectingForPrev25Hours() {
