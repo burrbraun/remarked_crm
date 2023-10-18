@@ -65,7 +65,7 @@ class ReportsTest : BaseTest() {
         System.err.println("left menu passed")
     }
 
-//    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест кейс №2 “Звонки” и смена дат
+//    @Test(dependsOnMethods = ["checkLeftMenuNavigationOpenClose"]) //тест работал локально, на дженкинс пока не удалось подтянуть проверку скриншота
 //    fun checkCallsReport(){
 //        val profilePage = ProfilePage()
 //        val reportsCallsPage = ReportsCallsPage()
@@ -123,49 +123,8 @@ class ReportsTest : BaseTest() {
         step("Убедиться, что кнопка перехода на главный сайт reMarked внизу видна")
         val result = reviewReportPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-//        val resultName = reviewReportPage.downloadTableDateInPdfFile()
-//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-//        assertEquals(true, result)
-//        assertEquals("Отчет по отзывам BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-02.pdf",resultName)
     }
 
-//    @Test(dependsOnMethods = ["checkFeedbackReport"])
-//     //Тест-кейс №4:  “Заказы в заведении”, смена дат и скачивание отчета
-//    fun checkOrdersInCafeReport () {
-//        val profilePage = ProfilePage()
-//        val reportsOrdersInCafePage = ReportsOrdersInCafePage()
-//        val commonUtils = CommonUtils()
-//        val reportHeader = Selenide.`$`("[class='page-header']").scrollIntoView(true)
-//        reportHeader.shouldBe(Condition.exist)
-
-//        sleep(10000)
-//        profilePage.leftMenuSingleSelector("Реклама")
-//        sleep(10000)
-//        profilePage.leftSubMenuVisibleCheck()
-//        profilePage.leftMenuItemsSelector("Сегменты")
-//        sleep(10000)
-//        profilePage.leftMenuSingleSelector("Отчеты")
-//        sleep(10000)
-//        profilePage.leftSubMenuVisibleCheck()
-//        profilePage.leftMenuItemsSelector("Заказы в заведении")
-//        sleep(10000)
-
-//        open("https://cabinet.clientomer.ru/$pointBonaCapona/hall.sales.report/")
-//        sleep(50000)
-//        reportsOrdersInCafePage.clickToOpenDateRange()
-//        reportsOrdersInCafePage.changeStartDate("04/01/2023")
-//        reportsOrdersInCafePage.changeEndDate("04/07/2023")
-//        reportsOrdersInCafePage.clickApplyDateChangeButton()
-//        sleep(10000)
-//        val result = reportsOrdersInCafePage.mainSiteButtonVisible()
-//        Assert.assertEquals(true, result)
-//        val resultName = reportsOrdersInCafePage.downloadTableDateInPdfFile()
-//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-//        assertEquals(true, result)
-//        assertEquals("Отчет по заказам в заведении BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-07.pdf",resultName)
-//        val pngFileName: String? = screenshot("my_file_name")
-//        Configuration.reportsFolder = "reports"
-//    }
 
     @Test(dependsOnMethods = ["checkFeedbackReport"])
     @Description("Тест на проверку загрузки отчета Гостевой WiFi")
@@ -197,15 +156,6 @@ class ReportsTest : BaseTest() {
         step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsGuestWifiPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-        //Selenide.Wait().until(ExpectedConditions.urlContains("/analytics.wifi/?from=2023-04-01&to=2023-04-30"))
-//        val resultName = reportsGuestWifiPage.downloadTableDateInPdfFile()
-//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-//        //val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-//        assertEquals(
-//            "Отчет по гостевому Wi-Fi BONA CAPONA - общий лк (только боны) с 2023-04-01 по 2023-04-30.pdf",
-//            resultName
-//        )
     }
 
     @Test(dependsOnMethods = ["checkReportWifiGuest"])
@@ -266,9 +216,6 @@ class ReportsTest : BaseTest() {
         step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsDeliveryPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-       /* val result = reportsDeliveryPage.downloadTableDateInPdfFile()
-        assertEquals() - здесь должно быть название доки, с которым сверяться, но по состоянию на 19 мая кнопка скачать неактивна и файл не скачивается - тикет заведен, ждем исправления
-*/
     }
 
     @Test(dependsOnMethods = ["checkDeliveryReport"])
@@ -300,12 +247,6 @@ class ReportsTest : BaseTest() {
         step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = abcDishPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-//        abcDishPage.buttonDropdownMenuClick()
-//        abcDishPage.downloadTableDateInXlsFile()
-//        val result = commonUtils.smartDownload("/src/test/resources/testResults/")
-//        assertEquals(true, result)
-//        val fileSize = commonUtils.findFileInDirectory("/src/test/resources/testResults/").listFiles().get(0).length()
-//        assertTrue { fileSize in 70040..70045  }
     }
 
     @Test(dependsOnMethods = ["checkReportsABCDish"])
@@ -331,13 +272,6 @@ class ReportsTest : BaseTest() {
         val result = abcGuestsPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
 
-//        abcGuestsPage.buttonDropdownMenuClick()
-//        abcGuestsPage.downloadTableDateInXlsFile()
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-       /* val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
-        assertTrue { fileSize in 278004..278009 }*/
-        //проблема с разным размером файла, ждём исправления
     }
 
     @Test(dependsOnMethods = ["checkReportABCGuest"])
@@ -363,13 +297,6 @@ class ReportsTest : BaseTest() {
         behaviorReportPage.buttonDropdownMenuClick()
         val result = behaviorReportPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-        /* behaviorReportPage.downloadTableDateInXlsFile()
-         val result = commonUtils.smartDownload("/Users/Shared/test/")
-         assertEquals(true, result)
-
-         val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
-         */
-    // по состоянию на 18 мая файл не скачивался. ждем фикса от разработки и добавим в тест
     }
 
     @Test(dependsOnMethods = ["checkReportBehavior"])
@@ -395,15 +322,6 @@ class ReportsTest : BaseTest() {
         sleep(10000)
         val result = reportsReviewAfterVisitPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
-//        reportsReviewAfterVisitPage.buttonDropdownMenuClick()
-//        val resultName = reportsReviewAfterVisitPage.downloadTableDateInXlsFile()
-//
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-//       val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles().get(0).length()
-//       // assertEquals(14886, fileSize)
-//        assertTrue { fileSize in 14885..14887 }
-//       assertEquals("messages.report_2023-04-01_2023-04-01.xlsx", resultName)
     }
 
     @Test(dependsOnMethods = ["checkReviewAfterVisit"])
@@ -436,17 +354,9 @@ class ReportsTest : BaseTest() {
         reportsBirthdayPage.changeStartDate("04/01/2021")
         reportsBirthdayPage.changeEndDate("04/30/2021")
         reportsBirthdayPage.clickApplyDateChangeButton()
-//        reportsBirthdayPage.buttonDropdownMenuClick()
-//        val resultName = reportsBirthdayPage.downloadTableDateInXlsFile()
-//
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-//        assertEquals("birthdays_report_2021-04-01_2021-04-30.xlsx", resultName)
         val result = reportsBirthdayPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)
 
-        //val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
-        //assertEquals(14896, fileSize)
     }
 
     @Test(dependsOnMethods = ["checkBirthdays"])
@@ -515,16 +425,6 @@ class ReportsTest : BaseTest() {
         complementPage.changeEndDate("04/30/2023")
         complementPage.clickApplyDateChangeButton()
 
-//        complementPage.buttonDropdownMenuClick()
-//
-//        val resultName = complementPage.downloadTableDateInXlsFile()
-//        sleep(10000)
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
-//        val fileSize = commonUtils.findFileInDirectory("/Users/Shared/test/").listFiles()[0].length()
-//
-//        assertEquals("complements__2023-04-01_2023-04-30.xlsx", resultName)
-//        assertTrue{fileSize in 49003 .. 49008}
         val resultHeader = complementPage.mainSiteButtonVisible()
         assertEquals(true, resultHeader)
     }
@@ -548,17 +448,10 @@ class ReportsTest : BaseTest() {
         loginPage.setValueToPointEditBox(pointPavelCabinet)
         loginPage.loginButtonClick()
         Selenide.sleep(15000)
-//        val actualUserName= profilePage.checkCustomerName()
-//        assertEquals(customerNameFiesta.lowercase().trimEnd(),actualUserName.lowercase().trimEnd())
         step("Открыть отчет 'Новый RFM отчет'")
         open("https://cabinet.clientomer.ru/555222/new.rfm.report/")
         sleep(120000)
 
-//        reportsNewRFMPage.buttonDropdownMenuClick()
-//        reportsNewRFMPage.downloadTableDateInXlsFile()
-//
-//        val result = commonUtils.smartDownload("/Users/Shared/test/")
-//        assertEquals(true, result)
         step("Убедиться, что кнопка перехода на главный сайт reMarked загрузилась и видна внизу страницы")
         val result = reportsNewRFMPage.mainSiteButtonVisible()
         Assert.assertEquals(true, result)

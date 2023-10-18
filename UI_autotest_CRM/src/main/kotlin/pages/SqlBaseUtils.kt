@@ -42,7 +42,7 @@ class SqlBaseUtils {
         return false
     }
 
-    fun getActiveSalesForAllUsers() {
+    fun getActiveSalesForAllUsers() { //КРИВОй метод для проверки сканера продаж, заменен на getActiveUsersAgain
         val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now()
         val now = LocalDateTime.now().minusHours(48)
